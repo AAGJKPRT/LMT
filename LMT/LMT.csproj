@@ -1,0 +1,540 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5CA3B147-25E6-421F-96FB-34151717F2D3}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LMT</RootNamespace>
+    <AssemblyName>LMT</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AjaxControlToolkit">
+      <HintPath>..\..\..\AjaxControlToolkit.Binary.NET40\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="AjaxMin">
+      <HintPath>..\..\..\AjaxControlToolkit.Binary.NET40\AjaxMin.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDatabase">
+      <HintPath>..\..\..\School ERP For Demo\School ERP For Demo(Latest)\School ERP For Demo\CrystalCampus\bin\CrystalDatabase.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\EditLabProfile.aspx" />
+    <Content Include="Admin\EditSupProfile.aspx" />
+    <Content Include="Admin\Labour.aspx" />
+    <Content Include="Admin\LabourType.aspx" />
+    <Content Include="Admin\Supplier.aspx" />
+    <Content Include="colorbox.css" />
+    <Content Include="css\all-ie-only.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\button.css" />
+    <Content Include="css\dashcss.css" />
+    <Content Include="css\font-awesome.css" />
+    <Content Include="css\font-awesome.min.css" />
+    <Content Include="css\full-slider.css" />
+    <Content Include="css\loginstyle.css" />
+    <Content Include="css\NewMasterStyleSheet.css" />
+    <Content Include="css\plugins-dash.css" />
+    <Content Include="css\style.css" />
+    <Content Include="Customer\AddNewCase.aspx" />
+    <Content Include="frmLogout.aspx" />
+    <Content Include="GetLabour.asmx" />
+    <Content Include="images\a1.jpg" />
+    <Content Include="images\a2.jpg" />
+    <Content Include="images\a3.jpg" />
+    <Content Include="images\ajax-loader.gif" />
+    <Content Include="images\author.jpg" />
+    <Content Include="images\back-to-top.png" />
+    <Content Include="images\btn-add.png" />
+    <Content Include="images\btnSearch.png" />
+    <Content Include="images\btn_submit.png" />
+    <Content Include="images\Calendar_scheduleHS.jpg" />
+    <Content Include="images\crayon.png" />
+    <Content Include="images\Delete.png" />
+    <Content Include="images\Edit.gif" />
+    <Content Include="images\EL_logo.png" />
+    <Content Include="images\export_excel_icon.gif" />
+    <Content Include="images\flag.png" />
+    <Content Include="images\gear.png" />
+    <Content Include="images\Go.jpg" />
+    <Content Include="images\howdo_wework.png" />
+    <Content Include="images\ind_slid1.jpg" />
+    <Content Include="images\ind_slid2.jpg" />
+    <Content Include="images\ind_slid3.jpg" />
+    <Content Include="images\ind_slid4.jpg" />
+    <Content Include="images\labour_defaultimg.jpg" />
+    <Content Include="images\Lbr_imgbr.png" />
+    <Content Include="images\loader.gif" />
+    <Content Include="images\logo.png" />
+    <Content Include="images\next.png" />
+    <Content Include="images\p1.png" />
+    <Content Include="images\p2.png" />
+    <Content Include="images\p3.png" />
+    <Content Include="images\p4.png" />
+    <Content Include="images\previous.png" />
+    <Content Include="images\printer_icon.png" />
+    <Content Include="images\print_icon.gif" />
+    <Content Include="images\Refresh.png" />
+    <Content Include="images\rocket.png" />
+    <Content Include="images\step-1.png" />
+    <Content Include="index.aspx" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\jquery.colorbox.js" />
+    <Content Include="js\jquery.isotope.min.js" />
+    <Content Include="js\jquery.js" />
+    <Content Include="js\jquery.min.js" />
+    <Content Include="js\main.js" />
+    <Content Include="js\modernizr-2.6.2.min.js" />
+    <Content Include="js\PopUpJScript.js" />
+    <Content Include="login.aspx" />
+    <Content Include="MasterPages\AdminMenuboard.aspx" />
+    <Content Include="MasterPages\AreaCityMst.aspx" />
+    <Content Include="MasterPages\Calender.aspx" />
+    <Content Include="MasterPages\CustMenuBoard.aspx" />
+    <Content Include="MasterPages\Supplier.aspx" />
+    <Content Include="MasterPages\EditLabProfile.aspx" />
+    <Content Include="MasterPages\EditSupProfile.aspx" />
+    <Content Include="MasterPages\Labour.aspx" />
+    <Content Include="MasterPages\LabourType.aspx" />
+    <Content Include="MasterPages\MasterPage.aspx" />
+    <Content Include="MasterPages\MenuBoard.aspx" />
+    <Content Include="MasterPages\NewLeads.aspx" />
+    <Content Include="MasterPages\SupplierMenuboard.aspx" />
+    <Content Include="MasterUC\CityUC.ascx" />
+    <Content Include="MasterUC\LabourType.ascx" />
+    <Content Include="MasterUC\StateUC.ascx" />
+    <Content Include="newcal\css\cupertino\images\animated-overlay.gif" />
+    <Content Include="newcal\css\cupertino\images\ui-bg_diagonals-thick_90_eeeeee_40x40.png" />
+    <Content Include="newcal\css\cupertino\images\ui-bg_flat_15_cd0a0a_40x100.png" />
+    <Content Include="newcal\css\cupertino\images\ui-bg_glass_100_e4f1fb_1x400.png" />
+    <Content Include="newcal\css\cupertino\images\ui-bg_glass_50_3baae3_1x400.png" />
+    <Content Include="newcal\css\cupertino\images\ui-bg_glass_80_d7ebf9_1x400.png" />
+    <Content Include="newcal\css\cupertino\images\ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
+    <Content Include="newcal\css\cupertino\images\ui-bg_highlight-hard_70_000000_1x100.png" />
+    <Content Include="newcal\css\cupertino\images\ui-bg_highlight-soft_100_deedf7_1x100.png" />
+    <Content Include="newcal\css\cupertino\images\ui-bg_highlight-soft_25_ffef8f_1x100.png" />
+    <Content Include="newcal\css\cupertino\images\ui-icons_2694e8_256x240.png" />
+    <Content Include="newcal\css\cupertino\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="newcal\css\cupertino\images\ui-icons_3d80b3_256x240.png" />
+    <Content Include="newcal\css\cupertino\images\ui-icons_72a7cf_256x240.png" />
+    <Content Include="newcal\css\cupertino\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="newcal\css\cupertino\jquery-ui-1.10.3.min.css" />
+    <Content Include="newcal\css\cupertino\jquery-ui-1.11.0.css" />
+    <Content Include="newcal\css\cupertino\jquery-ui-1.11.0.min.css" />
+    <Content Include="newcal\css\jquery.qtip-2.2.0.css" />
+    <Content Include="newcal\fullcalendar\fullcalendar-1.6.4.js" />
+    <Content Include="newcal\fullcalendar\fullcalendar-2.0.2.js" />
+    <Content Include="newcal\fullcalendar\fullcalendar-2.0.3.js" />
+    <Content Include="newcal\fullcalendar\fullcalendar.css" />
+    <Content Include="newcal\jquery\jquery-2.1.1.js" />
+    <Content Include="newcal\jquery\jquery-2.1.1.min.js" />
+    <Content Include="newcal\jquery\jquery-ui-1.11.1.js" />
+    <Content Include="newcal\jquery\jquery-ui-1.11.1.min.js" />
+    <Content Include="newcal\jquery\jquery-ui-timepicker-addon-1.4.5.js" />
+    <Content Include="newcal\jquery\jquery.qtip-2.2.0.js" />
+    <Content Include="newcal\jquery\moment-2.8.1.min.js" />
+    <Content Include="newcal\scripts\calendarscript.js" />
+    <Content Include="Reports\AllLabours.aspx" />
+    <Content Include="Reports\rptLabourProfile.aspx" />
+    <Content Include="Supplier\LabourDetail.aspx" />
+    <Content Include="Supplier\EditProfile.aspx" />
+    <Content Include="Supplier\NewLeads.aspx" />
+    <Content Include="Supplier\RegisterLabour.aspx" />
+    <Content Include="User\UserRegistration.aspx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Admin\EditLabProfile.aspx.cs">
+      <DependentUpon>EditLabProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EditLabProfile.aspx.designer.cs">
+      <DependentUpon>EditLabProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\EditSupProfile.aspx.cs">
+      <DependentUpon>EditSupProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\EditSupProfile.aspx.designer.cs">
+      <DependentUpon>EditSupProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Labour.aspx.cs">
+      <DependentUpon>Labour.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Labour.aspx.designer.cs">
+      <DependentUpon>Labour.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\LabourType.aspx.cs">
+      <DependentUpon>LabourType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\LabourType.aspx.designer.cs">
+      <DependentUpon>LabourType.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\Supplier.aspx.cs">
+      <DependentUpon>Supplier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\Supplier.aspx.designer.cs">
+      <DependentUpon>Supplier.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="BusinessLogic\CalendarEvent.cs" />
+    <Compile Include="BusinessLogic\csExpenses.cs" />
+    <Compile Include="BusinessLogic\csImageUpload.cs" />
+    <Compile Include="BusinessLogic\csLabourRegistration.cs" />
+    <Compile Include="BusinessLogic\csLeads.cs" />
+    <Compile Include="BusinessLogic\csLogin.cs" />
+    <Compile Include="BusinessLogic\csPaymentMade.cs" />
+    <Compile Include="BusinessLogic\csPaymentRecieve.cs" />
+    <Compile Include="BusinessLogic\csSupplierDetail.cs" />
+    <Compile Include="BusinessLogic\csUserRegistration.cs" />
+    <Compile Include="BusinessLogic\EventDAO.cs" />
+    <Compile Include="BusinessLogic\ImproperCalendarEvent.cs" />
+    <Compile Include="ClassBarcode\BarcodeCommon.cs" />
+    <Compile Include="ClassBarcode\BarcodeLib.cs" />
+    <Compile Include="ClassBarcode\BarcodeXML.Designer.cs" />
+    <Compile Include="ClassBarcode\BarcodeXML2.Designer.cs" />
+    <Compile Include="ClassBarcode\Blank.cs" />
+    <Compile Include="ClassBarcode\Code128.cs" />
+    <Compile Include="ClassBarcode\IBarcode.cs" />
+    <Compile Include="ClassGlobal\csCommonPayrollFunction.cs" />
+    <Compile Include="ClassGlobal\csDropDownFunction.cs" />
+    <Compile Include="ClassGlobal\csGlobal.cs" />
+    <Compile Include="ClassGlobal\csGlobalFunction.cs" />
+    <Compile Include="Customer\AddNewCase.aspx.cs">
+      <DependentUpon>AddNewCase.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Customer\AddNewCase.aspx.designer.cs">
+      <DependentUpon>AddNewCase.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogout.aspx.cs">
+      <DependentUpon>frmLogout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmLogout.aspx.designer.cs">
+      <DependentUpon>frmLogout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GetLabour.asmx.cs">
+      <DependentUpon>GetLabour.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\AdminMenuboard.aspx.cs">
+      <DependentUpon>AdminMenuboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\AdminMenuboard.aspx.designer.cs">
+      <DependentUpon>AdminMenuboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\AreaCityMst.aspx.cs">
+      <DependentUpon>AreaCityMst.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\AreaCityMst.aspx.designer.cs">
+      <DependentUpon>AreaCityMst.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\Calender.aspx.cs">
+      <DependentUpon>Calender.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\Calender.aspx.designer.cs">
+      <DependentUpon>Calender.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\CustMenuBoard.aspx.cs">
+      <DependentUpon>CustMenuBoard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\CustMenuBoard.aspx.designer.cs">
+      <DependentUpon>CustMenuBoard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\Supplier.aspx.cs">
+      <DependentUpon>Supplier.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\Supplier.aspx.designer.cs">
+      <DependentUpon>Supplier.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\EditLabProfile.aspx.cs">
+      <DependentUpon>EditLabProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\EditLabProfile.aspx.designer.cs">
+      <DependentUpon>EditLabProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\EditSupProfile.aspx.cs">
+      <DependentUpon>EditSupProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\EditSupProfile.aspx.designer.cs">
+      <DependentUpon>EditSupProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\Labour.aspx.cs">
+      <DependentUpon>Labour.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\Labour.aspx.designer.cs">
+      <DependentUpon>Labour.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\LabourType.aspx.cs">
+      <DependentUpon>LabourType.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\LabourType.aspx.designer.cs">
+      <DependentUpon>LabourType.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\MasterPage.aspx.cs">
+      <DependentUpon>MasterPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\MasterPage.aspx.designer.cs">
+      <DependentUpon>MasterPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\MenuBoard.aspx.cs">
+      <DependentUpon>MenuBoard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\MenuBoard.aspx.designer.cs">
+      <DependentUpon>MenuBoard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\NewLeads.aspx.cs">
+      <DependentUpon>NewLeads.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\NewLeads.aspx.designer.cs">
+      <DependentUpon>NewLeads.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPages\SupplierMenuboard.aspx.cs">
+      <DependentUpon>SupplierMenuboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPages\SupplierMenuboard.aspx.designer.cs">
+      <DependentUpon>SupplierMenuboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterUC\CityUC.ascx.cs">
+      <DependentUpon>CityUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterUC\CityUC.ascx.designer.cs">
+      <DependentUpon>CityUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterUC\LabourType.ascx.cs">
+      <DependentUpon>LabourType.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterUC\LabourType.ascx.designer.cs">
+      <DependentUpon>LabourType.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterUC\StateUC.ascx.cs">
+      <DependentUpon>StateUC.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterUC\StateUC.ascx.designer.cs">
+      <DependentUpon>StateUC.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\AllLabours.aspx.cs">
+      <DependentUpon>AllLabours.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\AllLabours.aspx.designer.cs">
+      <DependentUpon>AllLabours.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\rptLabourProfile.aspx.cs">
+      <DependentUpon>rptLabourProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\rptLabourProfile.aspx.designer.cs">
+      <DependentUpon>rptLabourProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier\LabourDetail.aspx.cs">
+      <DependentUpon>LabourDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Supplier\LabourDetail.aspx.designer.cs">
+      <DependentUpon>LabourDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier\EditProfile.aspx.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Supplier\EditProfile.aspx.designer.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier\NewLeads.aspx.cs">
+      <DependentUpon>NewLeads.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Supplier\NewLeads.aspx.designer.cs">
+      <DependentUpon>NewLeads.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier\RegisterLabour.aspx.cs">
+      <DependentUpon>RegisterLabour.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Supplier\RegisterLabour.aspx.designer.cs">
+      <DependentUpon>RegisterLabour.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="TransPages\AdminMaster.Master.cs">
+      <DependentUpon>AdminMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TransPages\AdminMaster.Master.designer.cs">
+      <DependentUpon>AdminMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="TransPages\CustMaster.Master.cs">
+      <DependentUpon>CustMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TransPages\CustMaster.Master.designer.cs">
+      <DependentUpon>CustMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="TransPages\Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TransPages\Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="TransPages\SupplierMaster.Master.cs">
+      <DependentUpon>SupplierMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="TransPages\SupplierMaster.Master.designer.cs">
+      <DependentUpon>SupplierMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="User\UserRegistration.aspx.cs">
+      <DependentUpon>UserRegistration.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="User\UserRegistration.aspx.designer.cs">
+      <DependentUpon>UserRegistration.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TransPages\Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="LabourDocs\" />
+    <Folder Include="LabourImages\" />
+    <Folder Include="SupplierDocs\" />
+    <Folder Include="SupplierImages\" />
+    <Folder Include="User\OtherUserImage\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassBarcode\BarcodeXML.xsc">
+      <DependentUpon>BarcodeXML.xsd</DependentUpon>
+    </None>
+    <None Include="ClassBarcode\BarcodeXML.xsd" />
+    <None Include="ClassBarcode\BarcodeXML.xss">
+      <DependentUpon>BarcodeXML.xsd</DependentUpon>
+    </None>
+    <Content Include="TransPages\SupplierMaster.Master" />
+    <Content Include="TransPages\AdminMaster.Master" />
+    <Content Include="TransPages\CustMaster.Master" />
+    <None Include="newcal\jquery\jquery-2.1.1.min.map" />
+    <Content Include="newcal\JsonResponse.ashx" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>19609</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
