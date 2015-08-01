@@ -33,6 +33,7 @@ namespace LMT.User
                 return (Hashtable)ViewState["Keys"];
             }
         }
+        public delegate void MailDelegate(string recipientemailto, string strSubject, string strMessage);
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -46,7 +47,7 @@ namespace LMT.User
                     }
                     if (lblopMode.Text.ToUpper() == globaldata._viewMode)
                         btnSubmit.Visible = false;
-                    //objDropDown.FillDropDown(ref ddlUserType, "Select UserTypeID,UserType From tblUserType", "UserType", "UserTypeID", "Order by UserType", "WHERE IsVerify='Y' and UserType not like 'Super Admin'");
+                    objDropDown.FillDropDown(ref ddlUserType, "Select UserTypeID,UserType From tblUserType", "UserType", "UserTypeID", "Order by UserType", "WHERE IsVerify='Y' and UserType not like 'Super Admin'");
                     objDropDown.FillDropDown(ref ddlUserCategory, "Select UserCategoryID,UserCategory From tblUserCategory", "UserCategory", "UserCategoryID", "Order By UserCategory", "Where IsVerify='Y' and UserCategory not like 'A'");
                 }
             }
@@ -95,7 +96,6 @@ namespace LMT.User
         {
             try
             {
-                //DataRow[] selectedRow;
                 btnSubmit.Enabled = false;
                 if (ValidateData())
                 {
@@ -112,7 +112,12 @@ namespace LMT.User
                             string recipientemailto = txtEmail.Text.Trim();
                             string strMessage = "Dear Subscriber,<br> Your registration is comfirmed.<br> Your Login ID :" + txtLoginName.Text.Trim() + ". <br> Password :" + txtPwd.Text.Trim() + "";
                             string strSubject = "Registration Confirmation mail";
-                            if (txtEmail.Text.Trim() != "") csGlobalFunction.SendEmail(recipientemailto, strSubject, strMessage);
+                            if (txtEmail.Text.Trim() != "")
+                            {
+                                MailDelegate mailDelegate = new MailDelegate(csGlobalFunction.SendEmail);
+                                mailDelegate.BeginInvoke(recipientemailto, strSubject, strMessage, null, null);
+                                //csGlobalFunction.SendEmail(recipientemailto, strSubject, strMessage);
+                            }
                         }
                     }
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('You are sign-up successfully and your user id and password will be send to your mail id with in 2-5 minutes.');", true);
@@ -299,7 +304,6 @@ namespace LMT.User
             }
             return true;
         }
-
         protected void txtLoginName_TextChanged(object sender, EventArgs e)
         {
             string strQuery = "Select COUNT(UserID) from tblUserRegistration where LoginName='" + txtLoginName.Text.Trim() + "'";

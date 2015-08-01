@@ -14,6 +14,8 @@ namespace LMT.MasterPages
     public partial class Supplier : System.Web.UI.Page
     {
         csGlobal globalobject = new csGlobal();
+       // public delegate void MailDelegate(string delegateName);
+
         csDropDownFunction objdropdown = new csDropDownFunction();
         csSupplierDetail objLabour = new csSupplierDetail();
         Hashtable Keys

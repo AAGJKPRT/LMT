@@ -190,7 +190,7 @@ namespace LMT.ClassGlobal
         //Without Attechment
         public static void SendEmail(string sendto, string subject, string body)
         {
-            string SchoolName = (String)CrystalConnection.SqlScalartoObj("select top 1 Schoolname from tbl_ReportHeader");
+            string CompanyName = "Easy Labour Team";// Convert.ToString(CrystalConnection.SqlScalar("select top 1 CompanyName from tbl_ReportHeader"));
             string from = "easylabour.supplier@gmail.com";
             System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
             SmtpClient client = new SmtpClient();
@@ -200,7 +200,7 @@ namespace LMT.ClassGlobal
                 mail.To.Add(recipientemail);
             }
             //mail.To.Add(txtFatherEmail.Text.Trim()); 
-            mail.From = new MailAddress(from, SchoolName, System.Text.Encoding.UTF8);
+            mail.From = new MailAddress(from, CompanyName, System.Text.Encoding.UTF8);
             mail.Subject = subject;
             mail.SubjectEncoding = System.Text.Encoding.UTF8; mail.Body = body;
             mail.BodyEncoding = System.Text.Encoding.UTF8;
@@ -232,7 +232,7 @@ namespace LMT.ClassGlobal
         //With Attechment
         public static void SendEmail(string sendto, string subject, string body, string filename)
         {
-            string SchoolName = (String)CrystalConnection.SqlScalartoObj("select top 1 Schoolname from tbl_ReportHeader");
+            string SchoolName = (String)CrystalConnection.SqlScalar("select top 1 CompanyName from tbl_ReportHeader");
             System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
             string from = "easylabour.supplier@gmail.com";
             SmtpClient client = new SmtpClient();
