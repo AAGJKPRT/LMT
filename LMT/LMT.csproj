@@ -20,6 +20,10 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -71,6 +75,35 @@
     <Content Include="Admin\Labour.aspx" />
     <Content Include="Admin\LabourType.aspx" />
     <Content Include="Admin\Supplier.aspx" />
+    <Content Include="app database\StoredProcedure\usp_CityProc.sql" />
+    <Content Include="app database\StoredProcedure\usp_Customer.sql" />
+    <Content Include="app database\StoredProcedure\usp_Expenses.sql" />
+    <Content Include="app database\StoredProcedure\usp_LabourRegProc.sql" />
+    <Content Include="app database\StoredProcedure\usp_LabourTypeProc.sql" />
+    <Content Include="app database\StoredProcedure\usp_Leads.sql" />
+    <Content Include="app database\StoredProcedure\usp_PaymentMade.sql" />
+    <Content Include="app database\StoredProcedure\usp_PaymentRecieve.sql" />
+    <Content Include="app database\StoredProcedure\usp_StateProc.sql" />
+    <Content Include="app database\StoredProcedure\usp_SupplierDtlProc.sql" />
+    <Content Include="app database\StoredProcedure\usp_UserLoginProc.sql" />
+    <Content Include="app database\StoredProcedure\usp_UserRegProc.sql" />
+    <Content Include="app database\Tables\ECICalendarEvent_Test.sql" />
+    <Content Include="app database\Tables\tblCity.sql" />
+    <Content Include="app database\Tables\tblState.sql" />
+    <Content Include="app database\Tables\tblUserCategory.sql" />
+    <Content Include="app database\Tables\tblUserRegistration.sql" />
+    <Content Include="app database\Tables\tblUserType.sql" />
+    <Content Include="app database\Tables\tbl_CalenderEvent.sql" />
+    <Content Include="app database\Tables\tbl_Customer.sql" />
+    <Content Include="app database\Tables\tbl_Expenses.sql" />
+    <Content Include="app database\Tables\tbl_LabourRegistration.sql" />
+    <Content Include="app database\Tables\tbl_Lbr_Type.sql" />
+    <Content Include="app database\Tables\tbl_Leads.sql" />
+    <Content Include="app database\Tables\tbl_PMT.sql" />
+    <Content Include="app database\Tables\tbl_PR.sql" />
+    <Content Include="app database\Tables\tbl_ReportHeader.sql" />
+    <Content Include="app database\Tables\tbl_Sector.sql" />
+    <Content Include="app database\Tables\tbl_SupplierDetail.sql" />
     <Content Include="colorbox.css" />
     <Content Include="css\all-ie-only.css" />
     <Content Include="css\bootstrap.min.css" />

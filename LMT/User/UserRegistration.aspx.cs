@@ -37,11 +37,8 @@ namespace LMT.User
         {
             try
             {
-                //if (UserPicUploader.HasFile) UserImageUpload();
                 if (!IsPostBack)
                 {
-                    ClearControl();
-                    //UserPicUploader.Visible = true;
                     if (Request.QueryString["Mode"] != null && Request.QueryString["ID"] != null)
                     {
                         lblopMode.Text = Request.QueryString["Mode"].ToString();
@@ -49,17 +46,8 @@ namespace LMT.User
                     }
                     if (lblopMode.Text.ToUpper() == globaldata._viewMode)
                         btnSubmit.Visible = false;
-
-                    objDropDown.FillDropDown(ref ddlUserType, "Select UserTypeID,UserType From tblUserType", "UserType", "UserTypeID", "Order by UserType", "WHERE IsVerify='Y' and UserType not like 'Super Admin'");
+                    //objDropDown.FillDropDown(ref ddlUserType, "Select UserTypeID,UserType From tblUserType", "UserType", "UserTypeID", "Order by UserType", "WHERE IsVerify='Y' and UserType not like 'Super Admin'");
                     objDropDown.FillDropDown(ref ddlUserCategory, "Select UserCategoryID,UserCategory From tblUserCategory", "UserCategory", "UserCategoryID", "Order By UserCategory", "Where IsVerify='Y' and UserCategory not like 'A'");
-
-                    //if (lblopMode.Text == globaldata._updateMode || lblopMode.Text.ToUpper() == globaldata._viewMode)
-                    //    ShowData(Convert.ToDecimal(lblUserID.Text));
-                    //else
-                    //    Session["userImgID"] = 0;
-
-                    Session["imgMode"] = lblopMode.Text;
-                    if (Session["imgDtRecord"] != null) ((DataTable)Session["imgDtRecord"]).Clear();
                 }
             }
             catch (Exception ex)
@@ -127,8 +115,6 @@ namespace LMT.User
                             if (txtEmail.Text.Trim() != "") csGlobalFunction.SendEmail(recipientemailto, strSubject, strMessage);
                         }
                     }
-                    //string strFnc = "closepopupwindow();";
-                    
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('You are sign-up successfully and your user id and password will be send to your mail id with in 2-5 minutes.');", true);
                     ClearControl();
                     //ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", strFnc, true);
@@ -278,7 +264,7 @@ namespace LMT.User
             if (txtPwd.Text.Trim() != txtConfPwd.Text.Trim())
             {
                 txtConfPwd.Focus();
-                return false;    
+                return false;
             }
             if (txtEmail.Text != "")
             {
