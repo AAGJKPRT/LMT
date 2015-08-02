@@ -45,9 +45,9 @@ namespace LMT
             //Web.GetLabourTypeNames(txtSearch.Text);
             if (!IsPostBack)
             {
-                //objDropDown.FillDropDown(ref ddlLbrType, "Select Lbr_type_id,Lbr_Type From tbl_Lbr_Type", "Lbr_Type", "Lbr_type_id", "Order By Lbr_Type", "Where Sector=1 and IsVerify='Y'");
-                //objDropDown.FillDropDown(ref ddlLbrTypeLGB, "Select Lbr_type_id,Lbr_Type From tbl_Lbr_Type", "Lbr_Type", "Lbr_type_id", "Order By Lbr_Type", "Where Sector=2 and IsVerify='Y'");
-                //objDropDown.FillDropDown(ref ddlLbrTypeIL, "Select Lbr_type_id,Lbr_Type From tbl_Lbr_Type", "Lbr_Type", "Lbr_type_id", "Order By Lbr_Type", "Where Sector=3 and IsVerify='Y'");
+                objDropDown.FillDropDown(ref ddlLbrType, "Select Lbr_type_id,Lbr_Type From tbl_Lbr_Type", "Lbr_Type", "Lbr_type_id", "Order By Lbr_Type", "Where Sector=1 and IsVerify='Y'");
+                objDropDown.FillDropDown(ref ddlLbrTypeLGB, "Select Lbr_type_id,Lbr_Type From tbl_Lbr_Type", "Lbr_Type", "Lbr_type_id", "Order By Lbr_Type", "Where Sector=2 and IsVerify='Y'");
+                objDropDown.FillDropDown(ref ddlLbrTypeIL, "Select Lbr_type_id,Lbr_Type From tbl_Lbr_Type", "Lbr_Type", "Lbr_type_id", "Order By Lbr_Type", "Where Sector=3 and IsVerify='Y'");
             }
             GID = Guid.NewGuid();
             if (txtMobileNo.Text.Trim() != "")

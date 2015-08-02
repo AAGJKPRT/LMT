@@ -265,8 +265,6 @@ namespace LMT.Customer
                     string strMessage = "Dear Customer,<br> Thank You for your association with us. We are in receipt of your concern with Easy-Labour." +
                         "<br>Our team tried to get in touch with as per Service Request no.–" + Convert.ToString(Session["Ticket"]) + ". " +
                         "<br>We will be happy to help you to resolve your issue at a time of your convenience. " +
-
-
                         "<br>In case of any further clarification, feel free to call  or write to us at the contacts given in this email.";
                     string strSubject = "Registration Confirmation mail";
                     if (Email != "") csGlobalFunction.SendEmail(recipientemailto, strSubject, strMessage);

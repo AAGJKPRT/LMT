@@ -41,28 +41,28 @@
                     <h1>Login to LMT App</h1>
                     <p>
                         <span>Username or email</span><br />
-                        <asp:TextBox ID="txtUsername" runat="server" TabIndex="0" placeholder="Username or Email" MaxLength="25"></asp:TextBox>
+                        <asp:TextBox ID="txtUsername" runat="server" TabIndex="1" placeholder="Username or Email" MaxLength="25"></asp:TextBox>
                     </p>
                     <p>
                         <span>Password</span><br />
-                        <asp:TextBox ID="txtPassword" runat="server" TabIndex="1" TextMode="Password" placeholder="Password"
+                        <asp:TextBox ID="txtPassword" runat="server" TabIndex="2" TextMode="Password" placeholder="Password"
                             MaxLength="20"></asp:TextBox>
                     </p>
                     <p class="submit">
-                        <asp:LinkButton ID="lnkForgotPassword" runat="server" CssClass="fgp"
+                        <asp:LinkButton ID="lnkForgotPassword" runat="server" CssClass="fgp" TabIndex="5"
                             OnClick="lnkForgotPassword_Click">Forgot Password ?</asp:LinkButton>
-                        <asp:Button ID="btnLogin" runat="server" Text="Login"
+                        <asp:Button ID="btnLogin" runat="server" Text="Login" TabIndex="3"
                             OnClick="btnLogin_Click" />
                     </p>
                     <p class="submit">
-                        <asp:Button ID="btnSignUp" runat="server" Text="Sign Up"
+                        <asp:Button ID="btnSignUp" runat="server" Text="Sign Up" TabIndex="4"
                             OnClick="btnSignUp_Click" />
                     </p>
 
                 </div>
                 <div class="login-help">
                     <p>
-                        Copyright &#169; Labour Management Tool. All Rights Reserved.
+                        Copyright &#169; <a href="index.aspx" style="text-decoration: none;">Labour Management Tool.</a> All Rights Reserved.
                     </p>
                 </div>
 
