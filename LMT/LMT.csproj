@@ -78,6 +78,7 @@
     <Content Include="app database\StoredProcedure\usp_CityProc.sql" />
     <Content Include="app database\StoredProcedure\usp_Customer.sql" />
     <Content Include="app database\StoredProcedure\usp_Expenses.sql" />
+    <Content Include="app database\StoredProcedure\usp_GetOldLeads.sql" />
     <Content Include="app database\StoredProcedure\usp_GetUserTypeList.sql" />
     <Content Include="app database\StoredProcedure\usp_LabourRegProc.sql" />
     <Content Include="app database\StoredProcedure\usp_LabourTypeProc.sql" />

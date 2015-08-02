@@ -40,7 +40,7 @@ namespace LMT.Customer
                 GID = Guid.NewGuid();
                 Session["Ticket"] = UserName.Substring(0, 3) + GID.ToString().Substring(0, 9);
             }
-            
+
         }
 
         protected void ddlLabourCategory_SelectedIndexChanged(object sender, EventArgs e)
@@ -52,7 +52,7 @@ namespace LMT.Customer
             else
             {
                 ddlLabourType.Items.Clear();
-                ddlLabourType.Items.Add(new ListItem("--Select Labour Type--","-1"));
+                ddlLabourType.Items.Add(new ListItem("--Select Labour Type--", "-1"));
             }
         }
 
@@ -124,6 +124,13 @@ namespace LMT.Customer
                 PrvNxtbtn.Visible = false;
                 dvRNF.Visible = true;
             }
+        }
+
+        private void BindOldLeadsRepeater()
+        {
+            DataTable dtLabourInfo = objLeads.GetOldLeadsViaUserID(Convert.ToInt32(Session["userID"]));
+            rptOldLeads.DataSource = dtLabourInfo;
+            rptOldLeads.DataBind();
         }
 
         protected void rptLabourInformation_DataBinding(object sender, EventArgs e)
@@ -267,12 +274,7 @@ namespace LMT.Customer
                 //ClearControls();
                 lblMessage.Text = "Your Request have been submitted successfully. Our Executive will contact you shortly. Thank you ";
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "LaunchServerSide", "$(function() { SaveSuccess(); });", true);
-                //ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Record save successfully.);", true);
-
-                //if (strRestrict == "NotAllowed")
-                //{
-                //    Response.Redirect("~/MasterPages/SupplierMenuboard.aspx");
-                //}
+                BindOldLeadsRepeater();
             }
             catch (Exception ex)
             {
@@ -282,7 +284,12 @@ namespace LMT.Customer
             }
         }
 
-        
+        protected void BtnShowOldCases_Click(object sender, EventArgs e)
+        {
+            BindOldLeadsRepeater();
+        }
+
+
 
     }
 }

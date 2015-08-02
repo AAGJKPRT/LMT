@@ -232,6 +232,14 @@ namespace LMT.BusinessLogic
             objCustomerParamCollection.Add(TicketPara);
         }
 
+        private void AddUserIDProcParam(int UserID)
+        {
+            objCustomerParamCollection = new DbSqlParameterCollection();
+
+            DbSqlParameter _UserIDPara = new DbSqlParameter("@userID", SqlDbType.Int);
+            _UserIDPara.Value = UserID;
+            objCustomerParamCollection.Add(_UserIDPara);
+        }
         public void SaveData(string opmode)
         {
             _opmode = opmode;
@@ -248,7 +256,7 @@ namespace LMT.BusinessLogic
             return a;
             //CrystalConnection.DoStored("usp_Customer", objCustomerParamCollection);
         }
-        
+
         public void DeleteLeadInfo(string opmode, int LeadID)
         {
             _opmode = opmode;
@@ -262,6 +270,12 @@ namespace LMT.BusinessLogic
             DataTable dtFillData;
             dtFillData = CrystalConnection.CreateDataTableWithoutTransaction(query);
             return dtFillData;
+        }
+        public DataTable GetOldLeadsViaUserID(int UserID)
+        {
+            AddUserIDProcParam(UserID);
+            DataTable dt = new DataTable();
+            return dt = CrystalConnection.DoStoredTable("usp_GetOldLeads", objCustomerParamCollection);
         }
 
     }

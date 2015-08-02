@@ -3,7 +3,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-<!--[if IE]>
+    <!--[if IE]>
 	<link rel="stylesheet" type="text/css" href="../css/all-ie-only.css" />
     <![endif]-->
     <%--<link href="../css/dashcss.css" rel="stylesheet" type="text/css" />--%>
@@ -13,64 +13,63 @@
     <script type="text/javascript" language="javascript" src="../js/jquery.colorbox.js"></script>
     <link href="../css/button.css" rel="stylesheet" type="text/css" />
     <style>
-        .widget-content table tr
-        {
+        .widget-content table tr {
             line-height: 20px;
         }
-        .widget-content table td
-        {
+
+        .widget-content table td {
             border: none;
             padding: 1px;
         }
-        .widget-content table td > span
-        {
-            width: 96%;
-            text-align: center;
-            border: 0;
-            display: inline-block;
-            padding: 5px;
-            position: relative;
-            background-color: rgb(41,127,184);
-            color: rgb(255,255,255);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0px 1px 0px rgba(0,0,0,0.5);
-            -webkit-box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
-            box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
-            cursor: pointer;
-        }
-        .widget-content table td > .lnk
-        {
-            width: 96%;
-            text-align: center;
-            border: 0;
-            display: inline-block;
-            padding: 5px;
-            position: relative;
-            background-color: rgb(41,127,184);
-            color: rgb(255,255,255);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0px 1px 0px rgba(0,0,0,0.5);
-            -webkit-box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
-            box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
-            cursor: pointer;
-        }
-        .widget-content table td > span > a
-        {
-            color: #fff;
-        }
+
+            .widget-content table td > span {
+                width: 96%;
+                text-align: center;
+                border: 0;
+                display: inline-block;
+                padding: 5px;
+                position: relative;
+                background-color: rgb(41,127,184);
+                color: rgb(255,255,255);
+                text-decoration: none;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                text-shadow: 0px 1px 0px rgba(0,0,0,0.5);
+                -webkit-box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+                box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+                cursor: pointer;
+            }
+
+            .widget-content table td > .lnk {
+                width: 96%;
+                text-align: center;
+                border: 0;
+                display: inline-block;
+                padding: 5px;
+                position: relative;
+                background-color: rgb(41,127,184);
+                color: rgb(255,255,255);
+                text-decoration: none;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                text-shadow: 0px 1px 0px rgba(0,0,0,0.5);
+                -webkit-box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+                box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+                cursor: pointer;
+            }
+
+            .widget-content table td > span > a {
+                color: #fff;
+            }
     </style>
     <script type="text/javascript">
         function SaveSuccess() {
             $('#myModal').modal();
-        }        
+        }
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<div class="demo-wrapper">
+    <div class="demo-wrapper">
         <header id="ccr-header">
 		    <div class="ccr-hbg">			 
 			    <div class="ccr-slug" >
@@ -92,6 +91,7 @@
                                       </h3>
                                       <h3>
                                       </h3>
+                                      <h3></h3>
                                   </h3>
                                </div>
                                <div class="panel-body">
@@ -233,18 +233,68 @@
                                <div class="panel-heading">
                                   <h3 class="panel-title">
                                      <p class="text-center">Old Cases</p>
+                                      <div style="float:right;">
+                                          <asp:LinkButton ID="BtnShowOldCases" runat="server" Text="My Cases" OnClick="BtnShowOldCases_Click"  ></asp:LinkButton>
+                                      </div>
                                       <h3>
                                       </h3>
                                       <h3>
                                       </h3>
                                       <h3>
                                       </h3>
+                                      <h3></h3>
                                   </h3>
                                </div>
                                <div class="panel-body">
                                 
                                 
-                            
+                             <div id="Div1" runat="server" visible="true" style="height:230px;">
+                                                <asp:Repeater ID="rptOldLeads" runat="server"  >
+                                                    <HeaderTemplate>
+                                                        <table>
+                                                            <thead>
+                                                                <td align="left">
+                                                                    Ticket
+                                                                </td>
+                                                                <td>
+                                                                    Assgined
+                                                                </td>
+                                                                <td align="center">
+                                                                    Date
+                                                                </td>
+                                                                <td align="center">
+                                                                    Time
+                                                                </td>
+                                                                <td align="left">
+                                                                   Labour Name
+                                                                </td>
+                                                            </thead>
+                                                    </HeaderTemplate>
+                                                    <ItemTemplate>
+                                                            <tr>
+                                                                <td align="left" style="width: 150px;">
+                                                                    <asp:HiddenField ID="hfLeadID" runat="server" Value='<%#Eval("Lead_ID") %>' />
+                                                      <asp:Label ID="lblTicket" Text='<%#Eval("Ticket") %>' runat="server"></asp:Label>
+                                                                </td>
+                                                                <td align="left" style="width: 150px;">
+                                                      <asp:Label ID="lblSupplierName" Text='<%#Eval("SupplierName") %>' runat="server"></asp:Label>
+                                                                </td>
+                                                                  <td align="center" style="width: 150px;">
+                                                      <asp:Label ID="lblRequired_Date" Text='<%#Eval("Required_Date") %>' runat="server"></asp:Label>
+                                                                </td>
+                                                                 <td align="left" style="width: 200px;">
+                                                      <asp:Label ID="lblRequired_Time" Text='<%#Eval("Required_Time")%>' runat="server"></asp:Label>
+                                                                </td>
+                                                                  <td align="left" style="width: 150px;">
+                                                      <asp:Label ID="lblLabourName" Text='<%#Eval("LabourName") %>' runat="server"></asp:Label>
+                                                                </td>
+                                                            </tr>
+                                                    </ItemTemplate>
+                                                    <FooterTemplate>
+                                                        </table>
+                                                    </FooterTemplate>
+                                                </asp:Repeater>    
+                                            </div>
                                </div>
                             </div>
                           </div>
