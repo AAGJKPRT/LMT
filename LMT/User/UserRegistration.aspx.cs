@@ -33,7 +33,7 @@ namespace LMT.User
                 return (Hashtable)ViewState["Keys"];
             }
         }
-        public delegate void MailDelegate(string recipientemailto, string strSubject, string strMessage);
+        public delegate void MailDelegate(string recipientemailto, string strSubject, string username, string password);
         protected void Page_Load(object sender, EventArgs e)
         {
             try
@@ -109,13 +109,12 @@ namespace LMT.User
                     if (txtEmail.Text.Trim() != "")
                     {
                         {
-                            string recipientemailto = txtEmail.Text.Trim();
                             string strMessage = "Dear Subscriber,<br> Your registration is comfirmed.<br> Your Login ID :" + txtLoginName.Text.Trim() + ". <br> Password :" + txtPwd.Text.Trim() + "";
                             string strSubject = "Registration Confirmation mail";
                             if (txtEmail.Text.Trim() != "")
                             {
-                                MailDelegate mailDelegate = new MailDelegate(csGlobalFunction.SendEmail);
-                                mailDelegate.BeginInvoke(recipientemailto, strSubject, strMessage, null, null);
+                                MailDelegate mailDelegate = new MailDelegate(csGlobalFunction.SendHTMLEmail);
+                                mailDelegate.BeginInvoke(txtEmail.Text.Trim(), strSubject, txtLoginName.Text.Trim(), txtPwd.Text.Trim(), null, null);
                                 //csGlobalFunction.SendEmail(recipientemailto, strSubject, strMessage);
                             }
                         }

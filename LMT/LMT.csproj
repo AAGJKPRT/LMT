@@ -119,6 +119,7 @@
     <Content Include="css\plugins-dash.css" />
     <Content Include="css\style.css" />
     <Content Include="Customer\AddNewCase.aspx" />
+    <Content Include="demo.html" />
     <Content Include="frmLogout.aspx" />
     <Content Include="GetLabour.asmx" />
     <Content Include="images\a1.jpg" />

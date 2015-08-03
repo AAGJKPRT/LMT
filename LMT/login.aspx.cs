@@ -37,7 +37,7 @@ namespace LMT
                             Session["UserType"] = dt.Rows[0]["UserType"].ToString();
                             Session["UserCategory"] = dt.Rows[0]["UserCategory"].ToString();
                             Session["UserID"] = dt.Rows[0]["UserID"].ToString();
-
+                            Session["userEmail"] = dt.Rows[0]["EmailID"].ToString();
                             globaldata._userID = Convert.ToDecimal(dt.Rows[0]["UserID"]);
                             globaldata.UserTypedata = dt.Rows[0]["UserType"].ToString();
                             globaldata.UserCategorydata = dt.Rows[0]["UserCategory"].ToString();
@@ -158,7 +158,7 @@ namespace LMT
                     return false;
                 }
                 Session["FGEmail"] = Email;
-                
+
             }
             catch (Exception ex)
             {

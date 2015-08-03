@@ -11,6 +11,7 @@ using System.Net.Mail;
 using System.Data.OleDb;
 using System.Web.UI;
 using LMT.ClassGlobal;
+using System.Text;
 
 namespace LMT.ClassGlobal
 {
@@ -205,6 +206,62 @@ namespace LMT.ClassGlobal
             mail.SubjectEncoding = System.Text.Encoding.UTF8; mail.Body = body;
             mail.BodyEncoding = System.Text.Encoding.UTF8;
             mail.IsBodyHtml = true; mail.Priority = MailPriority.High;
+
+            //Add the Creddentials- use your own email id and password
+
+            client.Credentials = new System.Net.NetworkCredential(from, "easylabour");
+
+            client.Port = 587; // Gmail works on this port          
+            client.Host = "smtp.gmail.com";
+            client.EnableSsl = true; //Gmail works on Server Secured Layer
+            try
+            {
+                client.Send(mail);
+                mail.To.Clear();
+            }
+            catch (Exception ex)
+            {
+                Exception ex2 = ex;
+                string errorMessage = string.Empty;
+                while (ex2 != null)
+                {
+                    errorMessage += ex2.ToString();
+                    ex2 = ex2.InnerException;
+                } HttpContext.Current.Response.Write(errorMessage);
+            }
+        }
+        //Without Attechment
+        public static void SendHTMLEmail(string recipientemailto, string strSubject, string username, string password)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            string CompanyName = "Easy Labour Team";
+            string from = "easylabour.supplier@gmail.com";
+            System.Net.Mail.MailMessage mail = new System.Net.Mail.MailMessage();
+            SmtpClient client = new SmtpClient();
+            //string[] allemails = sendto.Split(',');
+            //foreach (string recipientemail in allemails)
+            //{
+            mail.To.Add(recipientemailto);
+            //}
+            //mail.To.Add(txtFatherEmail.Text.Trim()); 
+            mail.From = new MailAddress(from, CompanyName, System.Text.Encoding.UTF8);
+            mail.Subject = strSubject;
+            mail.SubjectEncoding = System.Text.Encoding.UTF8;
+
+            #region Body Format...
+            stringBuilder.Append(csGlobal._EmailHeader);
+            stringBuilder.Append("<div style='text-align:left;font-size:larger;'><p><p>Dear <b> " + username + "</b></p><br />Welcome to Easy labour! Thanks so much for joining us. You’re on your way to super-productivity and beyond!<br /> <br />We are pleased to meet you ! </p>");
+            //stringBuilder.Append("<p>Our expert labour will get in touch with you as per Service Request no.</p> <b>Service Request no</b><br />");
+            stringBuilder.Append("<p>Please find the below details for your account: </p>");
+            stringBuilder.Append("<p>Login name: <b>" + username + "</b></p>");
+            stringBuilder.Append("<p>Password: <b>" + password + "</b> </p> </div>");
+            stringBuilder.Append(csGlobal._EmailFooter);
+            #endregion
+
+            mail.Body = stringBuilder.ToString();
+            mail.BodyEncoding = System.Text.Encoding.UTF8;
+            mail.IsBodyHtml = true;
+            mail.Priority = MailPriority.High;
 
             //Add the Creddentials- use your own email id and password
 

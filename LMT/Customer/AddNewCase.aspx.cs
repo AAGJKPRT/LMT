@@ -30,6 +30,7 @@ namespace LMT.Customer
         string Exist = "";
         public string pageStatus = "";
         csLeads objLeads = new csLeads();
+        public delegate void EmailSendDelegate(string param1, string param2, string param3);
         protected void Page_Load(object sender, EventArgs e)
         {
             string UserName = "";
@@ -258,21 +259,11 @@ namespace LMT.Customer
                 {
                     SetProperties(Convert.ToInt32(Session["UserID"]));
                     objLeads.SaveData("INSERT");
-
-                    string Str = "Select EmailID from tblUserRegistration Where UserID=" + Convert.ToInt32(Session["UserID"]) + " ";
-                    string Email = Convert.ToString(CrystalConnection.SqlScalartoObj(Str));
-                    string recipientemailto = Email;
-                    string strMessage = "Dear Customer,<br> Thank You for your association with us. We are in receipt of your concern with Easy-Labour." +
-                        "<br>Our team tried to get in touch with as per Service Request no.–" + Convert.ToString(Session["Ticket"]) + ". " +
-                        "<br>We will be happy to help you to resolve your issue at a time of your convenience. " +
-                        "<br>In case of any further clarification, feel free to call  or write to us at the contacts given in this email.";
-                    string strSubject = "Registration Confirmation mail";
-                    if (Email != "") csGlobalFunction.SendEmail(recipientemailto, strSubject, strMessage);
+                    fnSendEmail();
+                    lblMessage.Text = "Your Request have been submitted successfully. Our Executive will contact you shortly. Thank you ";
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "LaunchServerSide", "$(function() { SaveSuccess(); });", true);
+                    BindOldLeadsRepeater();
                 }
-                //ClearControls();
-                lblMessage.Text = "Your Request have been submitted successfully. Our Executive will contact you shortly. Thank you ";
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "LaunchServerSide", "$(function() { SaveSuccess(); });", true);
-                BindOldLeadsRepeater();
             }
             catch (Exception ex)
             {
@@ -286,7 +277,15 @@ namespace LMT.Customer
         {
             BindOldLeadsRepeater();
         }
-
+        public void fnSendEmail()
+        {
+            string strMessage = "Dear Customer,<br> Thank You for your association with us. We are in receipt of your concern with Easy-Labour." +
+                       "<br>Our team tried to get in touch with as per Service Request no.–" + Convert.ToString(Session["Ticket"]) + ". " +
+                       "<br>We will be happy to help you to resolve your issue at a time of your convenience. " +
+                       "<br>In case of any further clarification, feel free to call  or write to us at the contacts given in this email.";
+            EmailSendDelegate emailSendDelegate = new EmailSendDelegate(csGlobalFunction.SendEmail);
+            emailSendDelegate.BeginInvoke(Session["userEmail"].ToString(), "Registration Confirmation mail", "", null, null);
+        }
 
 
     }
