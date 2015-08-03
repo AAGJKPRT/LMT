@@ -104,7 +104,7 @@ namespace LMT.ClassGlobal
         #endregion
 
         #region HTML Email Header and Footer
-        public static string _EmailHeader = "<html> <head> <a href='http://www.easylabour.com'><div> <img src='http://www.easylabour.com/images/emailheader.png' style='width: 76%;' alt='' title='Easy Labour' /> </div> </a></head> <body> ";
+        public static string _EmailHeader = "<html> <head> <a href='http://www.easylabour.com'><div style='text-align:center'> <img src='http://www.easylabour.com/images/emailheader.png' style='width: 76%;' alt='' title='Easy Labour' /> </div> </a></head> <body> ";
         public static string _EmailFooter = "<div id='footer' style='text-align:center'> <p>In case of any further clarification, feel free to call or write to us at the contacts given in this email.</p> need help ? Mailto:hello@easylabour.com </div></body> </html>";
         #endregion
     }
