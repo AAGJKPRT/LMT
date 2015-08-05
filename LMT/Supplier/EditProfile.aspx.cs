@@ -19,6 +19,7 @@ using ClassBarcode;
 
 namespace LMT.Supplier
 {
+    //Jaipal
     public partial class EditProfile : System.Web.UI.Page
     {
         csSupplierDetail objSuplier = new csSupplierDetail();
