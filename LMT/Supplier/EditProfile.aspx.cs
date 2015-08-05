@@ -23,7 +23,7 @@ namespace LMT.Supplier
     {
         csSupplierDetail objSuplier = new csSupplierDetail();
         csDropDownFunction objDropDown = new csDropDownFunction();
-        csGlobal globaldata = new csGlobal();
+        csGlobal globaldata = new csGlobal(); 
         protected void Page_Load(object sender, EventArgs e)
         {
             try
