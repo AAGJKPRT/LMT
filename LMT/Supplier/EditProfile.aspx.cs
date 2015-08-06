@@ -62,7 +62,6 @@ namespace LMT.Supplier
             ddlCurrentState.DataTextField = "LDESC";
             ddlCurrentState.DataValueField = "LID";
             ddlCurrentState.DataBind();
-
             ddlCurrentCity.DataSource = objDropDown.GetLookupTable(Convert.ToString(GetLocalResourceObject("CityLookup")));
             ddlCurrentCity.DataTextField = "LDESC";
             ddlCurrentCity.DataValueField = "LID";
