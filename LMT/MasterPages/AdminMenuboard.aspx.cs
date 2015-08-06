@@ -57,7 +57,7 @@ namespace LMT.MasterPages
                               "left join tbl_Customer on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID " +
                               "left join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
                               "left join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
-                              "Where Status='NL' ";//and Required_Date>GETDATE()
+                              "Where Status='NL' and Required_Date>GETDATE()";
             csGlobalFunction.BindRepeater(ref rptLeadInformation, strQuery);
         }
 

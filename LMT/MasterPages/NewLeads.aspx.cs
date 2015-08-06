@@ -46,9 +46,9 @@ namespace LMT.MasterPages
                 string strQuery = "";
                 if ("NL" == Convert.ToString(Session["CurrentMode"]))
                 {
-                    strQuery = "select Lead_ID,Labour_ID,tbl_LabourRegistration.SupplierID,tbl_LabourRegistration.Image_URL,tbl_LabourRegistration.FullName Fname,tbl_SupplierDetail.FullName,tbl_Lbr_Type.Lbr_Type,tblUserRegistration.UserName, " +
-                                      "''MobileNo,tblUserRegistration.EmailID,''Address,Required_Date,Required_Time from tbl_Leads " +
-                                      "left join tblUserRegistration  on tblUserRegistration.userID =tbl_Leads.Customer_ID " +
+                    strQuery = "select Lead_ID,Labour_ID,tbl_LabourRegistration.SupplierID,tbl_LabourRegistration.Image_URL,tbl_LabourRegistration.FullName Fname,tbl_SupplierDetail.FullName,tbl_Lbr_Type.Lbr_Type,Name, " +
+                                      "MobileNo,tbl_Customer.EmailID,Address1+','+Address2 as Address,Required_Date,Required_Time from tbl_Leads " +
+                                      "left join tbl_Customer on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID " +
                                       "inner join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
                                       "left join tbl_SupplierDetail on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
                                       "inner join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
@@ -69,7 +69,7 @@ namespace LMT.MasterPages
                 {
                     DataRow Dr = Labour.Rows[0];
                     LabourImageControl.ImageUrl = Convert.ToString(Dr["Image_URL"]);
-                    txtCustName.Text = Convert.ToString(Dr["UserName"]);
+                    txtCustName.Text = Convert.ToString(Dr["Name"]);
                     txtCustMobNo.Text = Convert.ToString(Dr["MobileNo"]);
                     txtEmail.Text = Convert.ToString(Dr["EmailID"]);
                     txtAddress.Text = Convert.ToString(Dr["Address"]);

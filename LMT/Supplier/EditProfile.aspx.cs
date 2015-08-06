@@ -39,8 +39,8 @@ namespace LMT.Supplier
                 {
                     hfOpMode.Value = "INSERT";
                     txtFullName.Text = Convert.ToString(Session["UserName"]);
-                    objDropDown.FillDropDown(ref ddlCurrentState, "select StateID,StateName from tblState", "StateName", "StateID", "Order By StateName", "Where IsVerify='Y'", false, false, false, true, false);
-                    objDropDown.FillDropDown(ref ddlCurrentCity, "select CityID,CityName from tblCity", "CityName", "CityID", "Order By CityName", "Where IsVerify='Y'", false, false, true, false, false);
+                  //  objDropDown.FillDropDown(ref ddlCurrentState, "select StateID,StateName from tblState", "StateName", "StateID", "Order By StateName", "Where IsVerify='Y'", false, false, false, true, false);
+                   // objDropDown.FillDropDown(ref ddlCurrentCity, "select CityID,CityName from tblCity", "CityName", "CityID", "Order By CityName", "Where IsVerify='Y'", false, false, true, false, false);
                     if (ShowSupProfile(Convert.ToInt32(Session["UserID"])))
                     {
                         ShowSupplierCode();
@@ -53,6 +53,20 @@ namespace LMT.Supplier
                 strFnc = ex.Message;
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "alert('" + strFnc + "');", true);
             }
+        }
+
+        // Added by khushbu kansal for binding dropdowns
+        public void Binddropdown()
+        {
+            ddlCurrentState.DataSource = objDropDown.GetLookupTable(Convert.ToString(GetLocalResourceObject("StateLookup")));
+            ddlCurrentState.DataTextField = "LDESC";
+            ddlCurrentState.DataValueField = "LID";
+            ddlCurrentState.DataBind();
+
+            ddlCurrentCity.DataSource = objDropDown.GetLookupTable(Convert.ToString(GetLocalResourceObject("CityLookup")));
+            ddlCurrentCity.DataTextField = "LDESC";
+            ddlCurrentCity.DataValueField = "LID";
+            ddlCurrentCity.DataBind();
         }
 
         public bool ShowSupProfile(int SupID)
