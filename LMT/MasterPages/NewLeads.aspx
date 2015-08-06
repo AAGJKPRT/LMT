@@ -108,7 +108,7 @@
                               </h3>
                            </div>
                            <div class="panel-body">
-                               <div >
+                               <div > 
                                   <asp:Image ID="LabourImageControl" runat="server" ImageUrl="" AlternateText="../images/dummy.jpg" Height="125px" Width="150px" />
                                   <div class="caption">                                    
                                     <p><strong>Labour Name : </strong><asp:Label ID="lblName" runat="server"></asp:Label>
