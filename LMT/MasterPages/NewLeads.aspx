@@ -109,7 +109,7 @@
                            </div>
                            <div class="panel-body">
                                <div > 
-                                  <asp:Image ID="LabourImageControl" runat="server" ImageUrl="" AlternateText="../images/dummy.jpg" Height="125px" Width="150px" />
+                                  <asp:Image ID="LabourImageControl" runat="server"  ImageUrl="https://raw.githubusercontent.com/AAGJKPRT/LMT/2c35092f42028585b70f35e4f7e9a7acda72a9c9/LMT/images/dummy.jpg" AlternateText="../images/dummy.jpg" Height="125px" Width="150px" />
                                   <div class="caption">                                    
                                     <p><strong>Labour Name : </strong><asp:Label ID="lblName" runat="server"></asp:Label>
                                     <br />
