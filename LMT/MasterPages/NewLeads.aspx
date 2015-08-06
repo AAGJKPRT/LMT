@@ -4,12 +4,11 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
-        .row-centered
-        {
+        .row-centered {
             text-align: center;
         }
-        .col-centered
-        {
+
+        .col-centered {
             display: inline-table;
             float: none;
             text-align: left;
@@ -110,9 +109,9 @@
                            </div>
                            <div class="panel-body">
                                <div >
-                                  <asp:Image ID="LabourImageControl" runat="server" ImageUrl="" Height="125px" Width="150px" />
+                                  <asp:Image ID="LabourImageControl" runat="server" ImageUrl="" AlternateText="../images/dummy.jpg" Height="125px" Width="150px" />
                                   <div class="caption">                                    
-                                    <p><strong>Name : </strong><asp:Label ID="lblName" runat="server"></asp:Label>
+                                    <p><strong>Labour Name : </strong><asp:Label ID="lblName" runat="server"></asp:Label>
                                     <br />
                                     <strong>Supplier Name : </strong> <asp:Label ID="lblSupName" runat="server"></asp:Label></p>
                                     <p><asp:Button ID="btnAssign" runat="server" CssClass="btn btn-primary" 

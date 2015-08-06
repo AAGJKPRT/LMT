@@ -134,6 +134,7 @@
     <Content Include="images\Calendar_scheduleHS.jpg" />
     <Content Include="images\crayon.png" />
     <Content Include="images\Delete.png" />
+    <Content Include="images\dummy.jpg" />
     <Content Include="images\Edit.gif" />
     <Content Include="images\EL_logo.png" />
     <Content Include="images\export_excel_icon.gif" />
