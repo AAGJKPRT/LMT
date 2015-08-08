@@ -126,5 +126,18 @@ namespace LMT.ClassGlobal
 
         }
 
+        public DataTable FillPieChartTable(string PieChart, int UserId)
+        {
+            string DBConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["CrystalConnection"].ConnectionString;
+            SqlParameter[] sqlParams = new SqlParameter[2];//1
+            sqlParams[0] = new SqlParameter("@PieChart", PieChart);
+            sqlParams[1] = new SqlParameter("@UserId", UserId);
+
+            DataSet ds = DataWrapper.ExecuteDataset(DBConnectionString, CommandType.StoredProcedure, "FillLabourChartData", sqlParams);
+
+            return ds.Tables[0];
+
+        }
+
     }
 }

@@ -76,6 +76,7 @@
     <Content Include="Admin\LabourType.aspx" />
     <Content Include="Admin\Supplier.aspx" />
     <Content Include="app database\StoredProcedure\FetchSupProfile.sql" />
+    <Content Include="app database\StoredProcedure\FillLabourChartData.sql" />
     <Content Include="app database\StoredProcedure\GetLookup.sql" />
     <Content Include="app database\StoredProcedure\usp_CityProc.sql" />
     <Content Include="app database\StoredProcedure\usp_Customer.sql" />
