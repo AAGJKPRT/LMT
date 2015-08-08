@@ -117,49 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnBackResource1.Text" xml:space="preserve">
+  <data name="btnBackResource.Text" xml:space="preserve">
     <value>Back</value>
   </data>
-  <data name="btnBackResource1.ToolTip" xml:space="preserve">
+  <data name="btnBackResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="btnCancelResource1.Text" xml:space="preserve">
+  <data name="btnCancelResource.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="btnCancelResource1.ToolTip" xml:space="preserve">
+  <data name="btnCancelResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="btnEditResource1.Text" xml:space="preserve">
+  <data name="btnEditResource.Text" xml:space="preserve">
     <value>Edit</value>
   </data>
-  <data name="btnEditResource1.ToolTip" xml:space="preserve">
+  <data name="btnEditResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="btnSubmitResource1.Text" xml:space="preserve">
+  <data name="btnSubmitResource.Text" xml:space="preserve">
     <value>Submit</value>
   </data>
-  <data name="btnSubmitResource1.ToolTip" xml:space="preserve">
+  <data name="btnSubmitResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="ChkMemberShipResource1.Text" xml:space="preserve">
+  <data name="ChkMemberShipResource.Text" xml:space="preserve">
     <value>MemberShip</value>
   </data>
-  <data name="ChkMemberShipResource1.ToolTip" xml:space="preserve">
+  <data name="ChkMemberShipResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="ddlCurrentCityResource1.ToolTip" xml:space="preserve">
+  <data name="CityLookup" xml:space="preserve">
+    <value>CITY</value>
+  </data>
+  <data name="ddlCurrentCityResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="ddlCurrentStateResource1.ToolTip" xml:space="preserve">
+  <data name="ddlCurrentStateResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="fluDocument1Resource1.ToolTip" xml:space="preserve">
+  <data name="EmailRegExp" xml:space="preserve">
+    <value>^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$</value>
+  </data>
+  <data name="fluDocument1Resource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="fluDocument2Resource1.ToolTip" xml:space="preserve">
+  <data name="fluDocument2Resource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="fluSupplierResource1.ToolTip" xml:space="preserve">
+  <data name="fluSupplierResource.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="ImgSupplierResource1.AlternateText" xml:space="preserve">
@@ -168,271 +174,283 @@
   <data name="ImgSupplierResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblBankAccNoResource1.Text" xml:space="preserve">
+  <data name="lblBankAccNoResource.Text" xml:space="preserve">
     <value>Bank Account No.</value>
   </data>
-  <data name="lblBankAccNoResource1.ToolTip" xml:space="preserve">
+  <data name="lblBankAccNoResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblBankNameResource1.Text" xml:space="preserve">
+  <data name="lblBankNameResource.Text" xml:space="preserve">
     <value>Bank Name</value>
   </data>
-  <data name="lblBankNameResource1.ToolTip" xml:space="preserve">
+  <data name="lblBankNameResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblCompanyNameResource1.Text" xml:space="preserve">
+  <data name="lblCompanyNameResource.Text" xml:space="preserve">
     <value>Company Name</value>
   </data>
-  <data name="lblCompanyNameResource1.ToolTip" xml:space="preserve">
+  <data name="lblCompanyNameResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblCurrentAddResource1.Text" xml:space="preserve">
+  <data name="lblCurrentAddResource.Text" xml:space="preserve">
     <value>Current Address</value>
   </data>
-  <data name="lblCurrentAddResource1.ToolTip" xml:space="preserve">
+  <data name="lblCurrentAddResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblCurrentCityResource1.Text" xml:space="preserve">
+  <data name="lblCurrentCityResource.Text" xml:space="preserve">
     <value>Current City</value>
   </data>
-  <data name="lblCurrentCityResource1.ToolTip" xml:space="preserve">
+  <data name="lblCurrentCityResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblCurrentStateResource1.Text" xml:space="preserve">
+  <data name="lblCurrentStateResource.Text" xml:space="preserve">
     <value>Current State</value>
   </data>
-  <data name="lblCurrentStateResource1.ToolTip" xml:space="preserve">
+  <data name="lblCurrentStateResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblDocumentResource1.Text" xml:space="preserve">
+  <data name="lblDocumentResource.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="lblDocumentResource1.ToolTip" xml:space="preserve">
+  <data name="lblDocumentResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblEmailResource1.Text" xml:space="preserve">
+  <data name="lblEmailResource.Text" xml:space="preserve">
     <value>Email ID</value>
   </data>
-  <data name="lblEmailResource1.ToolTip" xml:space="preserve">
+  <data name="lblEmailResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblFileUploadResource1.Text" xml:space="preserve">
+  <data name="lblFileUploadResource.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="lblFileUploadResource1.ToolTip" xml:space="preserve">
+  <data name="lblFileUploadResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblFullNameResource1.Text" xml:space="preserve">
+  <data name="lblFullNameResource.Text" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="lblFullNameResource1.ToolTip" xml:space="preserve">
+  <data name="lblFullNameResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblIFSCCodeResource1.Text" xml:space="preserve">
+  <data name="lblIFSCCodeResource.Text" xml:space="preserve">
     <value>A/C IFSC Code</value>
   </data>
-  <data name="lblIFSCCodeResource1.ToolTip" xml:space="preserve">
+  <data name="lblIFSCCodeResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblMembershipResource1.Text" xml:space="preserve">
+  <data name="lblMembershipResource.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="lblMembershipResource1.ToolTip" xml:space="preserve">
+  <data name="lblMembershipResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblPhoneResource1.Text" xml:space="preserve">
+  <data name="lblPhoneResource.Text" xml:space="preserve">
     <value>Mobile No.</value>
   </data>
-  <data name="lblPhoneResource1.ToolTip" xml:space="preserve">
+  <data name="lblPhoneResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblPincodeResource1.Text" xml:space="preserve">
+  <data name="lblPincodeResource.Text" xml:space="preserve">
     <value>Pincode</value>
   </data>
-  <data name="lblPincodeResource1.ToolTip" xml:space="preserve">
+  <data name="lblPincodeResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblPreSupCodeResource1.Text" xml:space="preserve">
+  <data name="lblPreSupCodeResource.Text" xml:space="preserve">
     <value>SUP</value>
   </data>
-  <data name="lblPreSupCodeResource1.ToolTip" xml:space="preserve">
+  <data name="lblPreSupCodeResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="lblSupCodeResource1.Text" xml:space="preserve">
+  <data name="lblSupCodeResource.Text" xml:space="preserve">
     <value>Supplier Code</value>
   </data>
-  <data name="lblSupCodeResource1.ToolTip" xml:space="preserve">
+  <data name="lblSupCodeResource.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="ListITEMEmptyText" xml:space="preserve">
+    <value>--Select--</value>
+  </data>
+  <data name="ListITEMEmptyValue" xml:space="preserve">
+    <value>-1</value>
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
     <value>Labour Management Tool</value>
   </data>
-  <data name="RequiredFieldValidator12Resource1.ErrorMessage" xml:space="preserve">
-    <value>Current City is required.</value>
-  </data>
-  <data name="RequiredFieldValidator12Resource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidator12Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidator13Resource1.ErrorMessage" xml:space="preserve">
-    <value>Current State is required.</value>
-  </data>
-  <data name="RequiredFieldValidator13Resource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidator13Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidator14Resource1.ErrorMessage" xml:space="preserve">
-    <value>Current Pincode is required.</value>
-  </data>
-  <data name="RequiredFieldValidator14Resource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidator14Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidator1Resource1.ErrorMessage" xml:space="preserve">
-    <value>Email ID is required.</value>
-  </data>
-  <data name="RequiredFieldValidator1Resource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidator1Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidator2Resource1.ErrorMessage" xml:space="preserve">
-    <value>Current Address is required.</value>
-  </data>
-  <data name="RequiredFieldValidator2Resource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidator2Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidator3Resource1.ErrorMessage" xml:space="preserve">
-    <value>Company Name is required.</value>
-  </data>
-  <data name="RequiredFieldValidator3Resource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidator3Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidator4Resource1.ErrorMessage" xml:space="preserve">
+  <data name="rfvBankACNoResource.ErrorMessage" xml:space="preserve">
     <value>Bank A/C No. is required.</value>
   </data>
-  <data name="RequiredFieldValidator4Resource1.Text" xml:space="preserve">
+  <data name="rfvBankACNoResource.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="RequiredFieldValidator4Resource1.ToolTip" xml:space="preserve">
+  <data name="rfvBankACNoResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="RequiredFieldValidator5Resource1.ErrorMessage" xml:space="preserve">
-    <value>Phone No. is required.</value>
-  </data>
-  <data name="RequiredFieldValidator5Resource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidator5Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidator6Resource1.ErrorMessage" xml:space="preserve">
-    <value>A/C IFSC Code is required.</value>
-  </data>
-  <data name="RequiredFieldValidator6Resource1.Text" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidator6Resource1.ToolTip" xml:space="preserve">
-    <value />
-  </data>
-  <data name="RequiredFieldValidator7Resource1.ErrorMessage" xml:space="preserve">
+  <data name="rfvBankNameResource.ErrorMessage" xml:space="preserve">
     <value>Bank Name is required.</value>
   </data>
-  <data name="RequiredFieldValidator7Resource1.Text" xml:space="preserve">
+  <data name="rfvBankNameResource.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="RequiredFieldValidator7Resource1.ToolTip" xml:space="preserve">
+  <data name="rfvBankNameResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="RFVNameResource1.ErrorMessage" xml:space="preserve">
+  <data name="rfvCompanyNameResource.ErrorMessage" xml:space="preserve">
+    <value>Company Name is required.</value>
+  </data>
+  <data name="rfvCompanyNameResource.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvCompanyNameResource.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvCurrentAddResource.ErrorMessage" xml:space="preserve">
+    <value>Current Address is required.</value>
+  </data>
+  <data name="rfvCurrentAddResource.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvCurrentAddResource.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvCurrentCityResource.ErrorMessage" xml:space="preserve">
+    <value>Current City is required.</value>
+  </data>
+  <data name="rfvCurrentCityResource.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvCurrentCityResource.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvCurrentStateResource.ErrorMessage" xml:space="preserve">
+    <value>Current State is required.</value>
+  </data>
+  <data name="rfvCurrentStateResource.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvCurrentStateResource.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvEmailResource.ErrorMessage" xml:space="preserve">
+    <value>Email ID is required.</value>
+  </data>
+  <data name="rfvEmailResource.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvEmailResource.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvIFSCCodeResource.ErrorMessage" xml:space="preserve">
+    <value>A/C IFSC Code is required.</value>
+  </data>
+  <data name="rfvIFSCCodeResource.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvIFSCCodeResource.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="rfvNameResource.ErrorMessage" xml:space="preserve">
     <value>Labour name is required.</value>
   </data>
-  <data name="RFVNameResource1.Text" xml:space="preserve">
+  <data name="rfvNameResource.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="RFVNameResource1.ToolTip" xml:space="preserve">
+  <data name="rfvNameResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="SupplierImageControlResource1.AlternateText" xml:space="preserve">
+  <data name="rfvPhoneResource.ErrorMessage" xml:space="preserve">
+    <value>Phone No. is required.</value>
+  </data>
+  <data name="rfvPhoneResource.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="SupplierImageControlResource1.ToolTip" xml:space="preserve">
+  <data name="rfvPhoneResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="txtBankACNoResource1.Text" xml:space="preserve">
+  <data name="rfvPinCodeResource.ErrorMessage" xml:space="preserve">
+    <value>Current Pincode is required.</value>
+  </data>
+  <data name="rfvPinCodeResource.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="txtBankACNoResource1.ToolTip" xml:space="preserve">
+  <data name="rfvPinCodeResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="txtBankNameResource1.Text" xml:space="preserve">
+  <data name="StateLookup" xml:space="preserve">
+    <value>STATE</value>
+  </data>
+  <data name="SupplierImageControlResource.AlternateText" xml:space="preserve">
     <value />
   </data>
-  <data name="txtBankNameResource1.ToolTip" xml:space="preserve">
+  <data name="SupplierImageControlResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="txtCompanyNameResource1.Text" xml:space="preserve">
+  <data name="txtBankACNoResource.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="txtCompanyNameResource1.ToolTip" xml:space="preserve">
+  <data name="txtBankACNoResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="txtCurrentAddResource1.Text" xml:space="preserve">
+  <data name="txtBankNameResource.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="txtCurrentAddResource1.ToolTip" xml:space="preserve">
+  <data name="txtBankNameResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="txtCurrentPincodeResource1.Text" xml:space="preserve">
+  <data name="txtCompanyNameResource.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="txtCurrentPincodeResource1.ToolTip" xml:space="preserve">
+  <data name="txtCompanyNameResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="txtEmailResource1.Text" xml:space="preserve">
+  <data name="txtCurrentAddResource.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="txtEmailResource1.ToolTip" xml:space="preserve">
+  <data name="txtCurrentAddResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="txtFullNameResource1.Text" xml:space="preserve">
+  <data name="txtCurrentPincodeResource.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="txtFullNameResource1.ToolTip" xml:space="preserve">
+  <data name="txtCurrentPincodeResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="txtIFSCCodeResource1.Text" xml:space="preserve">
+  <data name="txtEmailResource.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="txtIFSCCodeResource1.ToolTip" xml:space="preserve">
+  <data name="txtEmailResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="txtPhoneResource1.ToolTip" xml:space="preserve">
+  <data name="txtFullNameResource.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="txtPreSupCodeResource1.Text" xml:space="preserve">
+  <data name="txtFullNameResource.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtIFSCCodeResource.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtIFSCCodeResource.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtPhoneResource.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtPhoneResource.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtPreSupCodeResource.Text" xml:space="preserve">
     <value>SUP</value>
   </data>
-  <data name="txtPreSupCodeResource1.ToolTip" xml:space="preserve">
+  <data name="txtPreSupCodeResource.ToolTip" xml:space="preserve">
     <value />
   </data>
-  <data name="txtSupCodeResource1.Text" xml:space="preserve">
+  <data name="txtSupCodeResource.Text" xml:space="preserve">
     <value />
   </data>
-  <data name="txtSupCodeResource1.ToolTip" xml:space="preserve">
+  <data name="txtSupCodeResource.ToolTip" xml:space="preserve">
     <value />
   </data>
   <data name="validationSummaryResource1.HeaderText" xml:space="preserve">
@@ -440,17 +458,5 @@
   </data>
   <data name="validationSummaryResource1.ToolTip" xml:space="preserve">
     <value />
-  </data>
-  <data name="ListItemEmptyText" xml:space="preserve">
-    <value>--Select--</value>
-  </data>
-  <data name="ListItemEmptyValue" xml:space="preserve">
-    <value>-1</value>
-  </data>
-  <data name="CityLookup" xml:space="preserve">
-    <value>CITY</value>
-  </data>
-  <data name="StateLookup" xml:space="preserve">
-    <value>STATE</value>
   </data>
 </root>

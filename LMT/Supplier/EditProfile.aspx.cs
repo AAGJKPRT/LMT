@@ -20,7 +20,7 @@ using ClassBarcode;
 namespace LMT.Supplier
 {
     //Jaipal
-   
+    //khushbu
     public partial class EditProfile : System.Web.UI.Page
     {
         csSupplierDetail objSuplier = new csSupplierDetail();

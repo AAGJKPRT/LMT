@@ -94,12 +94,14 @@ namespace LMT.MasterPages
         {
             try
             {
-                string StrQuery = "Select SupplierID,SupplierCode,FullName,Address,Sup_City,CityName,Sup_State,StateName,Pincode,Sup_Mobile, "+
-                                  "EmailID,CompanyName,BankName,BankACNo,AC_IFSC_Code,Doc1_Url,Doc2_Url,Image_Url,MemberShip from tbl_SupplierDetail "+
-                                  "Inner join tblState on tbl_SupplierDetail.Sup_State=tblState.StateID "+
-                                  "Inner Join tblCity on tbl_SupplierDetail.Sup_City=tblCity.CityID"+
-                                  " Where SupplierID=" + SupID + "";
-                DataTable Supplier = csSupplierDetail.FillDataTable(StrQuery);
+                //string StrQuery = "Select SupplierID,SupplierCode,FullName,Address,Sup_City,CityName,Sup_State,StateName,Pincode,Sup_Mobile, "+
+                //                  "EmailID,CompanyName,BankName,BankACNo,AC_IFSC_Code,Doc1_Url,Doc2_Url,Image_Url,MemberShip from tbl_SupplierDetail "+
+                //                  "Inner join tblState on tbl_SupplierDetail.Sup_State=tblState.StateID "+
+                //                  "Inner Join tblCity on tbl_SupplierDetail.Sup_City=tblCity.CityID"+
+                //                  " Where SupplierID=" + SupID + "";
+
+
+                DataTable Supplier = csSupplierDetail.GetData(SupID);
 
                 if (Supplier.Rows.Count > 0)
                 {
@@ -359,7 +361,8 @@ namespace LMT.MasterPages
             if (txtEmail.Text != "")
             {
 
-                Regex reg = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                Regex reg = new Regex(Convert.ToString(GetLocalResourceObject("EmailRegExp")));
+                //@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
                 Match isMatch = reg.Match(txtEmail.Text);
                 if (!isMatch.Success)
                 {
