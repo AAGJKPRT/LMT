@@ -75,9 +75,6 @@
     <Content Include="Admin\Labour.aspx" />
     <Content Include="Admin\LabourType.aspx" />
     <Content Include="Admin\Supplier.aspx" />
-    <Content Include="app database\StoredProcedure\FetchSupProfile.sql" />
-    <Content Include="app database\StoredProcedure\FillLabourChartData.sql" />
-    <Content Include="app database\StoredProcedure\GetLookup.sql" />
     <Content Include="app database\StoredProcedure\usp_CityProc.sql" />
     <Content Include="app database\StoredProcedure\usp_Customer.sql" />
     <Content Include="app database\StoredProcedure\usp_Expenses.sql" />
@@ -137,6 +134,7 @@
     <Content Include="images\Calendar_scheduleHS.jpg" />
     <Content Include="images\crayon.png" />
     <Content Include="images\Delete.png" />
+    <Content Include="images\dummy.jpg" />
     <Content Include="images\Edit.gif" />
     <Content Include="images\EL_logo.png" />
     <Content Include="images\export_excel_icon.gif" />
@@ -303,8 +301,6 @@
     <Compile Include="Customer\AddNewCase.aspx.designer.cs">
       <DependentUpon>AddNewCase.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DataLayer\SqlHelper.cs" />
-    <Compile Include="DataLayer\ClsDataWrapper.cs" />
     <Compile Include="frmLogout.aspx.cs">
       <DependentUpon>frmLogout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -544,21 +540,6 @@
     <Content Include="TransPages\CustMaster.Master" />
     <None Include="newcal\jquery\jquery-2.1.1.min.map" />
     <Content Include="newcal\JsonResponse.ashx" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Admin\App_LocalResources\EditSupProfile.aspx.resx">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="MasterPages\App_LocalResources\EditSupProfile.aspx.resx">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Supplier\App_LocalResources\EditProfile.aspx.resx">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

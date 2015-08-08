@@ -4,8 +4,6 @@ using System.Linq;
 using System.Web;
 using CrystalDatabase;
 using System.Data;
-using System.Data.SqlClient;
-using DataLayer;
 
 namespace LMT.BusinessLogic
 {
@@ -227,18 +225,6 @@ namespace LMT.BusinessLogic
             DataTable dtFillData;
             dtFillData = CrystalConnection.CreateDataTableWithoutTransaction(query);
             return dtFillData;
-        }
-
-        //Added by khushbu to fill dataset
-        public static DataTable GetData(int SupId)
-        {
-            string DBConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["CrystalConnection"].ConnectionString;
-            SqlParameter[] sqlParams = new SqlParameter[1];//1
-            sqlParams[0] = new SqlParameter("@SupId",SupId);
-            DataSet ds = DataWrapper.ExecuteDataset(DBConnectionString, CommandType.StoredProcedure, "FetchSupProfile", sqlParams);
-
-            return ds.Tables[0];
-
         }
     }
 }

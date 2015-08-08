@@ -59,8 +59,8 @@ namespace LMT.MasterPages
                     //}
                     //txtFullName.Text = Convert.ToString(Request.QueryString["NAME"].ToString());
                     //hfSupID.Value = Request.QueryString["ID"].ToString();
-                    //objDropDown.FillDropDown(ref ddlCurrentState, "select StateID,StateName from tblState", "StateName", "StateID", "Order By StateName", "Where IsVerify='Y'", false, false, false, true, false);
-                    //objDropDown.FillDropDown(ref ddlCurrentCity, "select CityID,CityName from tblCity", "CityName", "CityID", "Order By CityName", "Where IsVerify='Y'", false, false, true, false, false);
+                    objDropDown.FillDropDown(ref ddlCurrentState, "select StateID,StateName from tblState", "StateName", "StateID", "Order By StateName", "Where IsVerify='Y'", false, false, false, true, false);
+                    objDropDown.FillDropDown(ref ddlCurrentCity, "select CityID,CityName from tblCity", "CityName", "CityID", "Order By CityName", "Where IsVerify='Y'", false, false, true, false, false);
                     if (ShowSupProfile(Convert.ToInt32(hfSupID.Value)))
                     {
                         ShowSupplierCode();
@@ -76,32 +76,16 @@ namespace LMT.MasterPages
             }
         }
 
-        // Added by khushbu kansal for binding dropdowns
-        public void Binddropdown()
-        {
-            ddlCurrentState.DataSource = objDropDown.GetLookupTable(Convert.ToString(GetLocalResourceObject("StateLookup")));
-            ddlCurrentState.DataTextField = "LDESC";
-            ddlCurrentState.DataValueField = "LID";
-            ddlCurrentState.DataBind();
-            ddlCurrentCity.DataSource = objDropDown.GetLookupTable(Convert.ToString(GetLocalResourceObject("CityLookup")));
-            ddlCurrentCity.DataTextField = "LDESC";
-            ddlCurrentCity.DataValueField = "LID";
-            ddlCurrentCity.DataBind();
-        }
-
-
         public bool ShowSupProfile(int SupID)
         {
             try
             {
-                //string StrQuery = "Select SupplierID,SupplierCode,FullName,Address,Sup_City,CityName,Sup_State,StateName,Pincode,Sup_Mobile, "+
-                //                  "EmailID,CompanyName,BankName,BankACNo,AC_IFSC_Code,Doc1_Url,Doc2_Url,Image_Url,MemberShip from tbl_SupplierDetail "+
-                //                  "Inner join tblState on tbl_SupplierDetail.Sup_State=tblState.StateID "+
-                //                  "Inner Join tblCity on tbl_SupplierDetail.Sup_City=tblCity.CityID"+
-                //                  " Where SupplierID=" + SupID + "";
-
-
-                DataTable Supplier = csSupplierDetail.GetData(SupID);
+                string StrQuery = "Select SupplierID,SupplierCode,FullName,Address,Sup_City,CityName,Sup_State,StateName,Pincode,Sup_Mobile, "+
+                                  "EmailID,CompanyName,BankName,BankACNo,AC_IFSC_Code,Doc1_Url,Doc2_Url,Image_Url,MemberShip from tbl_SupplierDetail "+
+                                  "Inner join tblState on tbl_SupplierDetail.Sup_State=tblState.StateID "+
+                                  "Inner Join tblCity on tbl_SupplierDetail.Sup_City=tblCity.CityID"+
+                                  " Where SupplierID=" + SupID + "";
+                DataTable Supplier = csSupplierDetail.FillDataTable(StrQuery);
 
                 if (Supplier.Rows.Count > 0)
                 {
@@ -361,8 +345,7 @@ namespace LMT.MasterPages
             if (txtEmail.Text != "")
             {
 
-                Regex reg = new Regex(Convert.ToString(GetLocalResourceObject("EmailRegExp")));
-                //@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                Regex reg = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
                 Match isMatch = reg.Match(txtEmail.Text);
                 if (!isMatch.Success)
                 {
