@@ -253,13 +253,13 @@
                                                     <HeaderTemplate>
                                                         <table>
                                                             <thead>
-                                                                <td align="left">
+                                                                <td align="center">
                                                                     Ticket
                                                                 </td>
-                                                                <td>
-                                                                    Assgined
-                                                                </td>
                                                                 <td align="center">
+                                                                    Assgined To
+                                                                </td>
+                                                                <td  align="center" >
                                                                     Date
                                                                 </td>
                                                                 <td align="center">
@@ -272,11 +272,11 @@
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
                                                             <tr>
-                                                                <td align="left" style="width: 150px;">
+                                                                <td align="center" style="width: 150px;">
                                                                     <asp:HiddenField ID="hfLeadID" runat="server" Value='<%#Eval("Lead_ID") %>' />
                                                       <asp:Label ID="lblTicket" Text='<%#Eval("Ticket") %>' runat="server"></asp:Label>
                                                                 </td>
-                                                                <td align="left" style="width: 150px;">
+                                                                <td align="center" style="width: 150px;">
                                                       <asp:Label ID="lblSupplierName" Text='<%#Eval("SupplierName") %>' runat="server"></asp:Label>
                                                                 </td>
                                                                   <td align="center" style="width: 150px;">
@@ -285,7 +285,7 @@
                                                                  <td align="left" style="width: 200px;">
                                                       <asp:Label ID="lblRequired_Time" Text='<%#Eval("Required_Time")%>' runat="server"></asp:Label>
                                                                 </td>
-                                                                  <td align="left" style="width: 150px;">
+                                                                  <td align="left" style="width: 150px; padding-right:35px;">
                                                       <asp:Label ID="lblLabourName" Text='<%#Eval("LabourName") %>' runat="server"></asp:Label>
                                                                 </td>
                                                             </tr>

@@ -210,7 +210,7 @@ namespace LMT.Customer
         }
 
 
-        private void SetProperties(int CustomerID)
+        private void SetProperties(int UserID)
         {
             try
             {
@@ -223,13 +223,14 @@ namespace LMT.Customer
                 //{
                 objLeads.Lead_id = 0;
                 //}
+                Random RND = new Random();
                 objLeads.Labourid = Convert.ToInt32(hdfReg_DI.Value);
-                objLeads.Customerid = Convert.ToInt32(Session["UserID"]);
+                objLeads.Customerid = UserID;
                 string Date = txtPickDate.Text;
                 objLeads.Required_date = Convert.ToDateTime(txtPickDate.Text, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat);
                 objLeads.Required_time = ddlRequiredTime.SelectedItem.Text;
                 objLeads.Status = "NL";
-                objLeads.Ticket = Convert.ToString(Session["Ticket"]);
+                objLeads.Ticket = "REQ" + RND.Next(1, 99999).ToString().PadLeft(5, '0');
                 objLeads.Description = txtDesc.Text;
                 //objLeads.Supplierid = Convert.ToInt32(Session["UserID"]);
             }

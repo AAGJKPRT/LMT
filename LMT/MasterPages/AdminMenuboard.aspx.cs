@@ -53,11 +53,15 @@ namespace LMT.MasterPages
         private void BindNewLeads()
         {
 
-            string strQuery = "select Lead_ID,Labour_ID,tbl_Lbr_Type.Lbr_Type,isnull(Name,'')Name,Required_Date from tbl_Leads " +
-                              "left join tbl_Customer on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID " +
-                              "left join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
-                              "left join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
-                              "Where Status='NL' ";//and Required_Date>GETDATE()
+            string strQuery = "select Lead.Lead_ID,Lead.Customer_ID as UserID,Lead.Labour_ID,isnull(Convert(Varchar(10),Lead.Asign),'') as SuppilerID, " +
+                "isnull(SD.SupplierCode,'')as SupplierCode, " +
+                    " Convert(Varchar(10),Lead.Required_Date) as RequestDate,Lead.Ticket as RequestNumber, " +
+                    " LR.FullName as LabourName,LR.Image_URL as LabourImageURL,LR.Labour_Code,LR.Wages as RatesPerDay, " +
+                    " UR.LoginName as UserName,LR.Ph_No as LabourPhone from tbl_Leads as Lead " +
+                    " inner join tblUserRegistration UR on Lead.Customer_ID=UR.UserID " +
+                    " inner join tbl_LabourRegistration LR on Lead.Labour_ID=LR.Reg_ID " +
+                    " Left join tbl_SupplierDetail SD on Lead.Asign=SD.SupplierID " +
+                    " where Lead.Status='NL' order by Lead.Required_Date desc ";
             csGlobalFunction.BindRepeater(ref rptLeadInformation, strQuery);
         }
 

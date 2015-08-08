@@ -130,6 +130,24 @@ namespace LMT.MasterPages {
         protected global::System.Web.UI.WebControls.Image LabourImageControl;
         
         /// <summary>
+        /// ddlsupplier control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlsupplier;
+        
+        /// <summary>
+        /// lblSupID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSupID;
+        
+        /// <summary>
         /// lblName control.
         /// </summary>
         /// <remarks>
@@ -137,15 +155,6 @@ namespace LMT.MasterPages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblName;
-        
-        /// <summary>
-        /// lblSupName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSupName;
         
         /// <summary>
         /// btnAssign control.

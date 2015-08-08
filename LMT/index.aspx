@@ -50,108 +50,109 @@
 </script>
     --%>
     <style type="text/css">
-        .carousel-fade .carousel-inner .item
-        {
+        .carousel-fade .carousel-inner .item {
             opacity: 0;
             -webkit-transition-property: opacity;
             transition-property: opacity;
         }
-        .carousel-fade .carousel-inner .active
-        {
+
+        .carousel-fade .carousel-inner .active {
             opacity: 1;
         }
-        .carousel-fade .carousel-inner .active.left, .carousel-fade .carousel-inner .active.right
-        {
-            left: 0;
-            opacity: 0;
-            z-index: 1;
-        }
-        .carousel-fade .carousel-inner .next.left, .carousel-fade .carousel-inner .prev.right
-        {
+
+            .carousel-fade .carousel-inner .active.left, .carousel-fade .carousel-inner .active.right {
+                left: 0;
+                opacity: 0;
+                z-index: 1;
+            }
+
+        .carousel-fade .carousel-inner .next.left, .carousel-fade .carousel-inner .prev.right {
             opacity: 1;
         }
-        .carousel-fade .carousel-control
-        {
+
+        .carousel-fade .carousel-control {
             z-index: 2;
         }
     </style>
     <style type="text/css">
-        .info_box
-        {
+        .info_box {
             width: 165px;
             height: 92px;
             height: 30px; /*background-color: rgba(0,0,0,0.5);*/
             overflow: hidden;
         }
-        #bank
-        {
+
+        #bank {
             /*display: none;*/
         }
-        #btn_bk
-        {
+
+        #btn_bk {
             /*display: none;*/
         }
-        #step-1-img
-        {
+
+        #step-1-img {
             width: 100%;
             max-width: 270px;
             margin: 30px 60px 0;
             display: none;
         }
     </style>
-        <script type="text/javascript">
-            function LoginPass() {
-                $('#Div1').modal();
-            }        
+    <script type="text/javascript">
+        function LoginPass() {
+            $('#Div1').modal();
+        }
     </script>
 
     <script type="text/javascript">
         function SaveSuccess() {
             $('#myModal').modal();
-        }        
+        }
+        function onLoginClick() {
+            window.location.href = "login.aspx";
+        }
     </script>
+
 </head>
 <body>
     <form id="form1" runat="server">
-    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
-    </asp:ToolkitScriptManager>
-    <asp:ValidationSummary ShowMessageBox="true" ShowSummary="false" ForeColor="Red"
-        runat="server" ID="validationSummary"></asp:ValidationSummary>
-    <div>
-        <!-- Preloader -->
-       <%-- <div class="mask">
+        <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+        </asp:ToolkitScriptManager>
+        <asp:ValidationSummary ShowMessageBox="true" ShowSummary="false" ForeColor="Red"
+            runat="server" ID="validationSummary"></asp:ValidationSummary>
+        <div>
+            <!-- Preloader -->
+            <%-- <div class="mask">
             <div id="loader">
             </div>
         </div>--%>
-        <!--/Preloader -->
-        <!-- Full Page Image Background Carousel Header -->
-        <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="6000"
-            data-pause="false" style="position: relative; width: 100%; height: 100%; top: 0;
-            left: 0; z-index: 9999;">
-            <!-- Wrapper for Slides -->
-            <div class="carousel-inner" style="position: absolute;">
-                <div class="item active">
-                    <!-- Set the first background image using inline CSS below. -->
-                    <div class="fill" style="background-image: url('images/ind_slid1.jpg');">
+            <!--/Preloader -->
+            <!-- Full Page Image Background Carousel Header -->
+            <div id="myCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="6000"
+                data-pause="false" style="position: relative; width: 100%; height: 100%; top: 0; left: 0; z-index: 9999;">
+                <!-- Wrapper for Slides -->
+                <div class="carousel-inner" style="position: absolute;">
+                    <div class="item active">
+                        <!-- Set the first background image using inline CSS below. -->
+                        <div class="fill" style="background-image: url('images/ind_slid1.jpg');">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <!-- Set the second background image using inline CSS below. -->
+                        <div class="fill" style="background-image: url('images/ind_slid2.jpg');">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <!-- Set the third background image using inline CSS below. -->
+                        <div class="fill" style="background-image: url('images/ind_slid3.jpg');">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <!-- Set the second background image using inline CSS below. -->
+                        <div class="fill" style="background-image: url('images/ind_slid4.jpg');">
+                        </div>
                     </div>
                 </div>
-                <div class="item">
-                    <!-- Set the second background image using inline CSS below. -->
-                    <div class="fill" style="background-image: url('images/ind_slid2.jpg');">
-                    </div>
-                </div>
-                <div class="item">
-                    <!-- Set the third background image using inline CSS below. -->
-                    <div class="fill" style="background-image: url('images/ind_slid3.jpg');">
-                    </div>
-                </div>
-                <div class="item">
-                    <!-- Set the second background image using inline CSS below. -->
-                    <div class="fill" style="background-image: url('images/ind_slid4.jpg');">
-                    </div>
-                </div>
-            </div>
-            <section id="ccr-header">
+                <section id="ccr-header">
 		    <div class="ccr-hbg" style="background: rgba(0,0,0,.2);-webkit-transition: all .5s ease-in-out;-moz-transition: all .5s ease-in-out;transition: all .5s ease-in-out;-o-transition: all .5s ease-in-out;z-index: 1;position: relative;">
 			    <div class="container">
 				    <div class="ccr-headarea">
@@ -181,15 +182,16 @@
 										    <li><a href="#ccr-skill">Pricing & Membership</a></li>										
 										    <%--<li><a href="#ccr-about-us">Membership</a></li>--%>
                                             <li><a href="#">Blog</a></li>
-                                            <li class="dropdown">
-                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                                   Signup 
-                                                   <b class="caret"></b>
-                                                </a>
-                                                <ul class="dropdown-menu">
-                                                   <li><a href="login.aspx" target="_new">Login</a></li>                                               
-                                                </ul>
-                                             </li>
+                                            <li style="cursor:pointer;" ><a onclick="onLoginClick()">Login</a></li>
+                                            <%--<li class="dropdown">
+                                                <a href="login.aspx" class="dropdown-toggle" data-toggle="dropdown">
+                                                   Login 
+                                                  <%-- <b class="caret"></b>--%>
+                                             <%--   </a>--%>
+                                                <%--<ul class="dropdown-menu">
+                                                   <li><a href="login.aspx" target="_new"></a></li>                                               
+                                                </ul>--%>
+                                              <%-- </li>--%>
                                              <li><a href="#" target="_offer">Offer</a></li>
 										    <%--<li><a href="#ccr-touch">Contact</a></li>
                                             <li><a href="#ccr-enquiry">Enquiry</a></li>--%>
@@ -1044,10 +1046,10 @@
             </div>
             <!-- /.ccr-hbg -->
             </section>
-        </div>
-        <!-- /#ccr-header -->
-        <!-- /header -->
-        <section id="ccr-service">
+            </div>
+            <!-- /#ccr-header -->
+            <!-- /header -->
+            <section id="ccr-service">
 			<div class="ccr-service-bg">
 				<div class="container">
 					<div class="ccr-title element_from_right">
@@ -1097,8 +1099,8 @@
 			</div>
 			<!-- /.ccr-service-bg -->
 		</section>
-        <!-- /#ccr-service -->
-        <section id="ccr-works">
+            <!-- /#ccr-service -->
+            <section id="ccr-works">
             <div class="ccr-works-bg" style="position: relative;">
                 <div class="container">
                     <div class="ccr-works-title element_fade_in">
@@ -1114,8 +1116,8 @@
                 </div>
             </div>
         </section>
-        <!-- /#ccr-works -->
-        <section id="ccr-team">
+            <!-- /#ccr-works -->
+            <section id="ccr-team">
 			<div class="ccr-team-bg" style="position: relative;">
 				<div class="container">
 					<div class="ccr-team-title element_fade_in">
@@ -1185,8 +1187,8 @@
 				</div>
 			</div>	    <!-- /.ccr-item-bg -->
 		</section>
-        <!-- /.ccr-item -->
-        <section id="ccr-skill">
+            <!-- /.ccr-item -->
+            <section id="ccr-skill">
 			<div class="ccr-skill-bg">
 				<div class="container">
 					<div class="ccr-skill-title element_from_top">
@@ -1222,8 +1224,8 @@
 				</div>
 			</div>	    <!-- /#ccr-skill-bg -->
 		</section>
-        <!-- /#ccr-skill -->
-        <section id="ccr-about-us">
+            <!-- /#ccr-skill -->
+            <section id="ccr-about-us">
 			<div class="ccr-about-us-bg">
 				<div class="container">
 					<div class="ccr-about-us-title element_from_right">
@@ -1278,7 +1280,7 @@
 				</div>	
 			</div>	<!-- /#ccr-about-us -->
 		</section>
-        <section id="ccr-touch">
+            <section id="ccr-touch">
 			<div class="ccr-touch-bg">
 				<div class="container">
 					<div class="ccr-touch-title element_from_top">
@@ -1305,8 +1307,8 @@
 				</div>			
 			</div>  	<!-- /#ccr-touch bg-->
 		</section>
-        <!-- /ccr touch section -->
-        <section id="ccr-enquiry">
+            <!-- /ccr touch section -->
+            <section id="ccr-enquiry">
             <%--<div class="ccr-enquiry-bg">
 				<div class="container">
 					<div class="ccr-enquiry-title element_fade_in">
@@ -1323,8 +1325,8 @@
                  </div>
              </div>--%>   <!-- /#ccr-enquiry bg-->
         </section>
-        <!-- /ccr enquiry section-->
-        <footer id="ccr-footer">
+            <!-- /ccr enquiry section-->
+            <footer id="ccr-footer">
 			<%--<div class="ccr-footer-bg">
 				<ul class="ccr-footer-menu">
 					<li><a href="#">Facebook</a></li>
@@ -1335,20 +1337,19 @@
 			</div>--%>
 			<!-- /#ccr-footer -->
 		</footer>
-        <!-- /footer -->
-        <a href="#ccr-header" id="ccr-back-top" title="Back to Top" style="display: inline;">
-            Back to Top</a>
-        <!--========================================end===========================-->
-        <!--js library-->
-        <script src="http://code.jquery.com/jquery-1.10.1.min.js" type="text/javascript"></script>
-        <!--Isotop library-->
-        <script src="js/jquery.isotope.min.js" type="text/javascript"></script>
-        <!--Bootstrap JS-->
-        <script src="js/bootstrap.min.js" type="text/javascript"></script>
-        <!-- Main Javascript File -->
-        <script src="js/main.js" type="text/javascript"></script>
-        <!-- jQuery -->
-        <%--<script>
+            <!-- /footer -->
+            <a href="#ccr-header" id="ccr-back-top" title="Back to Top" style="display: inline;">Back to Top</a>
+            <!--========================================end===========================-->
+            <!--js library-->
+            <script src="http://code.jquery.com/jquery-1.10.1.min.js" type="text/javascript"></script>
+            <!--Isotop library-->
+            <script src="js/jquery.isotope.min.js" type="text/javascript"></script>
+            <!--Bootstrap JS-->
+            <script src="js/bootstrap.min.js" type="text/javascript"></script>
+            <!-- Main Javascript File -->
+            <script src="js/main.js" type="text/javascript"></script>
+            <!-- jQuery -->
+            <%--<script>
             $('#btn_Show').click(function (e) {
                 $('#fancy, #btn_Show').fadeOut('slow', function () {
                     $('#bank, #btn_bk').fadeIn('slow');
@@ -1362,13 +1363,13 @@
             });
 
         </script>--%>
-        <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
+            <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
   chromium.org/developers/how-tos/chrome-frame-getting-started -->
-        <!--[if lt IE 7 ]>
+            <!--[if lt IE 7 ]>
   <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
   <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
   <![endif]-->
-    </div>
+        </div>
     </form>
 </body>
 </html>

@@ -354,6 +354,7 @@
     <Compile Include="MasterPages\CustMenuBoard.aspx.designer.cs">
       <DependentUpon>CustMenuBoard.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MasterPages\IsupplierList.cs" />
     <Compile Include="MasterPages\Supplier.aspx.cs">
       <DependentUpon>Supplier.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -410,6 +411,7 @@
     <Compile Include="MasterPages\NewLeads.aspx.designer.cs">
       <DependentUpon>NewLeads.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MasterPages\SupplierList.cs" />
     <Compile Include="MasterPages\SupplierMenuboard.aspx.cs">
       <DependentUpon>SupplierMenuboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -540,6 +542,7 @@
     <Content Include="TransPages\CustMaster.Master" />
     <None Include="newcal\jquery\jquery-2.1.1.min.map" />
     <Content Include="newcal\JsonResponse.ashx" />
+    <None Include="Properties\PublishProfiles\Profile1.pubxml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

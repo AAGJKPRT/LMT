@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TransPages/Site.Master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TransPages/Site.Master" AutoEventWireup="true" EnableEventValidation="false"
     CodeBehind="NewLeads.aspx.cs" Inherits="LMT.MasterPages.NewLeads" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
@@ -15,6 +15,43 @@
             margin-right: -4px;
         }
     </style>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        //window.onload = onPageLoad();
+        //function onPageLoad() {
+        //    debugger;
+        //    BindSupplierList();
+        //}
+        function BindSupplierList() {
+            var $supplier = $.noConflict();
+            $supplier.ajax({
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                url: "NewLeads.aspx/getSupplierList",
+                data: "{}",
+                dataType: "json",
+                success: function (data) {
+                    debugger;
+                    var json = JSON.parse(data.d);
+                    $supplier('#ddlsupplier').empty();
+                    var option = $supplier("<option />");
+                    option.attr("value", '0').text('-- Choose Item --');
+                    $supplier('#ddlsupplier').append(option)
+                    $supplier.each(json, function (key, value) {
+                        $supplier("#ddlsupplier").append($supplier("<option></option>").val(value.SupplierID).html(value.SupplierName));
+                    });
+                },
+                error: function (result) {
+                    alert('Oops something went wrong !, Please retry or contact support team.');
+                }
+            });
+
+        }
+        function updateLabelSupID() {
+           // document.getElementById('lblSupID').value = document.getElementById('ddlsupplier').selectedOptions[0].value;
+        }
+
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="demo-wrapper">
@@ -109,13 +146,13 @@
                            </div>
                            <div class="panel-body">
                                <div > 
-                                  <asp:Image ID="LabourImageControl" runat="server"  ImageUrl="https://raw.githubusercontent.com/AAGJKPRT/LMT/2c35092f42028585b70f35e4f7e9a7acda72a9c9/LMT/images/dummy.jpg" AlternateText="../images/dummy.jpg" Height="125px" Width="150px" />
+                                  <asp:Image ID="LabourImageControl" runat="server"  onerror="this.src='https://raw.githubusercontent.com/AAGJKPRT/LMT/2c35092f42028585b70f35e4f7e9a7acda72a9c9/LMT/images/dummy.jpg'" AlternateText="../images/dummy.jpg" Height="125px" Width="150px" />
                                   <div class="caption">                                    
-                                    <p><strong>Labour Name : </strong><asp:Label ID="lblName" runat="server"></asp:Label>
+                                    <p><strong>Supplier Name : </strong><asp:DropDownList ID="ddlsupplier" ClientIDMode="Static" onchange="updateLabelSupID" runat="server"></asp:DropDownList> <asp:Label ID="lblSupID" Visible="false" runat="server" ></asp:Label>
                                     <br />
-                                    <strong>Supplier Name : </strong> <asp:Label ID="lblSupName" runat="server"></asp:Label></p>
+                                    <strong>Labour Name : </strong><asp:Label ID="lblName" runat="server"></asp:Label></p>
                                     <p><asp:Button ID="btnAssign" runat="server" CssClass="btn btn-primary" 
-                                            Text="Assign" onclick="btnAssign_Click"></asp:Button></p>
+                                            Text="Assign" enableEventValidation="false" OnClick="btnAssign_Click"></asp:Button></p>
                                     <p><asp:Button ID="btnCloseLeads" runat="server" Visible="false" CssClass="btn btn-primary" 
                                             Text="Close Lead" onclick="btnCloseLeads_Click"></asp:Button></p>
                                   </div>

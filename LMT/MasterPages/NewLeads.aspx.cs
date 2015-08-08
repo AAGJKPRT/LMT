@@ -14,6 +14,8 @@ using System.Data.SqlClient;
 using System.Globalization;
 using System.Drawing;
 using System.IO;
+using System.Web.Services;
+using System.Web.Script.Serialization;
 
 
 namespace LMT.MasterPages
@@ -36,6 +38,7 @@ namespace LMT.MasterPages
                 btnCloseLeads.Visible = true;
             }
             hfOpmode.Value = "UPDATE";
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "LoadSuppliers", "BindSupplierList();", true);
             ShowLead();
         }
 
@@ -78,29 +81,9 @@ namespace LMT.MasterPages
                     txtCustDate.Text = Convert.ToString(Dr["Required_Date"]);
                     txtCustTime.Text = Convert.ToString(Dr["Required_Time"]);
                     lblName.Text = Convert.ToString(Dr["Fname"]);
-                    lblSupName.Text = Convert.ToString(Dr["FullName"]);
+                    lblSupID.Text = Convert.ToString(Dr["FullName"]);
                     hfSupplierID.Value = Convert.ToString(Dr["SupplierID"]);
                 }
-            }
-            catch (Exception ex)
-            {
-                string strFnc = "";
-                strFnc = ex.Message;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:AlertMsg('" + strFnc + "');", true);
-            }
-        }
-
-        protected void btnAssign_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                hfOpmode.Value = "UPDATE";
-                objLeads.Lead_id = Convert.ToInt32(hfLeadID.Value);
-                objLeads.Asign = Convert.ToInt32(hfSupplierID.Value);
-                objLeads.Status = "NL";
-                objLeads.SaveData(hfOpmode.Value);
-                btnAssign.Enabled = false;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "javascript:AlertMsg('Lead assign to supplier.');", true);
             }
             catch (Exception ex)
             {
@@ -121,6 +104,52 @@ namespace LMT.MasterPages
                 objLeads.SaveData(hfOpmode.Value);
                 btnCloseLeads.Enabled = false;
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "javascript:AlertMsg('Lead has been closed.');", true);
+            }
+            catch (Exception ex)
+            {
+                string strFnc = "";
+                strFnc = ex.Message;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:AlertMsg('" + strFnc + "');", true);
+            }
+        }
+
+        public class SupplierList
+        {
+            public int SupplierId { get; set; }
+            public string SupplierName { get; set; }
+
+        }
+        [WebMethod]
+        public static string getSupplierList()
+        {
+
+            List<SupplierList> IsupplierList = new List<SupplierList>();
+            SupplierList supplier = new SupplierList();
+            DataTable dtSupplier = new DataTable();
+            dtSupplier = CrystalConnection.CreateDataTableWithoutTransaction("usp_GetAllSupplierList");
+            foreach (DataRow dr in dtSupplier.Rows)
+            {
+                supplier = new SupplierList();
+                supplier.SupplierId = Convert.ToInt32(dr["SupplierID"]);
+                supplier.SupplierName = dr["SupplierName"].ToString();
+                IsupplierList.Add(supplier);
+            }
+            string sJSON = "";
+            var oSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            return sJSON = oSerializer.Serialize(IsupplierList);
+        }
+
+        protected void btnAssign_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                hfOpmode.Value = "UPDATE";
+                objLeads.Lead_id = Convert.ToInt32(hfLeadID.Value);
+                objLeads.Asign = Convert.ToInt32(hfSupplierID.Value);//ddlsupplier.SelectedValue);
+                objLeads.Status = "NL";
+                objLeads.SaveData(hfOpmode.Value);
+                btnAssign.Enabled = false;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "javascript:AlertMsg('Lead assign to supplier.');", true);
             }
             catch (Exception ex)
             {

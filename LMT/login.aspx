@@ -62,7 +62,7 @@
                 </div>
                 <div class="login-help">
                     <p>
-                        Copyright &#169; <a href="index.aspx" style="text-decoration: none;">Labour Management Tool.</a> All Rights Reserved.
+                        Copyright &#169; <a href="index.aspx" style="text-decoration: none;">Labour Management Tool Version 1.0.1.1.</a> All Rights Reserved.
                     </p>
                 </div>
 
