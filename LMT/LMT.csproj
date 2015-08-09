@@ -550,6 +550,12 @@
     <Content Include="newcal\JsonResponse.ashx" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Admin\App_LocalResources\EditSupProfile.aspx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MasterPages\App_LocalResources\EditSupProfile.aspx.resx" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
