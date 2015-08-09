@@ -61,6 +61,8 @@ namespace LMT.MasterPages
                     //hfSupID.Value = Request.QueryString["ID"].ToString();
                     //objDropDown.FillDropDown(ref ddlCurrentState, "select StateID,StateName from tblState", "StateName", "StateID", "Order By StateName", "Where IsVerify='Y'", false, false, false, true, false);
                     //objDropDown.FillDropDown(ref ddlCurrentCity, "select CityID,CityName from tblCity", "CityName", "CityID", "Order By CityName", "Where IsVerify='Y'", false, false, true, false, false);
+                    Binddropdown();
+
                     if (ShowSupProfile(Convert.ToInt32(hfSupID.Value)))
                     {
                         ShowSupplierCode();
@@ -271,7 +273,7 @@ namespace LMT.MasterPages
                     Set_UserRegProperties();
                     decimal userID = objUserRegistration.ExecuteProcedure("INSERT", 0);
                     SetProperties(userID);
-
+                    hfSupID.Value =Convert.ToString(objSuplier.Supplierid);
                     if (txtEmail.Text.Trim() != "")
                     {
                         {
@@ -282,9 +284,12 @@ namespace LMT.MasterPages
                         }
                     }
                     objSuplier.SaveData(hfOpMode.Value);
-                    ClearControls();
+                   // ClearControls();
                     //ClearControls();
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "Record save successfully.", true);
+                    ShowSupProfile(Convert.ToInt32(hfSupID.Value));
+                    dvSupPfView.Visible = true;
+                    dvSupPfEdit.Visible = false;
                 }
             }
             catch (Exception ex)

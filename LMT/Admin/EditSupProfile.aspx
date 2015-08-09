@@ -151,8 +151,8 @@
                                                                      <td style="border-top:none">                                                                                
                                                                                     <asp:TextBox ID="txtFullName" runat="server" placeholder="Full Name" CssClass="form-control" 
                                                                                         meta:resourcekey="txtFullNameResource"></asp:TextBox>
-                                                                                    <asp:RequiredFieldValidator runat="server" ID="rfvName" ControlToValidate="txtFullName"
-                                                                                    Display="None" meta:resourcekey="rfvNameResource" />
+                                                                                    <%--<asp:RequiredFieldValidator runat="server" ID="rfvName" ControlToValidate="txtFullName"
+                                                                                    Display="None" meta:resourcekey="rfvNameResource" />--%>
                                                                      </td>
                                                                      <td style="border-top:none">
                                                                          <asp:TextBox ID="txtCurrentAdd" runat="server" placeholder="Current Address"

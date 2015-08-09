@@ -269,7 +269,7 @@ namespace LMT.Admin
                     Set_UserRegProperties();
                     decimal userID = objUserRegistration.ExecuteProcedure("INSERT", 0);
                     SetProperties(userID);
-
+                    hfSupID.Value = Convert.ToString(objSuplier.Supplierid);
                     if (txtEmail.Text.Trim() != "")
                     {
                         {
@@ -280,9 +280,12 @@ namespace LMT.Admin
                         }
                     }
                     objSuplier.SaveData(hfOpMode.Value);
-                    ClearControls();
+                   // ClearControls();
                     //ClearControls();
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "Record save successfully.", true);
+                    ShowSupProfile(Convert.ToInt32(hfSupID.Value));
+                    dvSupPfView.Visible = true;
+                    dvSupPfEdit.Visible = false;
                 }
             }
             catch (Exception ex)
