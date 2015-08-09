@@ -78,6 +78,10 @@
     <Content Include="app database\StoredProcedure\usp_CityProc.sql" />
     <Content Include="app database\StoredProcedure\usp_Customer.sql" />
     <Content Include="app database\StoredProcedure\usp_Expenses.sql" />
+    <Content Include="app database\StoredProcedure\usp_FetchSupProfile.sql" />
+    <Content Include="app database\StoredProcedure\usp_FillLabourChartData.sql" />
+    <Content Include="app database\StoredProcedure\usp_GetAllSupplierList.sql" />
+    <Content Include="app database\StoredProcedure\usp_GetLookup.sql" />
     <Content Include="app database\StoredProcedure\usp_GetOldLeads.sql" />
     <Content Include="app database\StoredProcedure\usp_GetUserTypeList.sql" />
     <Content Include="app database\StoredProcedure\usp_LabourRegProc.sql" />
