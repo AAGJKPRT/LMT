@@ -6,6 +6,8 @@ using System.Web;
 using System.Data;
 using CrystalDatabase;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using DataLayer;
 
 namespace LMT.ClassGlobal
 {
@@ -108,5 +110,33 @@ namespace LMT.ClassGlobal
             objchkList.DataSource = dsCommon.Tables[0].DefaultView;
             objchkList.DataBind();
         }
+
+         public DataTable GetLookupTable(string lookupCode)
+        {
+            string DBConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["CrystalConnection"].ConnectionString;
+            SqlParameter[] sqlParams = new SqlParameter[1];//1
+            sqlParams[0] = new SqlParameter("@LookupCode", lookupCode);
+            
+            DataSet ds = DataWrapper.ExecuteDataset(DBConnectionString, CommandType.StoredProcedure, "usp_GetLookup", sqlParams);
+
+            ds.Tables[0].Columns["LID"].ColumnName = "LID";
+            ds.Tables[0].Columns["LDESC"].ColumnName = "LDESC";
+          
+            return ds.Tables[0];
+
+        }
+
+        public DataTable FillPieChartTable(string PieChart, int UserId)
+         {
+             string DBConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["CrystalConnection"].ConnectionString;
+             SqlParameter[] sqlParams = new SqlParameter[2];//1
+             sqlParams[0] = new SqlParameter("@PieChart", PieChart);
+             sqlParams[1] = new SqlParameter("@UserId", UserId);
+ 
+             DataSet ds = DataWrapper.ExecuteDataset(DBConnectionString, CommandType.StoredProcedure, "usp_FillLabourChartData", sqlParams);
+ 
+             return ds.Tables[0];
+ 
+         }
     }
 }
