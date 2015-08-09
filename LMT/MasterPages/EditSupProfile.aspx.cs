@@ -32,7 +32,7 @@ namespace LMT.MasterPages
                 if (fluSupplier.HasFile) SupplierImageUpload();
                 if (fluDocument1.HasFile) StdDocUpload(fluDocument1, fluDocument1.ID);
                 if (fluDocument2.HasFile) StdDocUpload(fluDocument2, fluDocument2.ID);
-
+                
                 //ShowSupplierCode();
                 if (!IsPostBack)
                 {
@@ -59,13 +59,13 @@ namespace LMT.MasterPages
                     //}
                     //txtFullName.Text = Convert.ToString(Request.QueryString["NAME"].ToString());
                     //hfSupID.Value = Request.QueryString["ID"].ToString();
-                    //objDropDown.FillDropDown(ref ddlCurrentState, "select StateID,StateName from tblState", "StateName", "StateID", "Order By StateName", "Where IsVerify='Y'", false, false, false, true, false);
-                    //objDropDown.FillDropDown(ref ddlCurrentCity, "select CityID,CityName from tblCity", "CityName", "CityID", "Order By CityName", "Where IsVerify='Y'", false, false, true, false, false);
+                    objDropDown.FillDropDown(ref ddlCurrentState, "select StateID,StateName from tblState", "StateName", "StateID", "Order By StateName", "Where IsVerify='Y'", false, false, false, true, false);
+                    objDropDown.FillDropDown(ref ddlCurrentCity, "select CityID,CityName from tblCity", "CityName", "CityID", "Order By CityName", "Where IsVerify='Y'", false, false, true, false, false);
                     if (ShowSupProfile(Convert.ToInt32(hfSupID.Value)))
                     {
                         ShowSupplierCode();
                     }
-
+                    
                 }
             }
             catch (Exception ex)
@@ -76,37 +76,21 @@ namespace LMT.MasterPages
             }
         }
 
-        // Added by khushbu kansal for binding dropdowns
-        public void Binddropdown()
-        {
-            ddlCurrentState.DataSource = objDropDown.GetLookupTable(Convert.ToString(GetLocalResourceObject("StateLookup")));
-            ddlCurrentState.DataTextField = "LDESC";
-            ddlCurrentState.DataValueField = "LID";
-            ddlCurrentState.DataBind();
-            ddlCurrentCity.DataSource = objDropDown.GetLookupTable(Convert.ToString(GetLocalResourceObject("CityLookup")));
-            ddlCurrentCity.DataTextField = "LDESC";
-            ddlCurrentCity.DataValueField = "LID";
-            ddlCurrentCity.DataBind();
-        }
-
-
         public bool ShowSupProfile(int SupID)
         {
             try
             {
-                //string StrQuery = "Select SupplierID,SupplierCode,FullName,Address,Sup_City,CityName,Sup_State,StateName,Pincode,Sup_Mobile, "+
-                //                  "EmailID,CompanyName,BankName,BankACNo,AC_IFSC_Code,Doc1_Url,Doc2_Url,Image_Url,MemberShip from tbl_SupplierDetail "+
-                //                  "Inner join tblState on tbl_SupplierDetail.Sup_State=tblState.StateID "+
-                //                  "Inner Join tblCity on tbl_SupplierDetail.Sup_City=tblCity.CityID"+
-                //                  " Where SupplierID=" + SupID + "";
-
-
-                DataTable Supplier = csSupplierDetail.GetData(SupID);
+                string StrQuery = "Select SupplierID,SupplierCode,FullName,Address,Sup_City,CityName,Sup_State,StateName,Pincode,Sup_Mobile, "+
+                                  "EmailID,CompanyName,BankName,BankACNo,AC_IFSC_Code,Doc1_Url,Doc2_Url,Image_Url,MemberShip from tbl_SupplierDetail "+
+                                  "Inner join tblState on tbl_SupplierDetail.Sup_State=tblState.StateID "+
+                                  "Inner Join tblCity on tbl_SupplierDetail.Sup_City=tblCity.CityID"+
+                                  " Where SupplierID=" + SupID + "";
+                DataTable Supplier = csSupplierDetail.FillDataTable(StrQuery);
 
                 if (Supplier.Rows.Count > 0)
                 {
                     DataRow Dr = Supplier.Rows[0];
-
+                    
                     //Textbox Binding
                     txtFullName.Text = Dr["FullName"].ToString();
                     txtCurrentAdd.Text = Dr["Address"].ToString();
@@ -122,7 +106,7 @@ namespace LMT.MasterPages
                     SupplierImageControl.ImageUrl = Dr["Image_Url"].ToString();
                     Session["DocURL1"] = Dr["Doc1_Url"].ToString();
                     Session["DocURL2"] = Dr["Doc2_Url"].ToString();
-                    txtSupCode.Text = Dr["SupplierCode"].ToString().Substring(3, 4);
+                    txtSupCode.Text = Dr["SupplierCode"].ToString().Substring(3,4);
                     if ('Y' == Convert.ToChar(Dr["Membership"]))
                         ChkMemberShip.Checked = true;
                     else
@@ -271,7 +255,7 @@ namespace LMT.MasterPages
                     Set_UserRegProperties();
                     decimal userID = objUserRegistration.ExecuteProcedure("INSERT", 0);
                     SetProperties(userID);
-
+                    
                     if (txtEmail.Text.Trim() != "")
                     {
                         {
@@ -361,8 +345,7 @@ namespace LMT.MasterPages
             if (txtEmail.Text != "")
             {
 
-                Regex reg = new Regex(Convert.ToString(GetLocalResourceObject("EmailRegExp")));
-                //@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                Regex reg = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
                 Match isMatch = reg.Match(txtEmail.Text);
                 if (!isMatch.Success)
                 {

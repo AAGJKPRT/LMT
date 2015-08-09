@@ -305,8 +305,6 @@
     <Compile Include="Customer\AddNewCase.aspx.designer.cs">
       <DependentUpon>AddNewCase.aspx</DependentUpon>
     </Compile>
-    <Compile Include="DataLayer\ClsDataWrapper.cs" />
-    <Compile Include="DataLayer\SqlHelper.cs" />
     <Compile Include="frmLogout.aspx.cs">
       <DependentUpon>frmLogout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -549,16 +547,6 @@
     <None Include="newcal\jquery\jquery-2.1.1.min.map" />
     <Content Include="newcal\JsonResponse.ashx" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Admin\App_LocalResources\EditSupProfile.aspx.resx">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="MasterPages\App_LocalResources\EditSupProfile.aspx.resx">
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
