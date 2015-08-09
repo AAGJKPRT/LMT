@@ -305,6 +305,8 @@
     <Compile Include="Customer\AddNewCase.aspx.designer.cs">
       <DependentUpon>AddNewCase.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DataLayer\ClsDataWrapper.cs" />
+    <Compile Include="DataLayer\SqlHelper.cs" />
     <Compile Include="frmLogout.aspx.cs">
       <DependentUpon>frmLogout.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
