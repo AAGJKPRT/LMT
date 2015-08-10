@@ -57,7 +57,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="demo-wrapper">
+<div class="demo-wrapper">
         <header id="ccr-header">
 		<div class="ccr-hbg">			 
 			<div class="ccr-slug" >
@@ -160,7 +160,8 @@
                                                                <asp:Button ID="btnEdit" runat="server" CssClass="edit" CommandName="Edit" />
                                                            </td>
                                                            <td align="center">
-                                                               <asp:LinkButton ID="btnDel" runat="server" Text="Delete" CommandName="Delete" ClientIDMode="AutoID"></asp:LinkButton>
+                                                               <asp:Button ID="btnDelete" runat="server" CssClass="delete" CommandName="Delete"
+                                                                                OnClientClick="return confirm('Do you want to delete this record ?');" />
                                                            </td>
                                                        </tr>
                                                    </ItemTemplate>
@@ -259,5 +260,4 @@
 		</header>
         <!--end dashboard-->
     </div>
-    
 </asp:Content>
