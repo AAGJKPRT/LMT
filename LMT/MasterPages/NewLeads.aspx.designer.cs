@@ -139,13 +139,13 @@ namespace LMT.MasterPages {
         protected global::System.Web.UI.WebControls.DropDownList ddlsupplier;
         
         /// <summary>
-        /// lblSupID control.
+        /// lblSuppilerName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblSupID;
+        protected global::System.Web.UI.WebControls.Label lblSuppilerName;
         
         /// <summary>
         /// lblName control.

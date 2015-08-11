@@ -47,7 +47,7 @@ namespace LMT.MasterPages
             try
             {
                 string strQuery = "";
-                if ("NL" == Convert.ToString(Session["CurrentMode"]))
+                if ("NL" == Convert.ToString(Session["CurrentMode"]))//NL means New lead
                 {
                     strQuery = "select Lead_ID,Labour_ID,tbl_LabourRegistration.SupplierID,tbl_LabourRegistration.Image_URL,tbl_LabourRegistration.FullName Fname,tbl_SupplierDetail.FullName,tbl_Lbr_Type.Lbr_Type,tblUserRegistration.UserName, " +
                                       "''MobileNo,tblUserRegistration.EmailID,''Address,Required_Date,Required_Time from tbl_Leads " +
@@ -57,15 +57,22 @@ namespace LMT.MasterPages
                                       "inner join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
                                       "Where Status='NL' and Lead_ID=" + hfLeadID.Value + "";
                 }
-                else if ("IP" == Convert.ToString(Session["CurrentMode"]))
+                else if ("IP" == Convert.ToString(Session["CurrentMode"]))//IP means inProgress
                 {
-                    strQuery = "select Lead_ID,Labour_ID,tbl_LabourRegistration.SupplierID,tbl_LabourRegistration.Image_URL,tbl_LabourRegistration.FullName Fname,tbl_SupplierDetail.FullName,tbl_Lbr_Type.Lbr_Type,Name, " +
-                                      "MobileNo,tbl_Customer.EmailID,Address1+','+Address2 as Address,Required_Date,Required_Time from tbl_Leads " +
-                                      "inner join tbl_Customer on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID " +
+                    strQuery = "select Lead_ID,Labour_ID,tbl_LabourRegistration.SupplierID,tbl_LabourRegistration.Image_URL,tbl_LabourRegistration.FullName Fname,tbl_SupplierDetail.FullName,tbl_Lbr_Type.Lbr_Type,tblUserRegistration.UserName, " +
+                                      "''MobileNo,tblUserRegistration.EmailID,''Address,Required_Date,Required_Time from tbl_Leads " +
+                                      "left join tblUserRegistration  on tblUserRegistration.userID =tbl_Leads.Customer_ID " +
                                       "inner join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
-                                      "inner join tbl_SupplierDetail on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
+                                      "left join tbl_SupplierDetail on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
                                       "inner join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
                                       "Where Status='IP' and Lead_ID=" + hfLeadID.Value + "";
+                    //strQuery = "select Lead_ID,Labour_ID,tbl_LabourRegistration.SupplierID,tbl_LabourRegistration.Image_URL,tbl_LabourRegistration.FullName Fname,tbl_SupplierDetail.FullName,tbl_Lbr_Type.Lbr_Type,Name, " +
+                    //                  "MobileNo,tbl_Customer.EmailID,Address1+','+Address2 as Address,Required_Date,Required_Time from tbl_Leads " +
+                    //                  "inner join tbl_Customer on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID " +
+                    //                  "inner join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
+                    //                  "inner join tbl_SupplierDetail on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
+                    //                  "inner join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
+                    //                  "Where Status='IP' and Lead_ID=" + hfLeadID.Value + "";
                 }
                 DataTable Labour = csLabourRegistration.FillDataTable(strQuery);
                 if (Labour.Rows.Count > 0)
@@ -81,7 +88,7 @@ namespace LMT.MasterPages
                     txtCustDate.Text = Convert.ToString(Dr["Required_Date"]);
                     txtCustTime.Text = Convert.ToString(Dr["Required_Time"]);
                     lblName.Text = Convert.ToString(Dr["Fname"]);
-                    lblSupID.Text = Convert.ToString(Dr["FullName"]);
+                    lblSuppilerName.Text = Convert.ToString(Dr["FullName"]);
                     hfSupplierID.Value = Convert.ToString(Dr["SupplierID"]);
                 }
             }
@@ -89,7 +96,7 @@ namespace LMT.MasterPages
             {
                 string strFnc = "";
                 strFnc = ex.Message;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:AlertMsg('" + strFnc + "');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:alert('" + strFnc + "');", true);
             }
         }
 
@@ -103,13 +110,13 @@ namespace LMT.MasterPages
                 objLeads.Status = "CL";
                 objLeads.SaveData(hfOpmode.Value);
                 btnCloseLeads.Enabled = false;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "javascript:AlertMsg('Lead has been closed.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "CloseLead_alert", "javascript:alert('We hope user is satisfied with our services, this lead has been closed thank you !');", true);
             }
             catch (Exception ex)
             {
                 string strFnc = "";
                 strFnc = ex.Message;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:AlertMsg('" + strFnc + "');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:alert('" + strFnc + "');", true);
             }
         }
 
@@ -146,16 +153,16 @@ namespace LMT.MasterPages
                 hfOpmode.Value = "UPDATE";
                 objLeads.Lead_id = Convert.ToInt32(hfLeadID.Value);
                 objLeads.Asign = Convert.ToInt32(hfSupplierID.Value);//ddlsupplier.SelectedValue);
-                objLeads.Status = "NL";
+                objLeads.Status = "IP";
                 objLeads.SaveData(hfOpmode.Value);
                 btnAssign.Enabled = false;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "javascript:AlertMsg('Lead assign to supplier.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "AssignLead_alert", "javascript:alert('Lead assign to supplier.');", true);
             }
             catch (Exception ex)
             {
                 string strFnc = "";
                 strFnc = ex.Message;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:AlertMsg('" + strFnc + "');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:alert('" + strFnc + "');", true);
             }
         }
     }

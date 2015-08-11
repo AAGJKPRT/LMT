@@ -123,7 +123,7 @@
                                                             <tr>
                                                                 <td align="left" style="width: 150px;">
                                                                     <asp:HiddenField ID="hfReg_ID" runat="server" Value='<%#Eval("Reg_ID") %>' />
-                                                                    <asp:Image ID="LabourImageControl" runat="server" ImageUrl='<%#Eval("Image_URL") %>' Height="150px" Width="150px" class="img-thumbnail" style="margin: 3%;margin-left:10%;" />
+                                                                    <asp:Image ID="LabourImageControl" runat="server" ImageUrl='<%#Eval("Image_URL") %>' onerror="this.src='https://raw.githubusercontent.com/AAGJKPRT/LMT/2c35092f42028585b70f35e4f7e9a7acda72a9c9/LMT/images/dummy.jpg'" Height="150px" Width="150px" class="img-thumbnail" style="margin: 3%;margin-left:10%;" />
                                                                 </td>
                                                             </tr>
                                                     </ItemTemplate>
@@ -248,25 +248,25 @@
                                <div class="panel-body">
                                 
                                 
-                             <div id="Div1" runat="server" visible="true" style="height:230px;">
+                             <div id="Div1" runat="server" visible="true" style="height:230px; min-height:300px; overflow-y:auto;">
                                                 <asp:Repeater ID="rptOldLeads" runat="server"  >
                                                     <HeaderTemplate>
                                                         <table>
                                                             <thead>
                                                                 <td align="center">
-                                                                    Ticket
+                                                                   <b>Ticket</b> 
                                                                 </td>
                                                                 <td align="center">
-                                                                    Assgined To
+                                                                   <b> Assgined To</b> 
                                                                 </td>
                                                                 <td  align="center" >
-                                                                    Date
+                                                                   <b> Date</b> 
                                                                 </td>
                                                                 <td align="center">
-                                                                    Time
+                                                                   <b> Time</b> 
                                                                 </td>
                                                                 <td align="left">
-                                                                   Labour Name
+                                                                  <b> Labour Name</b> 
                                                                 </td>
                                                             </thead>
                                                     </HeaderTemplate>
@@ -276,8 +276,9 @@
                                                                     <asp:HiddenField ID="hfLeadID" runat="server" Value='<%#Eval("Lead_ID") %>' />
                                                       <asp:Label ID="lblTicket" Text='<%#Eval("Ticket") %>' runat="server"></asp:Label>
                                                                 </td>
-                                                                <td align="center" style="width: 150px;">
-                                                      <asp:Label ID="lblSupplierName" Text='<%#Eval("SupplierName") %>' runat="server"></asp:Label>
+                                                                <td align="center"  style="width: 150px; cursor:pointer;">
+                                                      <asp:Label ID="lblSupplierName" Text='<%#Eval("SupplierName") +" ["+Eval("LabourName") +"]" %>' 
+                             ToolTip='<%# "Please note: " + Eval("SupplierName")+" is the vendor and "+Eval("LabourName")+" is tagged with him." %>'   runat="server"></asp:Label>
                                                                 </td>
                                                                   <td align="center" style="width: 150px;">
                                                       <asp:Label ID="lblRequired_Date" Text='<%#Eval("Required_Date") %>' runat="server"></asp:Label>

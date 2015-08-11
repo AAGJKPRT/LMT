@@ -204,13 +204,13 @@
                            <div class="panel-body">
                               <asp:Panel ID="Panel2" runat="server" Width="97%" Style="margin-top: 5px;">
                                                     <div id="Div3">
-                                                        <div id="Div4">
+                                                        <div id="Div4" style="max-height: 300px; overflow: auto;">
                                                             <asp:Repeater ID="rptLeadInformation" runat="server" OnDataBinding="rptLeadInformation_DataBinding"
                                                                 OnItemCommand="rptLeadInformation_ItemCommand" OnItemDataBound="rptLeadInformation_ItemDataBound">
                                                                 <HeaderTemplate>
                                                                     <table border="0" width="650" class="display" id="example">
                                                                         <thead>
-                                                                            <th align="left" style="width: 175px;">
+                                                                            <th align="left" style="width: 125px;">
                                                                               Request Number
                                                                             </th>
                                                                             <th align="left" style="width: 175px;">
@@ -247,9 +247,12 @@
                                                                             <asp:Label ID="lblRequestDate" runat="server" Text='<%#Eval("RequestDate") %>'></asp:Label>
                                                                         </td>
                                                                         <td>
-                                                                            <asp:Label ID="lblLabourName"  onmouseover="displayLabour()" onmouseout="HideLabour()"  runat="server" Text='<%#Eval("LabourName") %>'></asp:Label>
+                                                                            <div onmouseover="displayLabour()" onmouseout="HideLabour()">
+                                                                                <asp:Label ID="lblLabourName"    runat="server" Text='<%#Eval("LabourName") %>'></asp:Label>
+                                                                            </div>
+                                                                            
                                                                             <div id="divLabourdetails" style="display:none; position:absolute;">
-                                                                                <asp:Image ID="imglabourImage" runat="server" style="width: 100px; height: 100px;" ImageUrl='<%#Eval("LabourImageURL") %>' />
+                                                                                <asp:Image ID="imglabourImage" runat="server" style="width: 100px; height: 100px;" ImageUrl='<%#Eval("LabourImageURL") %>' onerror="this.src='https://raw.githubusercontent.com/AAGJKPRT/LMT/2c35092f42028585b70f35e4f7e9a7acda72a9c9/LMT/images/dummy.jpg'" AlternateText="" />
                                                                                 '<%#Eval("Labour_Code") %>' and '<%#Eval("RatesPerDay") %>'
                                                                             </div>
                                                                             
@@ -292,6 +295,9 @@
                                                                 <HeaderTemplate>
                                                                     <table border="0" width="650" class="display" id="example">
                                                                         <thead>
+                                                                             <th align="center" style="width: 100px;">
+                                                                                Ticket
+                                                                            </th>
                                                                             <th align="left" style="width: 175px;">
                                                                                 Labour type
                                                                             </th>
@@ -299,9 +305,9 @@
                                                                                 Supplier
                                                                             </th>
                                                                             <th align="left" style="width: 175px;">
-                                                                                Customer
+                                                                               Request owner
                                                                             </th>
-                                                                            <th align="left" style="width: 130px;">
+                                                                            <th align="left" style="width: 160px;">
                                                                                 Required Date
                                                                             </th>
                                                                             <th style="width: 30px;">
@@ -315,6 +321,9 @@
                                                                 </HeaderTemplate>
                                                                 <ItemTemplate>
                                                                     <tr align="left" class="gradeC">
+                                                                        <td align="center" style="width: 100px;">
+                                                                            <asp:Label ID="lblTicket" runat="server" Text='<%#Eval("Ticket") %>'></asp:Label>
+                                                                        </td>
                                                                         <td align="left">
                                                                             <asp:HiddenField ID="hfLeadID" runat="server" Value='<%#Eval("Lead_ID") %>' />
                                                                             <asp:HiddenField ID="HiddenField1" runat="server" Value='<%#Eval("Labour_ID") %>' />
@@ -369,6 +378,9 @@
                                                                 <HeaderTemplate>
                                                                     <table border="0" width="650" class="display" id="example">
                                                                         <thead>
+                                                                            <th align="center" style="width: 100px;">
+                                                                                Ticket
+                                                                            </th>
                                                                             <th align="left" style="width: 175px;">
                                                                                 Labour type
                                                                             </th>
@@ -376,9 +388,9 @@
                                                                                 Supplier
                                                                             </th>
                                                                             <th align="left" style="width: 175px;">
-                                                                                Customer
+                                                                                Request owner
                                                                             </th>
-                                                                            <th align="left" style="width: 130px;">
+                                                                            <th align="left" style="width: 160px;">
                                                                                 Required Date
                                                                             </th>
                                                                             <th style="width: 30px;">
@@ -392,6 +404,9 @@
                                                                 </HeaderTemplate>
                                                                 <ItemTemplate>
                                                                     <tr align="left" class="gradeC">
+                                                                         <td align="center" style="width: 100px;">
+                                                                            <asp:Label ID="lblTicket" runat="server" Text='<%#Eval("Ticket") %>'></asp:Label>
+                                                                       </td>
                                                                         <td align="left">
                                                                             <asp:HiddenField ID="hfLeadID" runat="server" Value='<%#Eval("Lead_ID") %>' />
                                                                             <asp:HiddenField ID="HiddenField1" runat="server" Value='<%#Eval("Labour_ID") %>' />

@@ -229,15 +229,6 @@
     <Content Include="Supplier\NewLeads.aspx" />
     <Content Include="Supplier\RegisterLabour.aspx" />
     <Content Include="User\UserRegistration.aspx" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\EditLabProfile.aspx.cs">
@@ -549,6 +540,13 @@
     <None Include="newcal\jquery\jquery-2.1.1.min.map" />
     <Content Include="newcal\JsonResponse.ashx" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin\App_LocalResources\EditSupProfile.aspx.resx" />

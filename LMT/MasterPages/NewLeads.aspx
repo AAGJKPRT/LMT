@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TransPages/Site.Master" AutoEventWireup="true" EnableEventValidation="false"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/TransPages/AdminMaster.Master" AutoEventWireup="true" EnableEventValidation="false"
     CodeBehind="NewLeads.aspx.cs" Inherits="LMT.MasterPages.NewLeads" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
@@ -48,7 +48,7 @@
 
         }
         function updateLabelSupID() {
-           // document.getElementById('lblSupID').value = document.getElementById('ddlsupplier').selectedOptions[0].value;
+            // document.getElementById('lblSupID').value = document.getElementById('ddlsupplier').selectedOptions[0].value;
         }
 
     </script>
@@ -146,9 +146,10 @@
                            </div>
                            <div class="panel-body">
                                <div > 
-                                  <asp:Image ID="LabourImageControl" runat="server"  onerror="this.src='https://raw.githubusercontent.com/AAGJKPRT/LMT/2c35092f42028585b70f35e4f7e9a7acda72a9c9/LMT/images/dummy.jpg'" AlternateText="../images/dummy.jpg" Height="125px" Width="150px" />
+                                  <asp:Image ID="LabourImageControl" runat="server"  onerror="this.src='https://raw.githubusercontent.com/AAGJKPRT/LMT/2c35092f42028585b70f35e4f7e9a7acda72a9c9/LMT/images/dummy.jpg'" AlternateText="" Height="125px" Width="150px" />
                                   <div class="caption">                                    
-                                    <p><strong>Supplier Name : </strong><asp:DropDownList ID="ddlsupplier" ClientIDMode="Static" onchange="updateLabelSupID" runat="server"></asp:DropDownList> <asp:Label ID="lblSupID" Visible="false" runat="server" ></asp:Label>
+                                    <p><strong>Supplier Name : </strong><asp:DropDownList ID="ddlsupplier" ClientIDMode="Static" style="display:none;" onchange="updateLabelSupID" runat="server"></asp:DropDownList>
+                                         <asp:Label ID="lblSuppilerName"  runat="server" ></asp:Label>
                                     <br />
                                     <strong>Labour Name : </strong><asp:Label ID="lblName" runat="server"></asp:Label></p>
                                     <p><asp:Button ID="btnAssign" runat="server" CssClass="btn btn-primary" 

@@ -265,13 +265,13 @@ namespace LMT.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtFullName;
         
         /// <summary>
-        /// RFVName control.
+        /// rfvName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RFVName;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvName;
         
         /// <summary>
         /// txtCurrentAdd control.
@@ -283,13 +283,13 @@ namespace LMT.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtCurrentAdd;
         
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// rfvCurrentAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCurrentAdd;
         
         /// <summary>
         /// ddlCurrentState control.
@@ -301,13 +301,13 @@ namespace LMT.Admin {
         protected global::System.Web.UI.WebControls.DropDownList ddlCurrentState;
         
         /// <summary>
-        /// RequiredFieldValidator13 control.
+        /// rfvCurrentState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator13;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCurrentState;
         
         /// <summary>
         /// ddlCurrentCity control.
@@ -319,13 +319,13 @@ namespace LMT.Admin {
         protected global::System.Web.UI.WebControls.DropDownList ddlCurrentCity;
         
         /// <summary>
-        /// RequiredFieldValidator12 control.
+        /// rfvCurrentCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator12;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCurrentCity;
         
         /// <summary>
         /// txtCurrentPincode control.
@@ -337,22 +337,22 @@ namespace LMT.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtCurrentPincode;
         
         /// <summary>
-        /// RequiredFieldValidator14 control.
+        /// rfvPinCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator14;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPinCode;
         
         /// <summary>
-        /// FilteredTextBoxExtender3 control.
+        /// fltPinCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender3;
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender fltPinCode;
         
         /// <summary>
         /// txtPhone control.
@@ -364,22 +364,22 @@ namespace LMT.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtPhone;
         
         /// <summary>
-        /// RequiredFieldValidator5 control.
+        /// rfvPhone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator5;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPhone;
         
         /// <summary>
-        /// FilteredTextBoxExtender2 control.
+        /// fltPhone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender2;
+        protected global::AjaxControlToolkit.FilteredTextBoxExtender fltPhone;
         
         /// <summary>
         /// txtEmail control.
@@ -391,13 +391,13 @@ namespace LMT.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
         
         /// <summary>
-        /// RequiredFieldValidator1 control.
+        /// rfvEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEmail;
         
         /// <summary>
         /// txtCompanyName control.
@@ -409,13 +409,13 @@ namespace LMT.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtCompanyName;
         
         /// <summary>
-        /// RequiredFieldValidator3 control.
+        /// rfvCompanyName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCompanyName;
         
         /// <summary>
         /// txtBankName control.
@@ -427,13 +427,13 @@ namespace LMT.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtBankName;
         
         /// <summary>
-        /// RequiredFieldValidator7 control.
+        /// rfvBankName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator7;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvBankName;
         
         /// <summary>
         /// txtBankACNo control.
@@ -445,13 +445,13 @@ namespace LMT.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtBankACNo;
         
         /// <summary>
-        /// RequiredFieldValidator4 control.
+        /// rfvBankACNo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvBankACNo;
         
         /// <summary>
         /// txtIFSCCode control.
@@ -463,13 +463,13 @@ namespace LMT.Admin {
         protected global::System.Web.UI.WebControls.TextBox txtIFSCCode;
         
         /// <summary>
-        /// RequiredFieldValidator6 control.
+        /// rfvIFSCCode control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator6;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvIFSCCode;
         
         /// <summary>
         /// fluDocument1 control.

@@ -28,6 +28,5 @@ _ReSharper*/
 *.vssscc
 $tf*/
 LMT/Properties/PublishProfiles/Profile1.pubxml
-LMT/Web.config
-LMT/Web.config
+
 LMT/Web.config
