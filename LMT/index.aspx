@@ -205,7 +205,7 @@
 				    <!-- /.ccr-headarea -->
 			    </div>
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-        <ContentTemplate> 
+                <ContentTemplate> 
 			    <div class="ccr-slug">
 				    <div class="container">                    
                         <div class="row">
@@ -243,50 +243,40 @@
                                            <img src="images/labour_defaultimg.jpg" alt="Labour Image" style="padding-top: 10px; height: 290px; width: 60%;" />
                                         </div>
                                       </div>
-                                      <div id="HS_rep" runat="server" visible="false" style="">
-                                        <asp:LinkButton ID="lnkShowDetails" runat="server" onclick="lnkShowDetails_Click">
-                                          <asp:Repeater ID="rptLabourInformation" runat="server" 
-                                                  ondatabinding="rptLabourInformation_DataBinding" 
+                                      <div id="HS_rep" runat="server" visible="false" style="height: 300px; overflow-y: scroll; position: absolute; width: 95%;
+                                            margin: 37px 0px 0px -11px;" >
+                                      <asp:LinkButton ID="lnkShowDetails" runat="server" onclick="lnkShowDetails_Click">
+                                           <table style="width:85%;">
+                                               <tbody>
+                                            <asp:Repeater ID="rptLabourInformation" runat="server"   ondatabinding="rptLabourInformation_DataBinding" 
                                                   onitemdatabound="rptLabourInformation_ItemDataBound">
-                                                <ItemTemplate>
-                                                <tbody>
-                                                    <table border="0" width="150" class="display" id="example" style="width: 200px;margin: 0px auto;">
-                                                        <tr>
-                                                            <td align="left" style="width: 150px;">
-                                                                <asp:HiddenField ID="hfReg_ID" runat="server" Value='<%#Eval("Reg_ID") %>' />
-                                                                <asp:Image ID="LabourImageControl" runat="server" ImageUrl='<%#Eval("Image_URL") %>' Height="150px" Width="150px" class="img-thumbnail" style="margin: 3%;margin-left:10%;" />
-                                                            </td>
-                                                        </tr>
-                                                </ItemTemplate>
-                                                <FooterTemplate>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <td>
-                                                                Name : <asp:Label ID="lblName" Text='<%#Eval("FullName") %>' runat="server"></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                Contact No. : <asp:Label ID="lblContact" Text="9999123456" runat="server"></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                Rating : <asp:Label ID="lblRating" runat="server"></asp:Label> 
-                                                            </td>
-                                                        </tr>
-                                                    </tfoot>
-                                                    </tbody></table>
-                                                </FooterTemplate>
+                                            <ItemTemplate> 
+                                                <tr>
+                                                    <td>
+                                                       <asp:HiddenField ID="hfReg_ID" runat="server" Value='<%#Eval("Reg_ID") %>' />
+                                                       <asp:Image ID="LabourImageControl" runat="server" ImageUrl='<%#Eval("Image_URL") %>' 
+                                                                    Height="80px" Width="80px" class="img-thumbnail" style="margin: 3%;margin-left:10%;" />
+                                                    </td>
+                                                    <td>
+                                                        <div style="float:left;">
+                                                        <asp:Label ID="lblName" Text='<%#Eval("FullName") %>' runat="server" Style="display:inherit;" ></asp:Label><%--<br />--%>
+                                                        <asp:Label ID="lblContact" Text="9999999999" runat="server" Style="display:inherit;" ></asp:Label><%--<br />--%>
+                                                        <asp:Label ID="lblRating" runat="server" Text="5 Stars" Style="display:inherit;" ></asp:Label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </ItemTemplate>
                                             </asp:Repeater>
-                                        </asp:LinkButton>
+                                                   </tbody>
+                                            </table>
+                                     </asp:LinkButton>
                                       </div>
                                       <div id="HS_RecordNF" runat="server" visible="false">
                                         <div>
                                             <p style="text-align: center; font-weight: 600; padding-top: 80px;">Record Not Found</p>
                                         </div>
                                       </div>
-                                      <div id="PrvNxtbtn" runat="server" visible="false">
+                                     <%-- <div id="PrvNxtbtn" runat="server" visible="false">
                                           <table  style="border: 0px;width: 160px;margin: 0px auto;margin-left: 25%;position: absolute;bottom: 30px;" width="200px">
                                             <tr>
                                                 <td>
@@ -296,7 +286,7 @@
                                                 </td>
                                             </tr>
                                           </table>
-                                      </div>  
+                                      </div>  --%>
                                       <div style="position: absolute;bottom:0px;">
                                         <%--Show Details &gt;--%>
                                       </div>
@@ -428,195 +418,7 @@
                             </div>
                           </div>
 
-                          <%--<div class="col-sm-3 col-md-6 col-lg-4">
-                             <div class="panel panel-default" style="height:420px;">
-                               <div class="panel-heading">
-                                  <h3 class="panel-title">
-                                     <p class="text-center">Labour for General Bussiness</p>
-                                     
-                                  </h3>
-                               </div>
-                               <div class="panel-body" style=" position:relative;height: 360px;">
-                                  <div id="LGB" runat="server" visible="true">
-                                      <div style="float:left;padding-right: 8px;">
-                                          <asp:DropDownList ID="ddlLbrType_LGB" Width="200px" runat="server" 
-                                              CssClass="form-control">
-                                          </asp:DropDownList>
-                                           
-                                           <asp:HiddenField ID="hfSearchId_LGB" runat="server" />
-                                      </div>
-                                      <div role="form" style="float:left;padding-right: 8px;">
-                                        <div class="form-group" style="margin-bottom: 0px;">
-                                            <asp:HiddenField ID="hdfReg_DI_LGB" runat="server" Value="0" />
-                                            <asp:TextBox ID="txtPincode_LGB" runat="server" CssClass="form-control" Width="75" placeholder="Pincode" style="display:inline;"></asp:TextBox>                         
-                                            <asp:Button ID="btnSearch_LGB" runat="server" Text="Search" Width="30" 
-                                                CssClass="btn btn-primary"  ClientIDMode="AutoID" 
-                                                onclick="btnSearch_LGB_Click"></asp:Button>
-                                        </div>
-                                      </div>
-                                      
-                                      <div id="LGB_Rep" runat="server" visible="false" style="">
-                                          <asp:Repeater ID="rpt_LGB" runat="server" 
-                                                  ondatabinding="rpt_LGB_DataBinding" 
-                                                  onitemdatabound="rpt_LGB_ItemDataBound">
-                                                <ItemTemplate>
-                                                <tbody>
-                                                    <table border="0" width="150" class="display" id="example" style="width: 200px;margin: 0px auto;">
-                                                        <tr>
-                                                            <td align="left" style="width: 150px;">
-                                                                <asp:HiddenField ID="hfReg_ID" runat="server" Value='<%#Eval("Reg_ID") %>' />
-                                                               <a href="javascript:void(0)"> <asp:Image ID="LabourImageControl" runat="server" ImageUrl='<%#Eval("Image_URL") %>' Height="150px" Width="150px" class="img-thumbnail" style="margin: 3%;margin-left:10%;" /></a>
-                                                            </td>
-                                                        </tr>
-                                                </ItemTemplate>
-                                                <FooterTemplate>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <td>
-                                                                Name : <asp:Label ID="lblName" Text='<%#Eval("FullName") %>' runat="server"></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                Contact No. : <asp:Label ID="lblContact" Text="9999123456" runat="server"></asp:Label>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                Rating : <asp:Label ID="lblRating" runat="server"></asp:Label> 
-                                                            </td>
-                                                        </tr>
-                                                    </tfoot>
-                                                    </tbody></table>
-                                                </FooterTemplate>
-                                            </asp:Repeater>
-                                      </div>
-                                      <div id="LGB_RecordNF" runat="server" visible="false">
-                                        <div>
-                                            <p style="text-align: center; font-weight: 600; padding-top: 80px;">Record Not Found</p>
-                                        </div>
-                                      </div>
-                                      <div id="LGB_PrevNext" runat="server" visible="false">
-                                      <table style="border: 0px;width: 160px;margin: 0px auto;margin-left: 25%;position: absolute;bottom: 30px;" width="200px">
-                                        <tr>
-                                            <td>
-                                                <asp:LinkButton ID="lbtnPrev_LGB" CssClass="prevBtn" runat="server" ClientIDMode="AutoID" OnClick="lbtnPrev_LGB_Click"></asp:LinkButton>
-                                                <asp:Label ID="lblCurrentPage_LGB" runat="server"></asp:Label>
-                                                <asp:LinkButton ID="lbtnNext_LGB" CssClass="nextBtn" runat="server" ClientIDMode="AutoID" OnClick="lbtnNext_LGB_Click"></asp:LinkButton>
-                                            </td>
-                                        </tr>
-                                      </table>
-                                      </div>
-                                      <div style="position: absolute;bottom:0px;">
-                                        <asp:LinkButton ID="lnkShowDetails_LGB" runat="server" CausesValidation="false" onclick="lnkShowDetails_LGB_Click">Show Details &gt;</asp:LinkButton>
-                                      </div>
-                                  </div>                                 
-                                 
-                                  <div id="LGB_Frm" runat="server" visible="false" class="new-enquiry-form" >
-                                    <asp:Label ID="lblFor_LGB" runat="server"></asp:Label>
-                                    <div class="form-inline form-group">
-                                        <label class="lbl-required">Choose your preferred time</label>
-                                        <div class="clearfix"></div>
-                                        <div class="form-inline form-group inline-inputs">
-                                            <div class="form-group">
-                                                <asp:TextBox ID="txtPickDate_LGB" runat="server" MaxLength="12"
-                                                    CssClass="cssTextBox cssTextBox-enabled" Width="100px" Enabled="False" Style="margin-left: 2px;">
-                                                </asp:TextBox>
-                                                <asp:Image ID="Image1" runat="server" ImageUrl="~/images/Calendar_scheduleHS.jpg" style="display: inline;" />
-                                               
-                                                <asp:CalendarExtender ID="CalendarExtender2" runat="server" TargetControlID="txtPickDate_LGB"
-                                                    PopupButtonID="imgBillDueDate" Format="dd/MM/yyyy" Enabled="true">
-                                                </asp:CalendarExtender>
-                                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtPickDate"
-                                                                                Display="None" ErrorMessage="Date is required." />
-                                                
-                                            </div>
-                                            <div class="form-group">
-                                                <asp:DropDownList ID="ddlPickTime_LGB" runat="server" class="form-control" style="width: 194px;">
-                                                    <asp:ListItem value="Morning (9AM - 12PM)">Morning (9AM - 12PM)</asp:ListItem>
-                                                    <asp:ListItem value="Afternoon (12PM - 3PM)">Afternoon (12PM - 3PM)</asp:ListItem>
-                                                    <asp:ListItem value="Evening (3PM - 6PM)">Evening (3PM - 6PM)</asp:ListItem>
-                                                    <asp:ListItem value="Night (6PM - 9PM)">Night (6PM - 9PM)</asp:ListItem>
-                                                </asp:DropDownList>
-                                                
-                                            </div>
-                                        </div>
-                                        <div class="form-inline form-group inline-inputs">
-                                            <label class="lbl-required">Help us with your details</label><div class="clearfix"></div>
-                                            <div class="form-group">
-                                                <asp:TextBox ID="txtMobileNo_LGB" runat="server" class="form-control" placeholder="Your Mobile No."></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ControlToValidate="txtMobileNo_LGB"
-                                                                                Display="None" ErrorMessage="Mobile No. is required." />
-                                                
-                                            </div>
-                                            <div class="form-group">
-                                                <label id="LGB_existing-user-check">
-                                                    <asp:CheckBox ID="chkPreUser_LGB" runat="server" AutoPostBack="true" ClientIDMode="AutoID" Text="I'm a returning user" 
-                                                     oncheckedchanged="chkPreUser_LGB_CheckedChanged"/>
-                                                </label>
-                                            </div>
-                                        </div>
-                                        
-                                        <div id="LGBnewuserdtl" style="display: block;margin-top: 5px;">
-                                            <div class="form-inline form-group inline-inputs">
-                                                <div class="form-group">
-                                                    <asp:TextBox ID="txtFullName_LGB" runat="server" class="form-control" placeholder="Your Full Name"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator9" ControlToValidate="txtFullName_LGB"
-                                                                                Display="None" ErrorMessage="Name is required." />
-                                                    <asp:TextBox ID="txtPassword_LGB" runat="server" Visible="false" class="slimField form-control" placeholder="Password" style="display:block;"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator10" ControlToValidate="txtPassword_LGB"
-                                                                                Display="None" ErrorMessage="Password is required." />
-                                                    <asp:LinkButton ID="lnkForgotPassword_LGB" runat="server" Visible="false" style="font-size: 11px;display:inline;">Forgot password.</asp:LinkButton>
-                                                    
-                                                </div>
-                                                <div class="form-group">
-                                                    <asp:TextBox ID="txtEmail_LGB" runat="server" class="form-control" placeholder="Your Email"></asp:TextBox>
-                                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator11" ControlToValidate="txtEmail_LGB"
-                                                                                Display="None" ErrorMessage="Email is required." />
-                                                    
-                                                </div>
-                                            </div>
-                                            <div class="form-inline form-group inline-inputs">
-                                                <div id="LGB_AddressFields">
-                                                    <asp:TextBox ID="txtHouseNo_LGB" runat="server" class="form-control" placeholder="House No, Flat No..."></asp:TextBox>
-                                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator12" ControlToValidate="txtHouseNo_LGB"
-                                                                                Display="None" ErrorMessage="Address is required." />
-                                                    
-
-                                                    <asp:TextBox ID="txtLocation_LGB" runat="server" class="form-control" placeholder="Sector, Locality, Colony..." style="border-right:1px solid #ccc !important;margin-top: 5px;"></asp:TextBox>
-                                                   
-                                                   
-                                                </div>
-                                                <div class="clearfix"></div>
-                                                <div class="form-action-controls form-group" style="margin-top: 5px;">
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <p class="weak conditions">
-                                                                <small>
-                                                                    <asp:CheckBox ID="chkAgree_LGB" runat="server" AutoPostBack="true" ClientIDMode="AutoID" Text="I agree to terms" 
-                                                                    oncheckedchanged="chkAgree_LGB_CheckedChanged" />
-                                                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator13" ControlToValidate="chkAgree_LGB"
-                                                                                Display="None" ErrorMessage="First you have to agree." />
-                                                                </small>
-                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-                                                        </div>
-                                                        <div class="col-md-3">
-                                                            <asp:Button ID="btnBookNow_LGB" runat="server" Text="Book Now" 
-                                                                CssClass="btn btn-info" Enabled="false" data-loading-text="Hold On..." 
-                                                                onclick="btnBookNow_LGB_Click"></asp:Button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                  </div>
-                                  <div id="LGB_btn_bk" runat="server" visible="false" style="position: absolute;bottom:0px;">
-                                    <asp:LinkButton ID="lnkBack_LGB" runat="server" CausesValidation="false" onclick="lnkBack_LGB_Click">&lt; Back</asp:LinkButton>                                        
-                                  </div>
-                               </div>
-                            </div>
-                          </div>--%>
+                          
 
                           <div class="col-sm-3 col-md-6 col-lg-4">
                              <div class="panel panel-default" style="height:420px;">
@@ -1057,42 +859,42 @@
 						<div class="ccr-line"></div>
 						<!-- /.ccr-line -->
 						<div class="ccr-service-slug make-it-appear-left animated fadeInLeft">
-							<h4>We are working with both individuals and businesses from all over the globe <br/>to create awesome websites and applications.
+							<h4>We classified our services into three sectors 
 							</h4>
 						</div>
 					</div>
 					<!-- /.ccr-title -->
 					<!-- /.ccr-service-slug -->
 					<div class="ccr-item">
-						<div class="col-xs-12 col-sm-3 element_from_left">
+						<div class="col-xs-12 col-sm-4 element_from_left">
 						<div class="ccr-first-item">
-								<img class="img-responsive" src="images/flag.png" alt="">
-								<h3>Branding</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur explicabo commodi </p>
+								<img class="img-responsive" src="images/Household.png" alt="">
+								<h3>Household Sector</h3>
+								<p>We cover all services related to labour work like Electrician, Plumber, Carpenter, Locksmith, RO Repair services, Crown-modelling, drivers, Building and construction services, Maid services, Security etc. </p>
 							</div>
 							<!-- /.ccr-first-item -->
 						</div>	
-						<div class="col-xs-12 col-sm-3 element_from_left">
+						<div class="col-xs-12 col-sm-4 element_from_left">
 							<div class="ccr-second-iteam">
-								<img class="img-responsive" src="images/crayon.png" alt="">
-								<h3>Design</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur explicabo commodi </p>
+								<img class="img-responsive" src="images/Microbusiness.PNG" alt="">
+								<h3>Micro business Sector</h3>
+								<p>We provide workers/labours to companies/firms or making contract with them. There are so many Services like packers, movers, field workers, computer operator, security guard, leather workers, barber, loaders and machine operator etc. </p>
 							</div>
 						</div>
-						<div class="col-xs-12 col-sm-3 element_from_right">
+						<div class="col-xs-12 col-sm-4 element_from_right">
 							<div class="ccr-third-iteam">
-								<img class="img-responsive" src="images/gear.png" alt="">
-								<h3>Development</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur explicabo commodi </p>
+								<img class="img-responsive" src="images/Indusrtrial.PNG" alt="">
+								<h3>Industrial Sector</h3>
+								<p>There are so many industries in India, in which millions of companies are exist. Every companies has their different requirements like machine operator, security, production workers etc. Apart from this, we search workers/technician as per there requirement to provide them.  </p>
 							</div>
 						</div>
-						<div class="col-xs-12 col-sm-3 element_from_right">
+						<%--<div class="col-xs-12 col-sm-3 element_from_right">
 							<div class="ccr-fourth-iteam">
 								<img class="img-responsive" src="images/rocket.png" alt="">
 								<h3>Rocket Science</h3>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tenetur explicabo commodi </p>
 							</div>
-						</div>
+						</div>--%>
 					</div>
 					<!-- /.ccr-item -->
 				</div>
@@ -1202,23 +1004,38 @@
 						</div> <!-- /.ccr-skill-slug -->
 					</div> <!-- /.ccr-skill-title -->
 					<div class="ccr-skill-item">
-						<div class="col-xs-12 col-sm-3 ccr-first-skill element_from_right">
-							<div class="tw-circle-chart" data-color="#30bae7" data-padding="5px" data-percent="90">90%</div>
-							<h3>Lorem ipsum dolor.</h3>
+						<div class="col-xs-12 col-sm-6 ccr-first-skill element_from_right">
+                            <img class="img-responsive"  src="images/Pricing.PNG" />
+						<%--	<div class="tw-circle-chart" data-color="#30bae7" data-padding="5px" data-percent="90">90%</div>
+							<h3>Lorem ipsum dolor.</h3>--%>
 						</div>	<!-- /.ccr-first-skill -->
-						<div class="col-xs-12 col-sm-3 ccr-second-skill element_from_right">
-							<div class="tw-circle-chart" data-color="#d74680" data-percent="75">75%</div>
-							<h3>Lorem ipsum dolor sit.</h3>
-
+						<div class="col-xs-12 col-sm-6 ccr-second-skill element_from_right">
+                            <h3>Pricing and membership</h3>
+                            <p>Pricing is the most important thing meant to everyone, they may be workers, services provider, customers or companies. Everyone needs good service with satisfaction, but in respect of workers they need a proper value to their work in which can run their livelihood and Service providers need an income so that they can give best services for life long with new innovations to their services.</p>
+							<div style="text-align: left;">
+                            <h3>FOR HOUSE HOLD</h3>
+                            <p>RS 100 PER HOUR<br />
+                                RS.800 FOR WORKING HOUR</p>
+                                  <h3>MICRO BUSINESS</h3>
+                            <p>As per Industry Standard</p>
+                                 <h3>FOR INDUSTRIAL</h3>
+                            <p>As per Industry Standard</p>
+                                  <br />
+                                <p style="color: red; font-size: smaller;">
+                                    In Membership, we provide various schemes and discount to the customer and companies, which will be decided on meetings.
+                                </p>
+							</div>
+                            <%--<div class="tw-circle-chart" data-color="#d74680" data-percent="75">75%</div>
+							--%>
 						</div> <!-- /.ccr-second-skill -->
-						<div class="col-xs-12 col-sm-3 ccr-third-skill element_from_left">
+						<%--<div class="col-xs-12 col-sm-3 ccr-third-skill element_from_left">
 							<div class="tw-circle-chart" data-color="#15c7a8" data-percent="70">70%</div>
 							<h3>Lorem ipsum dolor sit amet, consectetur.</h3>
 						</div><!-- /.ccr-third-skill -->
 						<div class="col-xs-12 col-sm-3 ccr-fourth-skill element_from_left">
 							<div class="tw-circle-chart" data-color="#eb7d4b" data-percent="85">85%</div>
 							<h3>Lorem ipsum dolor.</h3>
-						</div><!-- /.ccr-fourth-skill -->
+						</div><!-- /.ccr-fourth-skill -->--%>
 					</div>
 					<!-- /.ccr-skill-item -->
 				</div>

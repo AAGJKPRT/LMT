@@ -96,45 +96,48 @@ namespace LMT
 
             " where CPincode=" + txtPincode.Text.Trim() + " and LabourType='" + ddlLbrType.SelectedValue + "'";
             DataTable dtLabourInfo = FillDataTable(strQuery);
-            if (dtLabourInfo.Rows.Count > 0)
-            {
-                csGlobalFunction.BindRepeater(ref rptLabourInformation, strQuery);
+            csGlobalFunction.BindRepeater(ref rptLabourInformation, strQuery);
+            HS_rep.Visible = true;
+            HS_RecordNF.Visible = false;
+            //if (dtLabourInfo.Rows.Count > 0)
+            //{
+            //    csGlobalFunction.BindRepeater(ref rptLabourInformation, strQuery);
 
-                Session["LabourInfo"] = dtLabourInfo;
-                PagedDataSource objPageDataSource = csGlobalFunction.BindRepeaterWithPagingReports(ref rptLabourInformation, CurrentPage, strQuery, 1);
-                CurrentPage = objPageDataSource.CurrentPageIndex;
-                ////lblName.Text = "";
+            //    Session["LabourInfo"] = dtLabourInfo;
+            //    PagedDataSource objPageDataSource = csGlobalFunction.BindRepeaterWithPagingReports(ref rptLabourInformation, CurrentPage, strQuery, 1);
+            //    CurrentPage = objPageDataSource.CurrentPageIndex;
+            //    ////lblName.Text = "";
 
-                if (objPageDataSource.Count > 0)
-                {
-                    //dispaly controls if there are pages
-                    lbtnPrev.Visible = true;
-                    lbtnNext.Visible = true;
-                    lblCurrentPage.Visible = true;
-                    lblCurrentPage.Text = "Page " +
-                      Convert.ToString(CurrentPage + 1) + " of " +
-                      Convert.ToString(objPageDataSource.PageCount);
-                }
-                else
-                {
-                    //disable controls if there are no pages
-                    lbtnPrev.Visible = false;
-                    lbtnNext.Visible = false;
-                    lblCurrentPage.Visible = false;
-                }
-                lbtnPrev.Enabled = !objPageDataSource.IsFirstPage;
-                lbtnNext.Enabled = !objPageDataSource.IsLastPage;
+            //    if (objPageDataSource.Count > 0)
+            //    {
+            //        //dispaly controls if there are pages
+            //        lbtnPrev.Visible = true;
+            //        lbtnNext.Visible = true;
+            //        lblCurrentPage.Visible = true;
+            //        lblCurrentPage.Text = "Page " +
+            //          Convert.ToString(CurrentPage + 1) + " of " +
+            //          Convert.ToString(objPageDataSource.PageCount);
+            //    }
+            //    else
+            //    {
+            //        //disable controls if there are no pages
+            //        lbtnPrev.Visible = false;
+            //        lbtnNext.Visible = false;
+            //        lblCurrentPage.Visible = false;
+            //    }
+            //    lbtnPrev.Enabled = !objPageDataSource.IsFirstPage;
+            //    lbtnNext.Enabled = !objPageDataSource.IsLastPage;
 
-                HS_rep.Visible = true;
-                PrvNxtbtn.Visible = true;
-                HS_RecordNF.Visible = false;
-            }
-            else
-            {
-                HS_rep.Visible = false;
-                PrvNxtbtn.Visible = false;
-                HS_RecordNF.Visible = true;
-            }
+            //    HS_rep.Visible = true;
+            //    PrvNxtbtn.Visible = true;
+            //    HS_RecordNF.Visible = false;
+            //}
+            //else
+            //{
+            //    HS_rep.Visible = false;
+            //    PrvNxtbtn.Visible = false;
+            //    HS_RecordNF.Visible = true;
+            //}
         }
 
         protected void rptLabourInformation_DataBinding(object sender, EventArgs e)
@@ -192,25 +195,25 @@ namespace LMT
             }
         }
 
-        protected void lbtnNext_Click(object sender, EventArgs e)
-        {
-            DataTable dtTemp = (DataTable)Session["LabourInfo"];
-            //go to next page
-            CurrentPage += 1;
-            hdfReg_DI.Value = Convert.ToString(dtTemp.Rows[CurrentPage][0]);
-            pageStatus = "Y";
-            BindRepeater();
-        }
+        //protected void lbtnNext_Click(object sender, EventArgs e)
+        //{
+        //    DataTable dtTemp = (DataTable)Session["LabourInfo"];
+        //    //go to next page
+        //    CurrentPage += 1;
+        //    hdfReg_DI.Value = Convert.ToString(dtTemp.Rows[CurrentPage][0]);
+        //    pageStatus = "Y";
+        //    BindRepeater();
+        //}
 
-        protected void lbtnPrev_Click(object sender, EventArgs e)
-        {
-            DataTable dtTemp = (DataTable)Session["LabourInfo"];
-            //back to previous page
-            CurrentPage -= 1;
-            hdfReg_DI.Value = Convert.ToString(dtTemp.Rows[CurrentPage][0]);
-            pageStatus = "Y";
-            BindRepeater();
-        }
+        //protected void lbtnPrev_Click(object sender, EventArgs e)
+        //{
+        //    DataTable dtTemp = (DataTable)Session["LabourInfo"];
+        //    //back to previous page
+        //    CurrentPage -= 1;
+        //    hdfReg_DI.Value = Convert.ToString(dtTemp.Rows[CurrentPage][0]);
+        //    pageStatus = "Y";
+        //    BindRepeater();
+        //}
 
         protected void txtSearch_TextChanged(object sender, EventArgs e)
         {
