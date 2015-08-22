@@ -865,7 +865,7 @@
 					</div>
 					<!-- /.ccr-title -->
 					<!-- /.ccr-service-slug -->
-					<div class="ccr-item">
+					<div class="ccr-item element_from_top">
 						<div class="col-xs-12 col-sm-4 element_from_left">
 						<div class="ccr-first-item">
 								<img class="img-responsive" src="images/Household.png" alt="">
@@ -919,7 +919,7 @@
             </div>
         </section>
             <!-- /#ccr-works -->
-            <section id="ccr-team">
+            <%--<section id="ccr-team">
 			<div class="ccr-team-bg" style="position: relative;">
 				<div class="container">
 					<div class="ccr-team-title element_fade_in">
@@ -988,12 +988,12 @@
 					<!-- /.ccr-team-item -->
 				</div>
 			</div>	    <!-- /.ccr-item-bg -->
-		</section>
+		</section>--%>
             <!-- /.ccr-item -->
-            <section id="ccr-skill">
-			<div class="ccr-skill-bg">
-				<div class="container">
-					<div class="ccr-skill-title element_from_top">
+
+            <div class="ccr-skill-bg">
+                <div class="container">
+                    <%--	<div class="ccr-skill-title element_from_top">
 						<h1>WE GOT SKILLS</h1>
 						<div class="ccr-line"></div>
 						<!-- /.ccr-line -->
@@ -1002,8 +1002,9 @@
 								Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, alias.
 							</p>
 						</div> <!-- /.ccr-skill-slug -->
-					</div> <!-- /.ccr-skill-title -->
-					<div class="ccr-skill-item">
+					</div> <!-- /.ccr-skill-title -->--%>
+                    <section id="ccr-skill">
+					<div class="ccr-skill-item ">
 						<div class="col-xs-12 col-sm-6 ccr-first-skill element_from_right">
                             <img class="img-responsive"  src="images/Pricing.PNG" />
 						<%--	<div class="tw-circle-chart" data-color="#30bae7" data-padding="5px" data-percent="90">90%</div>
@@ -1038,11 +1039,13 @@
 						</div><!-- /.ccr-fourth-skill -->--%>
 					</div>
 					<!-- /.ccr-skill-item -->
-				</div>
-			</div>	    <!-- /#ccr-skill-bg -->
-		</section>
+                           </section>
+                </div>
+            </div>
+            <!-- /#ccr-skill-bg -->
+
             <!-- /#ccr-skill -->
-            <section id="ccr-about-us">
+            <%--<section id="ccr-about-us">
 			<div class="ccr-about-us-bg">
 				<div class="container">
 					<div class="ccr-about-us-title element_from_right">
@@ -1096,7 +1099,7 @@
 					<!-- /.ccr-us-item -->	
 				</div>	
 			</div>	<!-- /#ccr-about-us -->
-		</section>
+		</section>--%>
             <section id="ccr-touch">
 			<div class="ccr-touch-bg">
 				<div class="container">

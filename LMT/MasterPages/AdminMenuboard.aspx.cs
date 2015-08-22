@@ -144,7 +144,7 @@ namespace LMT.MasterPages
                               "inner join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
                               "inner join tbl_SupplierDetail on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
                               "inner join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
-                              "Where Status='IP' and Required_Date>GETDATE()";
+                              "Where Status='IP' "; //and Required_Date<=GETDATE()";
             csGlobalFunction.BindRepeater(ref rptIPLeads, strQuery);
         }
 
@@ -227,7 +227,7 @@ namespace LMT.MasterPages
                               "inner join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
                               "inner join tbl_SupplierDetail on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
                               "inner join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
-                              "Where Status='CL' or Required_Date<GETDATE()";
+                              "Where Status='CL' ";//or Required_Date<GETDATE()";
             csGlobalFunction.BindRepeater(ref rptClosedLeads, strQuery);
         }
         #endregion
