@@ -34,7 +34,7 @@ namespace LMT.Reports
                     {
                         hfRegID.Value = Request.QueryString["ID"].ToString();
                         hfOpmode.Value = "UPDATE";
-                        ShowLabourData();
+                        ShowLabourData(Convert.ToInt32(hfRegID.Value));
                     }
                 }
                 catch (Exception)
@@ -70,21 +70,22 @@ namespace LMT.Reports
 
         }
 
-        private void ShowLabourData()
+        private void ShowLabourData(int Reg_ID)
         {
             try
             {
-                string StrQuery = "Select Reg_ID,Labour_Code,tbl_LabourRegistration.FullName LabourName,FatherName,C_Address,CState,StateName,CCity,CityName,CPincode,P_Address,PState,PCity,PPincode,Ph_No, " +
-                                  "Ph_belonging1,Ph_belonging2,Ph_belonging3,Ph_belonging4,SectorType,SectorName,Work_Specialization,Experience, " +
-                                  "LabourType,Lbr_Type,Experience_Type,Varification,tbl_LabourRegistration.Image_URL,tbl_LabourRegistration.Doc1_URL,tbl_LabourRegistration.Doc2_URL, " +
-                                  "tbl_LabourRegistration.Doc3_URL,tbl_LabourRegistration.Doc4_URL,tbl_SupplierDetail.FullName SupName,Wages from tbl_LabourRegistration " +
-                                  "Inner join tblState on tbl_LabourRegistration.CState=tblState.StateID and tbl_LabourRegistration.PState=tblState.StateID " +
-                                  "Inner Join tblCity on tbl_LabourRegistration.CCity=tblCity.CityID and tbl_LabourRegistration.PCity=tblCity.CityID " +
-                                  "Inner Join tbl_Sector on tbl_LabourRegistration.SectorType=tbl_Sector.SectorID " +
-                                  "Inner Join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
-                                  "Inner Join tbl_SupplierDetail on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
-                                  " Where Reg_ID=" + hfRegID.Value + "";
-                DataTable Labour = csLabourRegistration.FillDataTable(StrQuery);
+                //string StrQuery = "Select Reg_ID,Labour_Code,tbl_LabourRegistration.FullName LabourName,FatherName,C_Address,CState,StateName,CCity,CityName,CPincode,P_Address,PState,PCity,PPincode,Ph_No, " +
+                //                  "Ph_belonging1,Ph_belonging2,Ph_belonging3,Ph_belonging4,SectorType,SectorName,Work_Specialization,Experience, " +
+                //                  "LabourType,Lbr_Type,Experience_Type,Varification,tbl_LabourRegistration.Image_URL,tbl_LabourRegistration.Doc1_URL,tbl_LabourRegistration.Doc2_URL, " +
+                //                  "tbl_LabourRegistration.Doc3_URL,tbl_LabourRegistration.Doc4_URL,tbl_SupplierDetail.FullName SupName,Wages from tbl_LabourRegistration " +
+                //                  "Inner join tblState on tbl_LabourRegistration.CState=tblState.StateID and tbl_LabourRegistration.PState=tblState.StateID " +
+                //                  "Inner Join tblCity on tbl_LabourRegistration.CCity=tblCity.CityID and tbl_LabourRegistration.PCity=tblCity.CityID " +
+                //                  "Inner Join tbl_Sector on tbl_LabourRegistration.SectorType=tbl_Sector.SectorID " +
+                //                  "Inner Join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
+                //                  "Inner Join tbl_SupplierDetail on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
+                //                  " Where Reg_ID=" + hfRegID.Value + "";
+                //DataTable Labour = csLabourRegistration.FillDataTable(StrQuery);
+                DataTable Labour = csLabourRegistration.GetLabourData(Reg_ID);
                 if (Labour.Rows.Count > 0)
                 {
                     DataRow Dr = Labour.Rows[0];
@@ -93,12 +94,12 @@ namespace LMT.Reports
                     lblFullName.Text = Dr["LabourName"].ToString();
                     lblFatherName.Text = Dr["FatherName"].ToString();
                     lblCurrentAdd.Text = Dr["C_Address"].ToString();
-                    lblCurrentState.Text = Dr["StateName"].ToString();
-                    lblCurrentCity.Text = Dr["CityName"].ToString();
+                    lblCurrentState.Text = Dr["CStateName"].ToString();
+                    lblCurrentCity.Text = Dr["CCityName"].ToString();
                     lblPincode.Text = Dr["CPincode"].ToString();
                     lblPermanentAddress.Text = Dr["P_Address"].ToString();
-                    lblPermanentState.Text = Dr["PState"].ToString(); ;
-                    lblpermanentCity.Text = Dr["PCity"].ToString();
+                    lblPermanentState.Text = Dr["PStateName"].ToString(); ;
+                    lblpermanentCity.Text = Dr["PCityName"].ToString();
                     lblPermanentPincode.Text = Dr["PPincode"].ToString();
                     lblPhone.Text = Dr["Ph_No"].ToString();
                     lblBelongingPhone1.Text = Dr["Ph_belonging1"].ToString();

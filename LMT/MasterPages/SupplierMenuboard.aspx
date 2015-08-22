@@ -136,7 +136,7 @@
                                         <tr>
                                             <td>
                                                 <asp:LinkButton ID="lnkNL" runat="server" CssClass="lnk" 
-                                                    onclick="lnkNL_Click">New Leads</asp:LinkButton>
+                                                    onclick="lnkNL_Click">Assigned Leads</asp:LinkButton>
                                             </td>
                                         </tr>
                                         <tr>

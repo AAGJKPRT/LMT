@@ -5,6 +5,7 @@ using System.Web;
 using CrystalDatabase;
 using System.Data;
 using System.Data.SqlClient;
+using DataLayer;
 
 namespace LMT.BusinessLogic
 {
@@ -359,6 +360,19 @@ namespace LMT.BusinessLogic
             dtFillData = CrystalConnection.CreateDataTableWithoutTransaction(query);
             return dtFillData;
         }
+
+        //Added by khushbu to fill dataset
+        public static DataTable GetLabourData(int Reg_ID)
+        {
+            string DBConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["CrystalConnection"].ConnectionString;
+            SqlParameter[] sqlParams = new SqlParameter[1];//1
+            sqlParams[0] = new SqlParameter("@Reg_ID", Reg_ID);
+            DataSet ds = DataWrapper.ExecuteDataset(DBConnectionString, CommandType.StoredProcedure, "usp_GetLabourData", sqlParams);
+
+            return ds.Tables[0];
+
+        }
+
 
     }
 }

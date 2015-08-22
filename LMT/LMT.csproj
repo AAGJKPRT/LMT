@@ -81,6 +81,7 @@
     <Content Include="app database\StoredProcedure\usp_FetchSupProfile.sql" />
     <Content Include="app database\StoredProcedure\usp_FillLabourChartData.sql" />
     <Content Include="app database\StoredProcedure\usp_GetAllSupplierList.sql" />
+    <Content Include="app database\StoredProcedure\usp_GetLabourData.sql" />
     <Content Include="app database\StoredProcedure\usp_GetLookup.sql" />
     <Content Include="app database\StoredProcedure\usp_GetOldLeads.sql" />
     <Content Include="app database\StoredProcedure\usp_GetUserTypeList.sql" />
