@@ -253,6 +253,7 @@ namespace LMT.User
                 txtPwd.Text = "";
                 txtConfPwd.Text = "";
                 txtEmail.Text = "";
+                txtphoneno.Text = "";
                 ddlUserType.SelectedValue = "-1";
                 ddlUserCategory.SelectedValue = "-1";
                 chkIsVerify.Checked = false;
@@ -280,18 +281,21 @@ namespace LMT.User
                 {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please enter valid Email.');", true);
                     txtEmail.Focus();
+                    btnSubmit.Enabled = true;
                     return (false);
                 }
             }
             if (ddlUserType.SelectedValue == "-1")
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please select user type.');", true);
+                btnSubmit.Enabled = true;
                 return false;
             }
 
             if (ddlUserCategory.SelectedValue == "-1")
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please select user category.');", true);
+                btnSubmit.Enabled = true;
                 return false;
             }
             //string strQuery = "Select COUNT(UserID) from tblUserRegistration where EmailID='" + txtEmail.Text.Trim() + "'";
@@ -300,11 +304,13 @@ namespace LMT.User
             if (CountID > 0)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('User already exist with this email id. Try another email id to register.');", true);
+                btnSubmit.Enabled = true;
                 return false;
             }
             else if (CountID == 100)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please refresh and try again later.');", true);
+                btnSubmit.Enabled = true;
                 return false;
             }
             return true;
@@ -320,6 +326,7 @@ namespace LMT.User
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('User already exist with this Login-Name. Try another Login-Name to register.');", true);
                 txtLoginName.Text = "";
                 txtLoginName.Focus();
+
             }
             else if (CountID == 100)
             {
