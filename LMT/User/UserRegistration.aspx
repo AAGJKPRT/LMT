@@ -123,6 +123,16 @@
                                             </td>
                                         </tr>
                                         <tr style="height: 25px;">
+                                            <td>Phone no. :
+                                            </td>
+                                            <td>
+                                                <asp:TextBox ID="txtphoneno" runat="server" CssClass="cssTextBox cssTextBox-enabled"
+                                                    AutoCompleteType="None" Width="174px" Style="margin-left: 2px;"></asp:TextBox>
+                                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ControlToValidate="txtphoneno"
+                                                    Display="None" ErrorMessage="Phone no. is required." />
+                                            </td>
+                                        </tr> 
+                                        <tr style="height: 25px;">
                                             <td>E-Mail ID :
                                             </td>
                                             <td>
@@ -135,7 +145,7 @@
                                         <tr style="height: 25px;">
                                             <td></td>
                                             <td align="left">
-                                                <asp:CheckBox ID="chkIsVerify" Checked="false" runat="server" Text="Verify User"
+                                                <asp:CheckBox ID="chkIsVerify" Checked="true" Visible="false" runat="server" Text="Verify User"
                                                     CssClass="cssCheckbox" TextAlign="Right" />
                                             </td>
                                         </tr>

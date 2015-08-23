@@ -143,6 +143,7 @@ namespace LMT.User
                 objUserRegistration.USERCATEGORYID = Convert.ToDecimal(ddlUserCategory.SelectedValue);
                 objUserRegistration.Emailid = txtEmail.Text.Trim();
                 objUserRegistration.ISVERIFY = chkIsVerify.Checked ? "Y" : "N";
+                objUserRegistration.Phoneno = txtphoneno.Text.Trim();
                 //if (ddlUserType.SelectedValue != "8" && ddlUserType.SelectedValue != "3") objUserRegistration.ImageURL = "";//UserPicControl.ImageUrl.ToString();
             }
             catch (Exception ex)
@@ -293,24 +294,36 @@ namespace LMT.User
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please select user category.');", true);
                 return false;
             }
-            string strQuery = "Select COUNT(UserID) from tblUserRegistration where EmailID='" + txtEmail.Text.Trim() + "'";
+            //string strQuery = "Select COUNT(UserID) from tblUserRegistration where EmailID='" + txtEmail.Text.Trim() + "'";
             int CountID = 0;
-            CountID = (int)CrystalConnection.SqlScalartoObj(strQuery);
+            CountID = objUserRegistration.SP_ValidateCredential(txtEmail.Text, 2);
             if (CountID > 0)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('User already exist with this email id. Try another email id to register.');", true);
+                return false;
+            }
+            else if (CountID == 100)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please refresh and try again later.');", true);
                 return false;
             }
             return true;
         }
         protected void txtLoginName_TextChanged(object sender, EventArgs e)
         {
-            string strQuery = "Select COUNT(UserID) from tblUserRegistration where LoginName='" + txtLoginName.Text.Trim() + "'";
+            //string strQuery = "Select COUNT(UserID) from tblUserRegistration where LoginName='" + txtLoginName.Text.Trim() + "'";
             int CountID = 0;
-            CountID = (int)CrystalConnection.SqlScalartoObj(strQuery);
-            if (CountID > 0)
+           // CountID = (int)CrystalConnection.SqlScalartoObj(strQuery);
+            CountID = objUserRegistration.SP_ValidateCredential(txtLoginName.Text, 2);
+            if (CountID > 0 && CountID!=100)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('User already exist with this Login-Name. Try another Login-Name to register.');", true);
+                txtLoginName.Text = "";
+                txtLoginName.Focus();
+            }
+            else if (CountID == 100)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please refresh and try again later.');", true);
                 txtLoginName.Text = "";
                 txtLoginName.Focus();
             }
