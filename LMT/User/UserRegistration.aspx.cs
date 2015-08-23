@@ -296,7 +296,7 @@ namespace LMT.User
             }
             //string strQuery = "Select COUNT(UserID) from tblUserRegistration where EmailID='" + txtEmail.Text.Trim() + "'";
             int CountID = 0;
-            CountID = objUserRegistration.SP_ValidateCredential(txtEmail.Text, 2);
+            CountID = objUserRegistration.SP_ValidateCredential(txtEmail.Text, 1);
             if (CountID > 0)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('User already exist with this email id. Try another email id to register.');", true);
