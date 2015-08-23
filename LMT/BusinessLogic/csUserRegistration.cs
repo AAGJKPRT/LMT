@@ -25,7 +25,7 @@ namespace LMT.BusinessLogic
         private decimal _userCategoryID;
         private string _emailid = "";
         private string _isVerify = "N";
-        
+        private string _phoneno = "";
         //private string _imageURL = "";
 
         #endregion
@@ -76,7 +76,11 @@ namespace LMT.BusinessLogic
             get { return _isVerify; }
             set { _isVerify = value; }
         }
-        
+        public string Phoneno
+        {
+            get { return _phoneno; }
+            set { _phoneno = value; }
+        }
         //public string ImageURL
         //{
         //    get { return _imageURL; }
@@ -125,6 +129,10 @@ namespace LMT.BusinessLogic
             DbSqlParameter isVerifyParam = new DbSqlParameter("@IsVerify", SqlDbType.Char, 1);
             isVerifyParam.Value = _isVerify;
             objParamColleciton.Add(isVerifyParam);
+
+            DbSqlParameter phoneno = new DbSqlParameter("@phoneno", SqlDbType.Char, 10);
+            phoneno.Value = _phoneno;
+            objParamColleciton.Add(phoneno);
 
             //DbSqlParameter ImageURLParam = new DbSqlParameter("@ImageURL", SqlDbType.VarChar);
             //ImageURLParam.Value = _imageURL;
@@ -199,5 +207,38 @@ namespace LMT.BusinessLogic
             }
         }
         #endregion
-    }
+
+        #region Call using Store Procedure 
+        
+        public int SP_ValidateCredential(string valtext, int mode)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(System.Configuration.ConfigurationManager.
+    ConnectionStrings["crystalconnection"].ConnectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("SP_ValidateCredential", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@valtext", valtext);
+                        cmd.Parameters.AddWithValue("@mode", mode);
+                        con.Open();
+                        int i=(int) cmd.ExecuteScalar();
+                        con.Close();
+                        return i;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                return 100;  
+            }
+
+        }
+
+        #endregion
+
+
+   }
 }
