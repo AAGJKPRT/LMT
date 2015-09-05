@@ -96,7 +96,7 @@
                                </div>
                                <div class="panel-body">
                                 <div class="form-inline form-group inline-inputs">
-                                    <div class="form-group">
+                                    <div class="form-group" style="margin-bottom: 8px;">
                                         <asp:HiddenField ID="hdfReg_DI" runat="server" Value="0" />
                                         <asp:DropDownList ID="ddlLabourCategory" runat="server" class="form-control" 
                                             style="width: 194px;" 
@@ -112,49 +112,90 @@
                                             <asp:ListItem value="-1">--Select Labour Type--</asp:ListItem>                                        
                                         </asp:DropDownList>
                                     </div>
+                                    <div class="form-inline form-group inline-inputs">
+                                                <div class="form-group" style="width: 92%;" >
+                                                    <asp:TextBox ID="txtPickDate" ValidationGroup="billDueDate" runat="server" MaxLength="12"
+                                                        CssClass="form-control cssTextBox cssTextBox-enabled"  Enabled="False" Style="width:100px;float:left;margin-left: 3px;">
+                                                    </asp:TextBox>
+                                                    <asp:Image ID="imgBillDueDate"  runat="server" ImageUrl="~/images/Calendar_scheduleHS.jpg" style="display: inline;float: left;margin: 9px 0px 0px 3px;" />
+                                                    
+                                                    <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtPickDate"
+                                                        PopupButtonID="imgBillDueDate" Format="dd/MM/yyyy" Enabled="true">
+                                                    </asp:CalendarExtender>
+                                                    <asp:RequiredFieldValidator runat="server" ID="RFVName" ControlToValidate="txtPickDate"
+                                                                                    ValidationGroup="HHG"  Display="None" ErrorMessage="Date is required." />
+                                                    <asp:DropDownList ID="ddlRequiredTime" runat="server" class="form-control" style="width: 194px; float:right;">
+                                                        <asp:ListItem value="Morning (9AM - 12PM)">Morning (9AM - 12PM)</asp:ListItem>
+                                                        <asp:ListItem value="Afternoon (12PM - 3PM)">Afternoon (12PM - 3PM)</asp:ListItem>
+                                                        <asp:ListItem value="Evening (3PM - 6PM)">Evening (3PM - 6PM)</asp:ListItem>
+                                                        <asp:ListItem value="Night (6PM - 9PM)">Night (6PM - 9PM)</asp:ListItem>
+                                                    </asp:DropDownList>
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:FileUpload ID="fluLabour" Visible="false" CssClass="form-control" ClientIDMode="AutoID" Style="width: 117px;margin-top:4px;" size="14px" onchange="this.form.submit();" runat="server"></asp:FileUpload>
+                                                    <asp:Label ID="lblFileUpload" Visible="false" runat="server" Height="14px" Style="overflow: hidden; width: 195px;"></asp:Label>
+                                                
+                                                </div>
+                                                
+                                                <div class="form-group" style="width:92%;">
+                                                    <asp:TextBox ID="txtDesc" runat="server" TextMode="MultiLine" placeholder="Enter your Address" CssClass="form-control" Columns="45" style="margin-top:4px;resize:none;"></asp:TextBox>
+                                                </div>
+                                                <div  class="form-group">
+                                                     <asp:HiddenField ID="HiddenField1" runat="server" Value="0" />
+                                                     <asp:TextBox ID="txtPincode" runat="server" MaxLength="6" CssClass="form-control" Width="75" placeholder="Pincode" style="width:75px;display:inline;margin-left: 277px;"></asp:TextBox>                         
+                                                     <asp:Button ID="Button3" runat="server" Text="Search" Width="30" 
+                                                        CssClass="btn btnimg" OnClick="Button3_Click" ClientIDMode="AutoID"></asp:Button>
+                                                </div>
+                                                <div class="clearfix"></div>
+                                                    <div class="form-action-controls form-group" style="margin-top: 5px;">
+                                                        <div class="row">                                                            
+                                                            <div class="col-md-3">
+                                                                <asp:Button ID="btnBookNow" Visible="false" runat="server" Text="Book Now" 
+                                                                    CssClass="btn btn-info" data-loading-text="Hold On..."                                                                     
+                                                                    ValidationGroup="HHG" onclick="btnBookNow_Click1"></asp:Button>                                                               
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div> 
                                     <div>
-                                        <div class="form-group">                                             
-                                            <div id="dvLbr" runat="server" visible="true" style="height:230px;">
+                                        <div class="form-group" style="width:92%;">                                             
+                                            <div id="dvLbr" runat="server" visible="true" 
+                                                style="height: 230px; overflow-y: auto;">
+                                                <table style="width:99%">
                                                 <asp:Repeater ID="rptLabourInformation" runat="server" ondatabinding="rptLabourInformation_DataBinding" 
-                                                  onitemdatabound="rptLabourInformation_ItemDataBound" >
-                                                    <ItemTemplate>
-                                                    <tbody>
-                                                        <table border="0" width="150" class="display" id="example" style="width: 200px;margin: 0px auto;">
-                                                            <tr>
-                                                                <td align="left" style="width: 150px;">
-                                                                    <asp:HiddenField ID="hfReg_ID" runat="server" Value='<%#Eval("Reg_ID") %>' />
-                                                                    <asp:Image ID="LabourImageControl" runat="server" ImageUrl='<%#Eval("Image_URL") %>' onerror="this.src='https://raw.githubusercontent.com/AAGJKPRT/LMT/2c35092f42028585b70f35e4f7e9a7acda72a9c9/LMT/images/dummy.jpg'" Height="150px" Width="150px" class="img-thumbnail" style="margin: 3%;margin-left:10%;" />
-                                                                </td>
-                                                            </tr>
-                                                    </ItemTemplate>
-                                                    <FooterTemplate>
-                                                        <tfoot>
-                                                            <tr>
-                                                                <td>
-                                                                    Name : <asp:Label ID="lblName" Text='<%#Eval("FullName") %>' runat="server"></asp:Label>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    Contact No. : <asp:Label ID="lblContact" Text="9999123456" runat="server"></asp:Label>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td>
-                                                                    Rating : <asp:Label ID="lblRating" runat="server"></asp:Label> 
-                                                                </td>
-                                                            </tr>
-                                                        </tfoot>
-                                                        </tbody></table>
-                                                    </FooterTemplate>
-                                                </asp:Repeater>    
+                                                  onitemdatabound="rptLabourInformation_ItemDataBound"  OnItemCommand="rptLabourInformation_ItemCommand">
+                                                         <ItemTemplate> 
+                                                <tr>
+                                                    <td>
+                                                       <asp:HiddenField ID="hfReg_ID" runat="server" Value='<%#Eval("Reg_ID") %>' />
+                                                       <asp:Image ID="LabourImageControl" runat="server" ImageUrl='<%#Eval("Image_URL") %>' 
+                                                            Style="float:left; height:80px;" class="img-thumbnail" 
+                                                            onerror="this.src='https://raw.githubusercontent.com/AAGJKPRT/LMT/2c35092f42028585b70f35e4f7e9a7acda72a9c9/LMT/images/dummy.jpg'"   />
+                                                    </td>
+                                                    <td>
+                                                        <span style="float:left;">
+                                                        <asp:Label ID="lblName" Text='<%#Eval("FullName") %>' runat="server" Style="display:inherit;" ></asp:Label><%--<br />--%>
+                                                        <asp:Label ID="lblContact" Text="9999999999" runat="server" Style="display:inherit;" ></asp:Label><%--<br />--%>
+                                                        <asp:Label ID="lblRating" runat="server" Text="5 Stars" Style="display:inherit;" ></asp:Label>
+                                                        </span>
+                                                       
+                                                    </td>
+                                                    <td>
+                                                         <asp:LinkButton ID="link" runat="server" ClientIDMode="AutoID"   CssClass="btn btn-info" data-loading-text="Hold On..." CommandName="BOOK" Text="Book Now" CommandArgument='<%#Eval("Reg_ID") %>'  
+                                                          ></asp:LinkButton> 
+                                                    </td>
+                                                </tr>
+                                            </ItemTemplate>
+                                               
+                                                </asp:Repeater>
+                                                      </table>    
                                             </div>
                                             <div id="dvRNF" runat="server" visible="false">
                                                 <div>
                                                     <p style="text-align: center; font-weight: 600; padding-top: 80px;">Record Not Found</p>
                                                 </div>
                                             </div>
-                                            <div id="PrvNxtbtn" runat="server" visible="false">
+                                            <div style="display:none" id="PrvNxtbtn" runat="server" visible="false">
                                                 <table  style="border: 0px;width: 160px;margin: 0px auto;margin-left: 25%;position: absolute;bottom: 30px;" width="200px">
                                                 <tr>
                                                     <td>
@@ -166,44 +207,7 @@
                                                 </table>
                                             </div>                                            
                                             <div class="clearfix"></div>
-                                            <div class="form-inline form-group inline-inputs">
-                                                <div class="form-group">
-                                                    <asp:TextBox ID="txtPickDate" ValidationGroup="billDueDate" runat="server" MaxLength="12"
-                                                        CssClass="form-control cssTextBox cssTextBox-enabled" Width="100px" Enabled="False" Style="margin-left: 2px;">
-                                                    </asp:TextBox>
-                                                    <asp:Image ID="imgBillDueDate" runat="server" ImageUrl="~/images/Calendar_scheduleHS.jpg" style="display: inline;" />
-                                                    
-                                                    <asp:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtPickDate"
-                                                        PopupButtonID="imgBillDueDate" Format="dd/MM/yyyy" Enabled="true">
-                                                    </asp:CalendarExtender>
-                                                    <asp:RequiredFieldValidator runat="server" ID="RFVName" ControlToValidate="txtPickDate"
-                                                                                    ValidationGroup="HHG"  Display="None" ErrorMessage="Date is required." />
-                                                    <asp:DropDownList ID="ddlRequiredTime" runat="server" class="form-control" style="width: 194px;">
-                                                        <asp:ListItem value="Morning (9AM - 12PM)">Morning (9AM - 12PM)</asp:ListItem>
-                                                        <asp:ListItem value="Afternoon (12PM - 3PM)">Afternoon (12PM - 3PM)</asp:ListItem>
-                                                        <asp:ListItem value="Evening (3PM - 6PM)">Evening (3PM - 6PM)</asp:ListItem>
-                                                        <asp:ListItem value="Night (6PM - 9PM)">Night (6PM - 9PM)</asp:ListItem>
-                                                    </asp:DropDownList>
-                                                </div>
-                                                <div class="form-group">
-                                                    <asp:FileUpload ID="fluLabour" CssClass="form-control" ClientIDMode="AutoID" Style="width: 117px;margin-top:4px;" size="14px" onchange="this.form.submit();" runat="server"></asp:FileUpload>
-                                                    <asp:Label ID="lblFileUpload" runat="server" Height="14px" Style="overflow: hidden; width: 195px;"></asp:Label>
-                                                
-                                                </div>
-                                                <div class="form-group">
-                                                    <asp:TextBox ID="txtDesc" runat="server" TextMode="MultiLine" CssClass="form-control" Columns="45" style="margin-top:4px;resize:none;"></asp:TextBox>
-                                                </div>
-                                                <div class="clearfix"></div>
-                                                    <div class="form-action-controls form-group" style="margin-top: 5px;">
-                                                        <div class="row">                                                            
-                                                            <div class="col-md-3">
-                                                                <asp:Button ID="btnBookNow" runat="server" Text="Book Now" 
-                                                                    CssClass="btn btn-info" data-loading-text="Hold On..."                                                                     
-                                                                    ValidationGroup="HHG" onclick="btnBookNow_Click1"></asp:Button>                                                               
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                            </div>                                            
+                                                                                       
                                         </div> 
                                     </div>
                                 </div>

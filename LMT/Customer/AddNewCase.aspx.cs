@@ -63,7 +63,7 @@ namespace LMT.Customer
             {
                 if (ddlLabourCategory.SelectedValue != "-1" && ddlLabourType.SelectedValue != "-1")
                 {
-                    BindRepeater();
+                   // BindRepeater();
                 }
             }
             catch (Exception ex)
@@ -82,42 +82,45 @@ namespace LMT.Customer
         }
 
         private void BindRepeater()
-        {
+        { 
             string strQuery = " Select Reg_ID,FullName,Image_URL from tbl_LabourRegistration " +
-                              " where LabourType='" + ddlLabourType.SelectedValue + "'";
+
+            " where CPincode=" + txtPincode.Text.Trim() + " and LabourType='" + ddlLabourType.SelectedValue + "'";
+
             DataTable dtLabourInfo = FillDataTable(strQuery);
             if (dtLabourInfo.Rows.Count > 0)
             {
                 csGlobalFunction.BindRepeater(ref rptLabourInformation, strQuery);
 
-                Session["LabourInfo"] = dtLabourInfo;
-                PagedDataSource objPageDataSource = csGlobalFunction.BindRepeaterWithPagingReports(ref rptLabourInformation, CurrentPage, strQuery, 1);
-                CurrentPage = objPageDataSource.CurrentPageIndex;
-                ////lblName.Text = "";
+                //Session["LabourInfo"] = dtLabourInfo;
+                //PagedDataSource objPageDataSource = csGlobalFunction.BindRepeaterWithPagingReports(ref rptLabourInformation, CurrentPage, strQuery, 1);
+                //CurrentPage = objPageDataSource.CurrentPageIndex;
+                //////lblName.Text = "";
 
-                if (objPageDataSource.Count > 0)
-                {
-                    //dispaly controls if there are pages
-                    lbtnPrev.Visible = true;
-                    lbtnNext.Visible = true;
-                    lblCurrentPage.Visible = true;
-                    lblCurrentPage.Text = "Page " +
-                      Convert.ToString(CurrentPage + 1) + " of " +
-                      Convert.ToString(objPageDataSource.PageCount);
-                }
-                else
-                {
-                    //disable controls if there are no pages
-                    lbtnPrev.Visible = false;
-                    lbtnNext.Visible = false;
-                    lblCurrentPage.Visible = false;
-                }
-                lbtnPrev.Enabled = !objPageDataSource.IsFirstPage;
-                lbtnNext.Enabled = !objPageDataSource.IsLastPage;
+                //if (objPageDataSource.Count > 0)
+                //{
+                //    //dispaly controls if there are pages
+                //    lbtnPrev.Visible = true;
+                //    lbtnNext.Visible = true;
+                //    lblCurrentPage.Visible = true;
+                //    lblCurrentPage.Text = "Page " +
+                //      Convert.ToString(CurrentPage + 1) + " of " +
+                //      Convert.ToString(objPageDataSource.PageCount);
+                //}
+                //else
+                //{
+                //    //disable controls if there are no pages
+                //    lbtnPrev.Visible = false;
+                //    lbtnNext.Visible = false;
+                //    lblCurrentPage.Visible = false;
+                //}
+                //lbtnPrev.Enabled = !objPageDataSource.IsFirstPage;
+                //lbtnNext.Enabled = !objPageDataSource.IsLastPage;
 
                 dvLbr.Visible = true;
                 PrvNxtbtn.Visible = true;
                 dvRNF.Visible = false;
+                dvLbr.Visible = true;
             }
             else
             {
@@ -224,7 +227,7 @@ namespace LMT.Customer
                 objLeads.Lead_id = 0;
                 //}
                 Random RND = new Random();
-                objLeads.Labourid = Convert.ToInt32(hdfReg_DI.Value);
+                objLeads.Labourid = Convert.ToInt32(ViewState["id"].ToString());
                 objLeads.Customerid = UserID;
                 string Date = txtPickDate.Text;
                 objLeads.Required_date = Convert.ToDateTime(txtPickDate.Text, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat);
@@ -286,6 +289,101 @@ namespace LMT.Customer
                        "<br>In case of any further clarification, feel free to call  or write to us at the contacts given in this email.";
             EmailSendDelegate emailSendDelegate = new EmailSendDelegate(csGlobalFunction.SendEmail);
             emailSendDelegate.BeginInvoke(Session["userEmail"].ToString(), "Registration Confirmation mail", "", null, null);
+        }
+
+        protected void rptLabourInformation_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            ViewState["id"] = Convert.ToInt32(e.CommandArgument.ToString());
+            if (validate_code())
+            {
+                return;
+            }
+            if (Validation())
+            {
+                SetProperties(Convert.ToInt32(Session["UserID"]));
+                objLeads.SaveData("INSERT");
+                fnSendEmail();
+                lblMessage.Text = "Your Request have been submitted successfully. Our Executive will contact you shortly. Thank you ";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "LaunchServerSide", "$(function() { SaveSuccess(); });", true);
+                BindOldLeadsRepeater();
+                Clear();
+            }
+        }
+
+        protected void Clear()
+        {
+            ddlLabourCategory.SelectedIndex = 0;
+            ddlLabourType.SelectedIndex = 0;
+            txtPickDate.Text = "";
+            ddlRequiredTime.SelectedIndex = 0;
+            txtPincode.Text = "";
+            txtDesc.Text = "";
+            //dvLbr.Visible = false;
+            rptLabourInformation.DataSource = null;
+            rptLabourInformation.DataBind();
+        }
+
+        protected bool validate_code()
+        {
+            if (ddlLabourCategory.SelectedIndex == 0)
+            {
+                string strFnc = "Please select Labour Category";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:AlertMsg('" + strFnc + "');", true);
+                //ScriptManager.RegisterStartupScript(this, this.GetType(), "LaunchServerSide", "$(function() { SaveSuccess(); });", true);
+                ddlLabourCategory.Focus();
+                return true;
+            }
+            if (ddlLabourType.SelectedIndex == 0)
+            {
+                string strFnc = "Please select Labour Type";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:AlertMsg('" + strFnc + "');", true);
+                ddlLabourType.Focus();
+                return true;
+            }
+            if (txtPickDate.Text.Trim() == "")
+            {
+                string strFnc = "Please select Date";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:AlertMsg('" + strFnc + "');", true);
+                txtPickDate.Focus();
+                return true;
+            }
+            if (txtDesc.Text.Trim() == "")
+            {
+                string strFnc = "Please Enter Address";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:AlertMsg('" + strFnc + "');", true);
+                txtDesc.Focus();
+                return true;
+            }
+            if (txtPincode.Text.Trim() == "")
+            {
+                string strFnc = "Please Enter Pincode";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:AlertMsg('" + strFnc + "');", true);
+                txtPincode.Focus();
+                return true;
+            }
+
+            return false;
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(validate_code())
+                {
+                    return;
+                }
+                if (ddlLabourType.SelectedValue != "-1" && txtPincode.Text.Trim() != "")
+                {
+                    BindRepeater();
+                }
+            }
+            catch (Exception ex)
+            {
+                string strFnc = "";
+                strFnc = ex.Message;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:AlertMsg('" + strFnc + "');", true);
+            }   
         }
 
 
