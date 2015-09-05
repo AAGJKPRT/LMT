@@ -179,7 +179,7 @@
                                                         <asp:Label ID="lblRating" runat="server" Text="5 Stars" Style="display:inherit;" ></asp:Label>
                                                         </span>
                                                        
-                                                    </td>
+                                                    </td> 
                                                     <td>
                                                          <asp:LinkButton ID="link" runat="server" ClientIDMode="AutoID"   CssClass="btn btn-info" data-loading-text="Hold On..." CommandName="BOOK" Text="Book Now" CommandArgument='<%#Eval("Reg_ID") %>'  
                                                           ></asp:LinkButton> 

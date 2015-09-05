@@ -289,7 +289,7 @@ namespace LMT.Customer
                        "<br>In case of any further clarification, feel free to call  or write to us at the contacts given in this email.";
             EmailSendDelegate emailSendDelegate = new EmailSendDelegate(csGlobalFunction.SendEmail);
             emailSendDelegate.BeginInvoke(Session["userEmail"].ToString(), "Registration Confirmation mail", "", null, null);
-        }
+        } 
 
         protected void rptLabourInformation_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
