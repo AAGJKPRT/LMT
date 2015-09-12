@@ -96,12 +96,12 @@ namespace LMT.User
         {
             try
             {
-                
+                btnSubmit.Enabled = false;
                 if (ValidateData())
                 {
                     SetProperties();
                     int userID = objUserRegistration.ExecuteProcedure("INSERT", 0);
-                    if (ddlUserType.SelectedValue == "4")// && ddlUserCategory.SelectedValue == "4")
+                    if (ddlUserType.SelectedValue == "4" && ddlUserCategory.SelectedValue == "4")
                     {
                         SetPropertiesCustomer_IL(userID);
                         objLeads.SaveCustomerData("INSERT");
@@ -109,12 +109,12 @@ namespace LMT.User
                     if (txtEmail.Text.Trim() != "")
                     {
                         {
-                            string strMessage = "Dear Subscriber,<br> Your registration is comfirmed.<br> Your User Name :" + txtUserName.Text.Trim() + ". <br> Password :" + txtPwd.Text.Trim() + "";
+                            string strMessage = "Dear Subscriber,<br> Your registration is comfirmed.<br> Your Login ID :" + txtLoginName.Text.Trim() + ". <br> Password :" + txtPwd.Text.Trim() + "";
                             string strSubject = "Registration Confirmation mail";
                             if (txtEmail.Text.Trim() != "")
                             {
                                 MailDelegate mailDelegate = new MailDelegate(csGlobalFunction.SendHTMLEmail);
-                                mailDelegate.BeginInvoke(txtEmail.Text.Trim(), strSubject, txtUserName.Text.Trim(), txtPwd.Text.Trim(), null, null);
+                                mailDelegate.BeginInvoke(txtEmail.Text.Trim(), strSubject, txtLoginName.Text.Trim(), txtPwd.Text.Trim(), null, null);
                                 //csGlobalFunction.SendEmail(recipientemailto, strSubject, strMessage);
                             }
                         }
@@ -123,7 +123,6 @@ namespace LMT.User
                     ClearControl();
                     //ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", strFnc, true);
                 }
-              
             }
             catch (Exception ex)
             {
@@ -138,10 +137,10 @@ namespace LMT.User
             try
             {
                 objUserRegistration.USERNAME = txtUserName.Text;
-                objUserRegistration.LOGINNAME = txtUserName.Text;
+                objUserRegistration.LOGINNAME = txtLoginName.Text;
                 objUserRegistration.PWD = objUserRegistration.EncodePasswordToBase64(txtPwd.Text);
                 objUserRegistration.USERTYPEID = Convert.ToDecimal(ddlUserType.SelectedValue);
-                objUserRegistration.USERCATEGORYID = 1;// Convert.ToDecimal(ddlUserCategory.SelectedValue);
+                objUserRegistration.USERCATEGORYID = Convert.ToDecimal(ddlUserCategory.SelectedValue);
                 objUserRegistration.Emailid = txtEmail.Text.Trim();
                 objUserRegistration.ISVERIFY = chkIsVerify.Checked ? "Y" : "N";
                 objUserRegistration.Phoneno = txtphoneno.Text.Trim();
@@ -250,13 +249,13 @@ namespace LMT.User
                 lblUserID.Text = "0";
                 lblErrorMsg.Text = "";
                 txtUserName.Text = "";
-               // txtLoginName.Text = "";
+                txtLoginName.Text = "";
                 txtPwd.Text = "";
                 txtConfPwd.Text = "";
                 txtEmail.Text = "";
                 txtphoneno.Text = "";
                 ddlUserType.SelectedValue = "-1";
-               // ddlUserCategory.SelectedValue = "-1";
+                ddlUserCategory.SelectedValue = "-1";
                 chkIsVerify.Checked = false;
             }
             catch (Exception ex)
@@ -270,7 +269,6 @@ namespace LMT.User
         {
             if (txtPwd.Text.Trim() != txtConfPwd.Text.Trim())
             {
-               
                 txtConfPwd.Focus();
                 return false;
             }
@@ -283,36 +281,36 @@ namespace LMT.User
                 {
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please enter valid Email.');", true);
                     txtEmail.Focus();
-                    
+                    btnSubmit.Enabled = true;
                     return (false);
                 }
             }
             if (ddlUserType.SelectedValue == "-1")
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please select user type.');", true);
-                
+                btnSubmit.Enabled = true;
                 return false;
             }
 
-            //if (ddlUserCategory.SelectedValue == "-1")
-            //{
-            //    ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please select user category.');", true);
-            //    btnSubmit.Enabled = true;
-            //    return false;
-            //}
+            if (ddlUserCategory.SelectedValue == "-1")
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please select user category.');", true);
+                btnSubmit.Enabled = true;
+                return false;
+            }
             //string strQuery = "Select COUNT(UserID) from tblUserRegistration where EmailID='" + txtEmail.Text.Trim() + "'";
             int CountID = 0;
             CountID = objUserRegistration.SP_ValidateCredential(txtEmail.Text, 1);
             if (CountID > 0)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('User already exist with this email id. Try another email id to register.');", true);
-               
+                btnSubmit.Enabled = true;
                 return false;
             }
             else if (CountID == 100)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please refresh and try again later.');", true);
-                
+                btnSubmit.Enabled = true;
                 return false;
             }
             return true;
@@ -322,19 +320,19 @@ namespace LMT.User
             //string strQuery = "Select COUNT(UserID) from tblUserRegistration where LoginName='" + txtLoginName.Text.Trim() + "'";
             int CountID = 0;
            // CountID = (int)CrystalConnection.SqlScalartoObj(strQuery);
-            CountID = objUserRegistration.SP_ValidateCredential(txtUserName.Text, 2);
+            CountID = objUserRegistration.SP_ValidateCredential(txtLoginName.Text, 2);
             if (CountID > 0 && CountID!=100)
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('User already exist with this User Name. Try another Login-Name to register.');", true);
-                txtUserName.Text = "";
-                txtUserName.Focus();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('User already exist with this Login-Name. Try another Login-Name to register.');", true);
+                txtLoginName.Text = "";
+                txtLoginName.Focus();
 
             }
             else if (CountID == 100)
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please refresh and try again later.');", true);
-                txtUserName.Text = "";
-                txtUserName.Focus();
+                txtLoginName.Text = "";
+                txtLoginName.Focus();
             }
             else
                 txtPwd.Focus();
