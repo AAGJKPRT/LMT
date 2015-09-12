@@ -18,7 +18,7 @@ namespace LMT.User
 {
     public partial class UserRegistration : System.Web.UI.Page
     {
-        csGlobal globaldata = new csGlobal();
+        csGlobal globaldata = new csGlobal(); 
         DataSet dsFillData;
         csUserRegistration objUserRegistration = new csUserRegistration();
         csDropDownFunction objDropDown = new csDropDownFunction();

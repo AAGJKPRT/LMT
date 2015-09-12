@@ -17,7 +17,7 @@
             padding: 0 10px;
             height: 26px;
             color: #404040;
-            background: white;
+            background: white; 
             border: 1px solid;
             border-color: #c4c4c4 #d1d1d1 #d4d4d4;
             border-radius: 2px;
