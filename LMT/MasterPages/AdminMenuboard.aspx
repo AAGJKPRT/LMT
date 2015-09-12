@@ -376,8 +376,8 @@
                                                             <asp:Repeater ID="rptClosedLeads" runat="server" ><%--OnDataBinding="rptLeadInformation_DataBinding"
                                                                 OnItemCommand="rptLeadInformation_ItemCommand" OnItemDataBound="rptLeadInformation_ItemDataBound">--%>
                                                                 <HeaderTemplate>
-                                                                    <table border="0" width="650" class="display" id="example">
-                                                                        <thead>
+                                                                    <table border="0" width="650px" class="display" id="example" >
+                                                                        <thead style="display: block;">
                                                                             <th align="center" style="width: 100px;">
                                                                                 Ticket
                                                                             </th>
@@ -393,41 +393,41 @@
                                                                             <th align="left" style="width: 160px;">
                                                                                 Required Date
                                                                             </th>
-                                                                            <th style="width: 30px;">
+                                                                          <%--  <th style="width: 30px;">
                                                                                 View
                                                                             </th>
                                                                             <th style="width: 30px;">
                                                                                 Delete
-                                                                            </th>
+                                                                            </th>--%>
                                                                         </thead>
-                                                                        <tbody>
+                                                                        <tbody style="overflow-y: auto; display: block; height: 300px;">
                                                                 </HeaderTemplate>
                                                                 <ItemTemplate>
                                                                     <tr align="left" class="gradeC">
                                                                          <td align="center" style="width: 100px;">
                                                                             <asp:Label ID="lblTicket" runat="server" Text='<%#Eval("Ticket") %>'></asp:Label>
                                                                        </td>
-                                                                        <td align="left">
+                                                                        <td align="left" style="width: 175px;">
                                                                             <asp:HiddenField ID="hfLeadID" runat="server" Value='<%#Eval("Lead_ID") %>' />
                                                                             <asp:HiddenField ID="HiddenField1" runat="server" Value='<%#Eval("Labour_ID") %>' />
                                                                             <asp:Label ID="lblStudentCode" runat="server" Text='<%#Eval("Lbr_Type") %>'></asp:Label>
                                                                         </td>
-                                                                        <td align="left">
+                                                                        <td align="left" style="width: 175px;">
                                                                             <asp:Label ID="lblSupplier" runat="server" Text='<%#Eval("FullName") %>'></asp:Label>
                                                                         </td>
-                                                                        <td align="left">
+                                                                        <td align="left" style="width: 175px;">
                                                                             <asp:Label ID="lblfullName" runat="server" Text='<%#Eval("Name") %>'></asp:Label>
                                                                         </td>
-                                                                        <td align="left">
+                                                                        <td align="left" style="width: 175px;">
                                                                             <asp:Label ID="lblfathernme" runat="server" Text='<%#Eval("Required_Date") %>'></asp:Label>
                                                                         </td>
-                                                                        <td align="center">
+                                                                       <%-- <td align="center">
                                                                             <asp:Button ID="btnEdit" runat="server" CssClass="edit" CommandName="Edit" />
                                                                         </td>
                                                                         <td align="center">
                                                                             <asp:Button ID="btnDelete" runat="server" CssClass="delete" CommandName="Delete"
                                                                                 OnClientClick="return confirm('Do you want to delete this record ?');" />
-                                                                        </td>
+                                                                        </td>--%>
                                                                     </tr>
                                                                 </ItemTemplate>
                                                                 <FooterTemplate>
