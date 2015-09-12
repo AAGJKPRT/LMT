@@ -25,7 +25,7 @@ namespace LMT.BusinessLogic
         {
             objParamColleciton = new DbSqlParameterCollection();
 
-            DbSqlParameter loginNameParam = new DbSqlParameter("@LoginName", SqlDbType.VarChar, 50);
+            DbSqlParameter loginNameParam = new DbSqlParameter("@UserName", SqlDbType.VarChar, 50);
             loginNameParam.Value = _loginName;
             objParamColleciton.Add(loginNameParam);
         }
