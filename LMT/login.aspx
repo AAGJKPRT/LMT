@@ -41,11 +41,11 @@
                     <h1>Login to LMT App</h1>
                     <p>
                         <span>Username or email</span><br />
-                        <asp:TextBox ID="txtUsername" runat="server" TabIndex="1" placeholder="Username or Email" MaxLength="25"></asp:TextBox>
+                        <asp:TextBox ID="txtUsername" runat="server" TabIndex="1" autocomplete="off" placeholder="User Name" MaxLength="25"></asp:TextBox>
                     </p>
                     <p>
                         <span>Password</span><br />
-                        <asp:TextBox ID="txtPassword" runat="server" TabIndex="2" TextMode="Password" placeholder="Password"
+                        <asp:TextBox ID="txtPassword" runat="server" TabIndex="2" autocomplete="off" TextMode="Password" placeholder="Password"
                             MaxLength="20"></asp:TextBox>
                     </p>
                     <p class="submit">
@@ -63,6 +63,7 @@
                 <div class="login-help">
                     <p>
                         Copyright &#169; <a href="index.aspx" style="text-decoration: none;">Labour Management Tool Version 1.0.1.1.</a> All Rights Reserved.
+                   
                     </p>
                 </div>
 
@@ -76,9 +77,11 @@
                             </div>
                             <div class="modal-body">
                                 Enter Your Registered Email ID :
+                               
                                 <asp:TextBox ID="txtFgEmail" runat="server"></asp:TextBox><br>
                                 <br>
                                 Your password will be send on your registered email id.
+                           
                             </div>
 
                             <div class="modal-footer">

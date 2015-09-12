@@ -141,6 +141,8 @@ namespace LMT.BusinessLogic
 
         private string _description = "";
 
+        public string Lead_Adress { get; set; }
+
         public string Description
         {
             get { return _description; }

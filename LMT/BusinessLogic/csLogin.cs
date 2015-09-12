@@ -16,7 +16,7 @@ namespace LMT.BusinessLogic
         #endregion
 
         #region Declaration of Procedure Valiables
-        private string _loginName = "";
+        private string _UserName = "";
         #endregion
 
         #region Declaration of All Functions
@@ -25,14 +25,14 @@ namespace LMT.BusinessLogic
         {
             objParamColleciton = new DbSqlParameterCollection();
 
-            DbSqlParameter loginNameParam = new DbSqlParameter("@LoginName", SqlDbType.VarChar, 50);
-            loginNameParam.Value = _loginName;
-            objParamColleciton.Add(loginNameParam);
+            DbSqlParameter UserNameParam = new DbSqlParameter("@UserName", SqlDbType.VarChar, 50);
+            UserNameParam.Value = _UserName;
+            objParamColleciton.Add(UserNameParam);
         }
 
-        public DataTable ExecuteProcedure(string loginName)
+        public DataTable ExecuteProcedure(string UserName)
         {
-            _loginName = loginName;
+            _UserName = UserName;
             AddProcedureParameters();
             return (CrystalConnection.DoStoredTable("usp_UserLoginProc", objParamColleciton));
         }

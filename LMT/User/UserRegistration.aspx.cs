@@ -24,6 +24,7 @@ namespace LMT.User
         csDropDownFunction objDropDown = new csDropDownFunction();
         csImageUpload objImg = new csImageUpload();
         csLeads objLeads = new csLeads();
+        public delegate void MailDelegate(string recipientemailto, string strSubject, string username, string password);
         Hashtable Keys
         {
             get
@@ -33,7 +34,6 @@ namespace LMT.User
                 return (Hashtable)ViewState["Keys"];
             }
         }
-        public delegate void MailDelegate(string recipientemailto, string strSubject, string username, string password);
         protected void Page_Load(object sender, EventArgs e)
         {
             try

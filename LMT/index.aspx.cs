@@ -11,6 +11,7 @@ using System.Data;
 using CrystalDatabase;
 using LMT.BusinessLogic;
 using System.Text.RegularExpressions;
+using LMT.User;
 
 namespace LMT
 {
@@ -27,6 +28,7 @@ namespace LMT
         }
         csLeads objLeads = new csLeads();
         csDropDownFunction objDropDown = new csDropDownFunction();
+        csUserRegistration csuserRegistration = new csUserRegistration();
         Guid GID;
         string Ticket = "";
         string Exist = "";
@@ -50,9 +52,9 @@ namespace LMT
                 objDropDown.FillDropDown(ref ddlLbrTypeIL, "Select Lbr_type_id,Lbr_Type From tbl_Lbr_Type", "Lbr_Type", "Lbr_type_id", "Order By Lbr_Type", "Where Sector=3 and IsVerify='Y'");
             }
             GID = Guid.NewGuid();
-            if (txtMobileNo.Text.Trim() != "")
+            if (txtMobile.Text.Trim() != "")
             {
-                Session["Ticket"] = txtMobileNo.Text.Substring(0, 3) + GID.ToString().Substring(0, 9);
+                Session["Ticket"] = txtMobile.Text.Substring(0, 3) + GID.ToString().Substring(0, 9);
             }
             if (txtMobileLGB.Text.Trim() != "")
             {
@@ -64,8 +66,8 @@ namespace LMT
             }
         }
 
-        #region(HG)
-        protected void Button3_Click(object sender, EventArgs e)
+        #region(HG)//House hold section
+        protected void Button3_Click(object sender, EventArgs e)//search image event.
         {
             try
             {
@@ -79,7 +81,7 @@ namespace LMT
             {
                 string strFnc = "";
                 strFnc = ex.Message;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:AlertMsg('" + strFnc + "');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:Alert('" + strFnc + "');", true);
             }
         }
 
@@ -89,55 +91,15 @@ namespace LMT
             dtFillData = CrystalConnection.CreateDataTableWithoutTransaction(query);
             return dtFillData;
         }
-
+        //list of labours on pin code and labour type
         private void BindRepeater()
         {
             string strQuery = " Select Reg_ID,FullName,Image_URL from tbl_LabourRegistration " +
-
             " where CPincode=" + txtPincode.Text.Trim() + " and LabourType='" + ddlLbrType.SelectedValue + "'";
             DataTable dtLabourInfo = FillDataTable(strQuery);
             csGlobalFunction.BindRepeater(ref rptLabourInformation, strQuery);
             HS_rep.Visible = true;
             HS_RecordNF.Visible = false;
-            //if (dtLabourInfo.Rows.Count > 0)
-            //{
-            //    csGlobalFunction.BindRepeater(ref rptLabourInformation, strQuery);
-
-            //    Session["LabourInfo"] = dtLabourInfo;
-            //    PagedDataSource objPageDataSource = csGlobalFunction.BindRepeaterWithPagingReports(ref rptLabourInformation, CurrentPage, strQuery, 1);
-            //    CurrentPage = objPageDataSource.CurrentPageIndex;
-            //    ////lblName.Text = "";
-
-            //    if (objPageDataSource.Count > 0)
-            //    {
-            //        //dispaly controls if there are pages
-            //        lbtnPrev.Visible = true;
-            //        lbtnNext.Visible = true;
-            //        lblCurrentPage.Visible = true;
-            //        lblCurrentPage.Text = "Page " +
-            //          Convert.ToString(CurrentPage + 1) + " of " +
-            //          Convert.ToString(objPageDataSource.PageCount);
-            //    }
-            //    else
-            //    {
-            //        //disable controls if there are no pages
-            //        lbtnPrev.Visible = false;
-            //        lbtnNext.Visible = false;
-            //        lblCurrentPage.Visible = false;
-            //    }
-            //    lbtnPrev.Enabled = !objPageDataSource.IsFirstPage;
-            //    lbtnNext.Enabled = !objPageDataSource.IsLastPage;
-
-            //    HS_rep.Visible = true;
-            //    PrvNxtbtn.Visible = true;
-            //    HS_RecordNF.Visible = false;
-            //}
-            //else
-            //{
-            //    HS_rep.Visible = false;
-            //    PrvNxtbtn.Visible = false;
-            //    HS_RecordNF.Visible = true;
-            //}
         }
 
         protected void rptLabourInformation_DataBinding(object sender, EventArgs e)
@@ -177,6 +139,27 @@ namespace LMT
             }
         }
 
+        protected void rptLabourInformation_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "select")
+            {
+                if (ddlLbrType.SelectedValue != "-1")
+                {
+                    HiddenField rpt_hdfReg_DI = ((HiddenField)e.Item.FindControl("hfReg_ID"));
+                    fancy.Visible = false;
+                    btn_bk.Visible = true;
+                    bank.Visible = true;
+                    lblFor.Text = ddlLbrType.SelectedItem.Text;
+                    hdfReg_DI.Value = rpt_hdfReg_DI.Value;//e.CommandArgument.ToString();// to get the labour id
+                    DataTable dtTemp = (DataTable)Session["LabourInfo"];
+                }
+                else
+                {
+                    ddlLbrType.Focus();
+                }
+            }
+        }
+
         public int CurrentPage
         {
             get
@@ -193,31 +176,6 @@ namespace LMT
             {
                 this.ViewState["_CurrentPage"] = value;
             }
-        }
-
-        //protected void lbtnNext_Click(object sender, EventArgs e)
-        //{
-        //    DataTable dtTemp = (DataTable)Session["LabourInfo"];
-        //    //go to next page
-        //    CurrentPage += 1;
-        //    hdfReg_DI.Value = Convert.ToString(dtTemp.Rows[CurrentPage][0]);
-        //    pageStatus = "Y";
-        //    BindRepeater();
-        //}
-
-        //protected void lbtnPrev_Click(object sender, EventArgs e)
-        //{
-        //    DataTable dtTemp = (DataTable)Session["LabourInfo"];
-        //    //back to previous page
-        //    CurrentPage -= 1;
-        //    hdfReg_DI.Value = Convert.ToString(dtTemp.Rows[CurrentPage][0]);
-        //    pageStatus = "Y";
-        //    BindRepeater();
-        //}
-
-        protected void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         protected void lnkShowDetails_Click(object sender, EventArgs e)
@@ -247,8 +205,9 @@ namespace LMT
         {
             if (chkPreUser.Checked == true)
             {
-                txtFullName.Visible = false;
+                txtUserName.Visible = true;
                 txtPassword.Visible = true;
+                txtMobile.Visible = false;//new added
                 txtEmail.Visible = false;
                 txtHouseNo.Visible = false;
                 txtLocation.Visible = false;
@@ -259,12 +218,13 @@ namespace LMT
             }
             else
             {
-                txtFullName.Visible = true;
+                txtUserName.Visible = true;
                 txtPassword.Visible = false;
                 txtEmail.Visible = true;
                 txtHouseNo.Visible = true;
                 txtLocation.Visible = true;
                 chkAgree.Visible = true;
+                txtMobile.Visible = true;//new added
                 lnkForgotPassword.Visible = false;
                 btnBookNow.Enabled = false;
             }
@@ -274,57 +234,65 @@ namespace LMT
         {
             try
             {
-                int CustomerID = 0;
-                if (chkPreUser.Checked != true)
+                btnBookNow.Enabled = false;
+                if (chkPreUser.Checked != true)//New Lead with silent User Registration.
                 {
-                    if (ValidateCustomer())
+                    if (ValidateUserName())
                     {
-                        SetPropertiesCustomer();
-                        if (txtEmail.Text.Trim() != "")
+                        SetProperties_UserRegistration();
+                        int userId = csuserRegistration.ExecuteProcedure("INSERT");//this will excute the proc "usp_UserRegProc" with insert mode and userid will be the output after registration process.
+                        try
                         {
-                            {
-                                string recipientemailto = txtEmail.Text.Trim();
-                                string strMessage = "Dear " + txtFullName.Text.Trim() + ",<br> Thank You for your association with us. We are in receipt of your concern with Easy-Labour." +
-                                    "<br>Our team tried to get in touch with as per Service Request no.–" + Convert.ToString(Session["Ticket"]) + ". " +
-                                    "<br>We will be happy to help you to resolve your issue at a time of your convenience. " +
-                                    " <br> Your Login ID :" + txtMobileNo.Text.Trim() + ". <br> Password :" + txtFullName.Text.Trim().Substring(0, 3) + txtMobileNo.Text.Trim().Substring(0, 4) + "" +
-                                    "<br>" +
-                                    "<br>In case of any further clarification, feel free to call  or write to us at the contacts given in this email.";
-                                string strSubject = "Registration Confirmation mail";
-                                if (txtEmail.Text.Trim() != "") csGlobalFunction.SendEmail(recipientemailto, strSubject, strMessage);
-                            }
+                            SetProperties_NewLead(userId);
+                            objLeads.SaveData("INSERT");//this will excute the proc "usp_Leads" with insert mode
+                            fnSendEmail(txtEmail.Text.Trim());
+                            lblMessage.Text = "Your Request have been submitted successfully. Our Executive will contact you shortly. Thank you ";
+                            LoginNewUser();
+
                         }
-                        CustomerID = objLeads.SaveCustomerData("INSERT");
+                        catch
+                        {
+                            //Roll Back Registration process
+                        }
                     }
                 }
-
-                if (Validation())
+                else
                 {
-                    SetProperties(CustomerID);
-                    objLeads.SaveData("INSERT");
-                    if (chkPreUser.Checked == true)
+                    if (Validation_Returning_User())
                     {
-                        string strQurey = "select EmailID from tbl_Customer where MobileNo='" + txtMobileNo.Text + "' and Password='" + txtPassword.Text + "'";
-                        string Email = Convert.ToString(CrystalConnection.SqlScalartoObj(strQurey));
-                        string recipientemailto = Email;
-                        string strMessage = "Dear " + txtFullName.Text.Trim() + ",<br> Thank You for your association with us. We are in receipt of your concern with Easy-Labour." +
-                            "<br>Our team tried to get in touch with as per Service Request no.–" + Convert.ToString(Session["Ticket"]) + ". " +
-                            "<br>We will be happy to help you to resolve your issue at a time of your convenience. " +
+                        SetProperties_NewLead(Convert.ToInt32(Session["userID"]));
+                        objLeads.SaveData("INSERT");
+
+                        string strMessage = "Dear Customer,<br> Thank You for your association with us. We are in receipt of your concern with Easy-Labour." +
+                       "<br>Our team tried to get in touch with as per Service Request no.–" + objLeads.Ticket + ". " +
+                       "<br>We will be happy to help you to resolve your issue at a time of your convenience. " +
+                       "<br>In case of any further clarification, feel free to call  or write to us at the contacts given in this email.";
+                        LMT.Customer.AddNewCase.EmailSendDelegate emailSendDelegate = new LMT.Customer.AddNewCase.EmailSendDelegate(csGlobalFunction.SendEmail);
+                        emailSendDelegate.BeginInvoke(Session["userEmail"].ToString(), "Lead Confirmation mail", strMessage, null, null);
 
 
-                            "<br>In case of any further clarification, feel free to call  or write to us at the contacts given in this email.";
-                        string strSubject = "Registration Confirmation mail";
-                        if (Email != "") csGlobalFunction.SendEmail(recipientemailto, strSubject, strMessage);
+                        //lblMessage.Text = "Your Request have been submitted successfully. Our Executive will contact you shortly. Thank you ";
+                        //ScriptManager.RegisterStartupScript(this, this.GetType(), "LaunchServerSide", "$(function() { SaveSuccess(); });", true);
+
+                        if (Session["UserType"].ToString() == "Admin")
+                        {
+                            Response.Redirect("~/MasterPages/AdminMenuboard.aspx");
+                        }
+                        else if (Session["UserType"].ToString() == "Supplier")
+                        {
+                            Response.Redirect("~/MasterPages/SupplierMenuboard.aspx");
+                        }
+                        else if (Session["UserType"].ToString() == "Customer")
+                        {
+                            Response.Redirect("~/Customer/AddNewCase.aspx");
+                        }
+                        else
+                        {
+                            Response.Redirect("~/login.aspx");
+
+                        }
                     }
-                    ClearControls();
-                    lblMessage.Text = "Your Request have been submitted successfully. Our Executive will contact you shortly. Thank you ";
-                    ScriptManager.RegisterStartupScript(this, this.GetType(), "LaunchServerSide", "$(function() { SaveSuccess(); });", true);
-                    //ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Record save successfully.);", true);
                 }
-                //if (strRestrict == "NotAllowed")
-                //{
-                //    Response.Redirect("~/MasterPages/SupplierMenuboard.aspx");
-                //}
             }
             catch (Exception ex)
             {
@@ -332,33 +300,53 @@ namespace LMT
                 strFnc = ex.Message;
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "alert('" + strFnc + "');", true);
             }
+            finally
+            {
+                btnBookNow.Enabled = true;
+            }
 
         }
 
-        private void SetProperties(int CustomerID)
+        private void SetProperties_UserRegistration()
         {
             try
             {
-                //DataTable dtTemp = (DataTable)Session["LabourInfo"];
-                //if (hfOpmode.Value == "UPDATE")
-                //{
-                //    objLeads.Reg_id = Convert.ToInt32(hfRegID.Value);
-                //}
-                //else
-                //{
-                objLeads.Lead_id = 0;
-                //}
-                objLeads.Labourid = Convert.ToInt32(hdfReg_DI.Value);
-                if (chkPreUser.Checked != true)
-                    objLeads.Customerid = CustomerID;
-                else
-                    objLeads.Customerid = Convert.ToInt32(Session["CustomerID"]);
-                string Date = txtPickDate.Text;
+                Random RND = new Random();
+                csuserRegistration.USERNAME = txtUserName.Text;
+                csuserRegistration.LOGINNAME = "";//this is not in user 
+                csuserRegistration.PWD = csuserRegistration.EncodePasswordToBase64("Welcome" + RND.Next(1, 99999).ToString().PadLeft(5, '0'));
+                csuserRegistration.USERTYPEID = 4;//4[Customer] is fixed for the Guest user type and normal user, we are registering an user as a guest user from this function.
+                csuserRegistration.USERCATEGORYID = 1;//this is the fixed Id not in used, 1 means all access but not is used as of now.
+                csuserRegistration.Emailid = txtEmail.Text.Trim();
+                csuserRegistration.ISVERIFY = "Y";//by default we are saving it Y as of now later on we need to change it accordingly.
+                csuserRegistration.Phoneno = txtMobile.Text.Trim();
+                csuserRegistration.permanentAdress = txtHouseNo.Text.Trim() + ", " + txtLocation.Text.Trim();
+
+            }
+            catch (Exception ex)
+            {
+                string strFnc = "";
+                strFnc = ex.Message;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:AlertMsg('" + strFnc + "');", true);
+            }
+        }
+
+        private void SetProperties_NewLead(int userId)
+        {
+            try
+            {
+                Random RND = new Random();
+                objLeads.Labourid = Convert.ToInt32(hdfReg_DI.Value);//this is the labour Id named as hf Reg DI not sure why it is named like this.
+                objLeads.Customerid = userId;
                 objLeads.Required_date = Convert.ToDateTime(txtPickDate.Text, System.Globalization.CultureInfo.GetCultureInfo("hi-IN").DateTimeFormat);
                 objLeads.Required_time = ddlRequiredTime.SelectedItem.Text;
                 objLeads.Status = "NL";
-                objLeads.Ticket = Convert.ToString(Session["Ticket"]);
-                //objLeads.Supplierid = Convert.ToInt32(Session["UserID"]);
+                objLeads.Ticket = "REQ" + RND.Next(1, 99999).ToString().PadLeft(5, '0');
+                objLeads.Lead_Adress = txtHouseNo.Text.Trim() + ", " + txtLocation.Text.Trim();
+                //objLeads.Asign= this will be get from the SP via using labour Id
+                //Description
+                //
+
             }
             catch (Exception ex)
             {
@@ -368,66 +356,83 @@ namespace LMT
             }
         }
 
-        private void SetPropertiesCustomer()
+        public void fnSendEmail(string Email = "")
         {
+            //For User 
+            string strMessage = "Dear Subscriber,<br> Your registration is comfirmed.<br> Your Login ID :" + txtUserName.Text.Trim() + ". <br> Password :" + csLogin.DecodeFrom64(csuserRegistration.PWD) + "";
+            string strSubject = "Registration Confirmation mail";
+            LMT.User.UserRegistration.MailDelegate mailDelegate = new LMT.User.UserRegistration.MailDelegate(csGlobalFunction.SendHTMLEmail);
+            mailDelegate.BeginInvoke(Email == "" ? Session["userEmail"].ToString() : Email, strSubject, txtUserName.Text.Trim(), csLogin.DecodeFrom64(csuserRegistration.PWD), null, null);
 
-            try
-            {
-                objLeads.Customerid = 0;
-                objLeads.Mobileno = txtMobileNo.Text.Trim();
-                objLeads.Name = txtFullName.Text.Trim();
-                objLeads.Emailid = txtEmail.Text.Trim();
-                objLeads.Address1 = txtHouseNo.Text.Trim();
-                objLeads.Address2 = txtLocation.Text.Trim();
-                objLeads.Password = txtFullName.Text.Trim().Substring(0, 3) + txtMobileNo.Text.Trim().Substring(0, 4);
-                objLeads.Ticket = Convert.ToString(Session["Ticket"]);
-            }
-            catch (Exception ex)
-            {
-                string strFnc = "";
-                strFnc = ex.Message;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "alert('" + strFnc + "');", true);
-            }
+            //For Lead
+            string strLeadMessage = "Dear Customer,<br> Thank You for your association with us. We are in receipt of your concern with Easy-Labour." +
+                     "<br>Our team tried to get in touch with as per Service Request no.–" + objLeads.Ticket + ". " +
+                     "<br>We will be happy to help you to resolve your issue at a time of your convenience. " +
+                     "<br>In case of any further clarification, feel free to call  or write to us at the contacts given in this email.";
+            LMT.Customer.AddNewCase.EmailSendDelegate emailSendDelegate = new LMT.Customer.AddNewCase.EmailSendDelegate(csGlobalFunction.SendEmail);
+            emailSendDelegate.BeginInvoke(Email == "" ? Session["userEmail"].ToString() : Email, "Lead Confirmation mail", strLeadMessage, null, null);
         }
 
-        public bool Validation()
+        public bool Validation_Returning_User()
         {
-            int CustomerID = 0;
-            if ((txtMobileNo.Text.Length != 10) && (txtMobileNo.Text != ""))
+            if ((txtUserName.Text.Trim() == ""))
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please enter valid mobile no.');", true);
-                txtMobileNo.Focus();
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please enter valid Username');", true);
+                txtMobile.Focus();
                 return false;
             }
-
-            if (Exist == "Y")
+            csLogin objLogin = new csLogin();
+            csGlobal globaldata = new csGlobal();
+            DataTable dt = new DataTable();
+            dt = objLogin.ExecuteProcedure(txtUserName.Text);
+            if (dt.Rows.Count > 0)//if we get some data in data table then only we will check password
             {
-                return false;
-            }
-
-            string strQurey = "select Customer_ID from tbl_Customer where MobileNo='" + txtMobileNo.Text + "' and Password='" + txtPassword.Text + "'";
-            CustomerID = Convert.ToInt32(CrystalConnection.SqlScalartoObj(strQurey));
-            Session["CustomerID"] = CustomerID;
-            if (chkPreUser.Checked != true)
-            {
-
-                if (CustomerID > 0)
+                if (txtPassword.Text.Trim() == csLogin.DecodeFrom64(dt.Rows[0]["Pwd"].ToString().Trim()))
                 {
+                    Session["user"] = "user:Desme-BD";
+                    Session["UserName"] = dt.Rows[0]["UserName"].ToString();
+                    Session["UserType"] = dt.Rows[0]["UserType"].ToString();
+                    Session["UserCategory"] = dt.Rows[0]["UserCategory"].ToString();
+                    Session["UserID"] = dt.Rows[0]["UserID"].ToString();
+                    Session["userEmail"] = dt.Rows[0]["EmailID"].ToString();
+                    globaldata._userID = Convert.ToDecimal(dt.Rows[0]["UserID"]);
+                    globaldata.UserTypedata = dt.Rows[0]["UserType"].ToString();
+                    globaldata.UserCategorydata = dt.Rows[0]["UserCategory"].ToString();
+                    return true;
+                }
+                else//In this case we can drop an email to user that some one is trying to access your account without your permission please confirm if you are aware of this login  
+                {
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage1", "alert('Please check your password and try again!');", true);
                     return false;
                 }
             }
+            else
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage2", "alert('" + txtUserName.Text + " does not exist in our system!');", true);
+                return false;
+            }
+            //string strQurey = "select Customer_ID from tbl_Customer where MobileNo='" + txtMobile.Text + "' and Password='" + txtPassword.Text + "'";
+            //CustomerID = Convert.ToInt32(CrystalConnection.SqlScalartoObj(strQurey));
+            //Session["CustomerID"] = CustomerID;
+            //if (chkPreUser.Checked != true)
+            //{
+
+            //    if (CustomerID > 0)
+            //    {
+            //        return false;
+            //    }
+            //}
             return true;
         }
 
-        public bool ValidateCustomer()
+        public bool ValidateUserName()
         {
-            string strQurey = "select Customer_ID from tbl_Customer where MobileNo=" + txtMobileNo.Text.Trim() + "";
+            string strQurey = "select UserID from tblUserRegistration where UserName='" + txtUserName.Text.Trim() + "'";
             int ID = Convert.ToInt32(CrystalConnection.SqlScalartoObj(strQurey));
             Session["CustomerID"] = ID;
             if (ID > 0)
             {
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Customer profile already exist with this mobile no.');", true);
-                Exist = "Y";
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('User profile already exist with this username.');", true);
                 return false;
             }
             return true;
@@ -436,8 +441,8 @@ namespace LMT
         private void ClearControls()
         {
             txtPickDate.Text = "";
-            txtMobileNo.Text = "";
-            txtFullName.Text = "";
+            txtMobile.Text = "";
+            txtUserName.Text = "";
             txtEmail.Text = "";
             txtHouseNo.Text = "";
             txtLocation.Text = "";
@@ -457,6 +462,138 @@ namespace LMT
                 btnBookNow.Enabled = false;
             }
         }
+
+        private void LoginNewUser()
+        {
+            csLogin objLogin = new csLogin();
+            csGlobal globaldata = new csGlobal();
+            DataTable dt = new DataTable();
+            dt = objLogin.ExecuteProcedure(txtUserName.Text);
+            if (dt.Rows.Count > 0)//if we get some data in data table then only we will check password
+            {
+                //if (txtPassword.Text == csLogin.DecodeFrom64(dt.Rows[0]["Pwd"].ToString()))
+                //{
+                Session["user"] = "user:Desme-BD";
+                Session["UserName"] = dt.Rows[0]["UserName"].ToString();
+                Session["UserType"] = dt.Rows[0]["UserType"].ToString();
+                Session["UserCategory"] = dt.Rows[0]["UserCategory"].ToString();
+                Session["UserID"] = dt.Rows[0]["UserID"].ToString();
+                Session["userEmail"] = dt.Rows[0]["EmailID"].ToString();
+                globaldata._userID = Convert.ToDecimal(dt.Rows[0]["UserID"]);
+                globaldata.UserTypedata = dt.Rows[0]["UserType"].ToString();
+                globaldata.UserCategorydata = dt.Rows[0]["UserCategory"].ToString();
+
+                //if (Session["UserType"].ToString() == "Super Admin")
+                //{
+                //    Response.Redirect("~/MasterPages/MenuBoard.aspx");
+                //}
+                //else 
+                if (Session["UserType"].ToString() == "Admin")
+                {
+                    Response.Redirect("~/MasterPages/AdminMenuboard.aspx");
+                }
+                else if (Session["UserType"].ToString() == "Supplier")
+                {
+                    Response.Redirect("~/MasterPages/SupplierMenuboard.aspx");
+                }
+                else if (Session["UserType"].ToString() == "Customer")
+                {
+                    Response.Redirect("~/Customer/AddNewCase.aspx");
+                }
+                else
+                {
+                    Response.Redirect("~/login.aspx");
+
+                }
+                //}
+                //else//In this case we can drop an email to user that some one is trying to access your account without your permission please confirm if you are aware of this login  
+                //{
+                //    ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage1", "alert('Please check your password and try again!');", true);
+                //}
+            }
+        }
+
+        //private bool ValidateData()
+        //{
+        //    if (txtPwd.Text.Trim() != txtConfPwd.Text.Trim())
+        //    {
+        //        txtConfPwd.Focus();
+        //        return false;
+        //    }
+        //    if (txtEmail.Text != "")
+        //    {
+
+        //        Regex reg = new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+        //        Match isMatch = reg.Match(txtEmail.Text);
+        //        if (!isMatch.Success)
+        //        {
+        //            ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please enter valid Email.');", true);
+        //            txtEmail.Focus();
+        //            btnSubmit.Enabled = true;
+        //            return (false);
+        //        }
+        //    }
+        //    if (ddlUserType.SelectedValue == "-1")
+        //    {
+        //        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please select user type.');", true);
+        //        btnSubmit.Enabled = true;
+        //        return false;
+        //    }
+
+        //    if (ddlUserCategory.SelectedValue == "-1")
+        //    {
+        //        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please select user category.');", true);
+        //        btnSubmit.Enabled = true;
+        //        return false;
+        //    }
+        //    //string strQuery = "Select COUNT(UserID) from tblUserRegistration where EmailID='" + txtEmail.Text.Trim() + "'";
+        //    int CountID = 0;
+        //    CountID = objUserRegistration.SP_ValidateCredential(txtEmail.Text, 1);
+        //    if (CountID > 0)
+        //    {
+        //        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('User already exist with this email id. Try another email id to register.');", true);
+        //        btnSubmit.Enabled = true;
+        //        return false;
+        //    }
+        //    else if (CountID == 100)
+        //    {
+        //        ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please refresh and try again later.');", true);
+        //        btnSubmit.Enabled = true;
+        //        return false;
+        //    }
+        //    return true;
+        //}
+
+        //public void SilentRegistration()
+        //{
+        //    try
+        //    {
+
+        //        if (ValidateData())
+        //        {
+        //            SetProperties_UserRegistration();
+        //            int userID = csuserRegistration.ExecuteProcedure("INSERT", 0);
+
+        //            //SetPropertiesCustomer_IL(userID);
+        //            //objLeads.SaveCustomerData("INSERT");
+
+        //            string strMessage = "Dear Subscriber,<br> Your registration is comfirmed.<br> Your Login ID :" + txtLoginName.Text.Trim() + ". <br> Password :" + txtPwd.Text.Trim() + "";
+        //            string strSubject = "Registration Confirmation mail";
+
+        //            LMT.User.UserRegistration.MailDelegate mailDelegate = new LMT.User.UserRegistration.MailDelegate(csGlobalFunction.SendHTMLEmail);
+        //            mailDelegate.BeginInvoke(txtEmail.Text.Trim(), strSubject, txtLoginName.Text.Trim(), txtPwd.Text.Trim(), null, null);
+
+        //            //ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('You are sign-up successfully and your user id and password will be send to your mail id with in 2-5 minutes.');", true);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        string strFnc = "";
+        //        strFnc = ex.Message;
+        //        ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:AlertMsg('" + strFnc + "');", true);
+        //    }
+        //}
+
         #endregion
 
         #region(LGB)
@@ -1254,6 +1391,8 @@ namespace LMT
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:AlertMsg('" + strFnc + "');", true);
             }
         }
+
+
 
 
 

@@ -81,6 +81,7 @@ namespace LMT.BusinessLogic
             get { return _phoneno; }
             set { _phoneno = value; }
         }
+        public string permanentAdress { get; set; }
         //public string ImageURL
         //{
         //    get { return _imageURL; }
@@ -133,6 +134,10 @@ namespace LMT.BusinessLogic
             DbSqlParameter phoneno = new DbSqlParameter("@phoneno", SqlDbType.Char, 10);
             phoneno.Value = _phoneno;
             objParamColleciton.Add(phoneno);
+
+            DbSqlParameter permanentAdressPara = new DbSqlParameter("@permanentAdress", SqlDbType.VarChar);
+            permanentAdressPara.Value = permanentAdress;
+            objParamColleciton.Add(permanentAdressPara);
 
             //DbSqlParameter ImageURLParam = new DbSqlParameter("@ImageURL", SqlDbType.VarChar);
             //ImageURLParam.Value = _imageURL;
@@ -208,8 +213,8 @@ namespace LMT.BusinessLogic
         }
         #endregion
 
-        #region Call using Store Procedure 
-        
+        #region Call using Store Procedure
+
         public int SP_ValidateCredential(string valtext, int mode)
         {
             try
@@ -223,7 +228,7 @@ namespace LMT.BusinessLogic
                         cmd.Parameters.AddWithValue("@valtext", valtext);
                         cmd.Parameters.AddWithValue("@mode", mode);
                         con.Open();
-                        int i=(int) cmd.ExecuteScalar();
+                        int i = (int)cmd.ExecuteScalar();
                         con.Close();
                         return i;
                     }
@@ -232,7 +237,7 @@ namespace LMT.BusinessLogic
             }
             catch (Exception ex)
             {
-                return 100;  
+                return 100;
             }
 
         }
@@ -240,5 +245,5 @@ namespace LMT.BusinessLogic
         #endregion
 
 
-   }
+    }
 }
