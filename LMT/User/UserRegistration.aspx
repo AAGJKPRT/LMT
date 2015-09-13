@@ -69,17 +69,7 @@
                                                     Display="None" ErrorMessage="User name is required." />
                                             </td>
                                         </tr>
-                                        <tr style="height: 25px;">
-                                            <td>Login Name :
-                                            </td>
-                                            <td>
-                                                <asp:TextBox ID="txtLoginName" runat="server" CssClass="cssTextBox cssTextBox-enabled"
-                                                    AutoCompleteType="None" AutoComplete="OFF" AutoPostBack="true" ClientIDMode="AutoID" MaxLength="20" Width="174px"
-                                                    Style="margin-left: 2px;" OnTextChanged="txtLoginName_TextChanged"></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtLoginName"
-                                                    Display="None" ErrorMessage="Login name is required." />
-                                            </td>
-                                        </tr>
+                                        
                                         <tr style="height: 25px;">
                                             <td>Password :
                                             </td>
@@ -112,14 +102,13 @@
                                                     Display="None" ErrorMessage="Please select User Type." />
                                             </td>
                                         </tr>
-                                        <tr style="height: 25px;">
+                                        <tr  style="height: 25px;display:none;">
                                             <td>User Category :
                                             </td>
                                             <td>
                                                 <asp:DropDownList ID="ddlUserCategory" runat="server" CssClass="cssDropDownList cssDropDownList-enabled ddl">
                                                 </asp:DropDownList>
-                                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="ddlUserCategory"
-                                                    Display="None" ErrorMessage="Please select User Category." />
+                                                
                                             </td>
                                         </tr>
                                         <tr style="height: 25px;">
