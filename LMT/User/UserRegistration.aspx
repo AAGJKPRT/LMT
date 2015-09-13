@@ -115,7 +115,7 @@
                                             <td>Phone no. :
                                             </td>
                                             <td>
-                                                <asp:TextBox ID="txtphoneno" runat="server" CssClass="cssTextBox cssTextBox-enabled"
+                                                <asp:TextBox ID="txtphoneno" runat="server" MaxLength="13" CssClass="cssTextBox cssTextBox-enabled"
                                                     AutoCompleteType="None" Width="174px" Style="margin-left: 2px;"></asp:TextBox>
                                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ControlToValidate="txtphoneno"
                                                     Display="None" ErrorMessage="Phone no. is required." />
