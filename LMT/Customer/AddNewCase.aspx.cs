@@ -34,6 +34,7 @@ namespace LMT.Customer
         protected void Page_Load(object sender, EventArgs e)
         {
             string UserName = "";
+            CalendarExtender1.StartDate = DateTime.Now;
             if (!IsPostBack)
             {
                 string Str = "Select UserName from tblUserRegistration Where UserID=" + Convert.ToInt32(Session["UserID"]) + " ";

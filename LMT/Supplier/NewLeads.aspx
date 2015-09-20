@@ -115,8 +115,11 @@
                                   <div class="caption">                                    
                                     <p><strong>Name : </strong><asp:Label ID="lblName" runat="server"></asp:Label>
                                     <br />
+                                   <p><asp:CheckBox ID="chkIsCompleted" runat="server" Text="Lead Completed" /></p>
                                     <p><asp:Button ID="btnAccept" runat="server" CssClass="btn btn-primary" 
                                             Text="Accept" onclick="btnAccept_Click"></asp:Button></p>
+                                  <p><asp:Button ID="btnComplete" runat="server" CssClass="btn btn-primary" 
+                                            Text="Complete" onclick="btnComplete_Click"></asp:Button></p>
                                   </div>
                                 </div>        
                                           

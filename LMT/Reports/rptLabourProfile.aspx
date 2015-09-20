@@ -3,8 +3,19 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
+<head id="Head1" runat="server">
     <title></title>
+    <style type="text/css">
+        .auto-style1 {
+            width: 175px;
+        }
+        .auto-style2 {
+            width: 194px;
+        }
+        .auto-style3 {
+            width: 268435424px;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -13,16 +24,21 @@
             <td>
                 <table id="HeaderTable" runat="server" width="100%" style="border: 1px; margin-right: -8px;">
                     <tr>
-                        <td colspan="9">
+                         <td rowspan="5" align="center" class="auto-style2">
+                                <img src="../images/EL_logo.png" style="height: 116px; width: 132px" /></td>
+                        <td colspan="9" class="auto-style3">
                             <center>
                                 <b style="font-size: 250%;">
                                     <asp:Literal ID="Ltname" runat="server" Text=""></asp:Literal>
                                 </b>
                             </center>
                         </td>
+                          <td rowspan="5" align="center" class="auto-style1">
+                              <br /></td>
+                       
                     </tr>
                     <tr>
-                        <td colspan="9">
+                        <td colspan="9" class="auto-style3">
                             <center>
                                 <b>
                                     <asp:Literal ID="Ltaddress1" runat="server" Text=""></asp:Literal>
@@ -32,7 +48,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="9">
+                        <td colspan="9" class="auto-style3">
                             <center>
                                 <b style="font-size: 70%;">Phone :-<asp:Literal ID="Ltphone1" runat="server" Text=""></asp:Literal>
                                     <asp:Literal ID="Ltphone2" runat="server" Text=""></asp:Literal></b>
@@ -40,26 +56,27 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="9">
+                        <td colspan="9" class="auto-style3">
                             <center>
                                 <b style="font-size: 70%;">Mobile :-<asp:Literal ID="LtSchoolMobile" runat="server"
                                     Text=""></asp:Literal></b></center>
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="9">
+                        <td colspan="9" class="auto-style3">
                             <center>
                                 <b style="font-size: 70%;">Website :-<asp:Literal ID="Ltwebsite" runat="server" Text=""></asp:Literal></b></center>
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <td colspan="11">
                             <hr style="margin-left: -6px; margin-right: -6px;" />
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="9" align="center">
+                        <td colspan="11" align="center">
                             <h2 style="margin-bottom: 0px; margin-top: 0px; margin-left: -39px;">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 Labour Profile</h2>
                         </td>
                     </tr>

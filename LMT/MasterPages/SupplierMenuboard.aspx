@@ -194,6 +194,7 @@
                            <div class="panel-heading">
                               <h3 class="panel-title">
                                  <p class="text-center">Labour Chart</p>
+                                  <h3></h3>
                               </h3>
                            </div>
                            <div class="panel-body">
@@ -209,6 +210,7 @@
                            <div class="panel-heading">
                               <h3 class="panel-title">
                                  <p class="text-center">Work Status</p>
+                                  <h3></h3>
                               </h3>
                            </div>
                            <div class="panel-body">
@@ -224,6 +226,7 @@
                            <div class="panel-heading">
                               <h3 class="panel-title">
                                  <p class="text-center">Total Labour</p>
+                                  <h3></h3>
                               </h3>
                            </div>
                            <div class="panel-body">
@@ -238,6 +241,7 @@
                            <div class="panel-heading">
                               <h3 class="panel-title">
                                  <p class="text-center">Search Labour</p>
+                                  <h3></h3>
                               </h3>
                            </div>
                            <div class="panel-body">
@@ -300,9 +304,10 @@
                          <div class="panel panel-default">
                            <div class="panel-heading">
                               <h3 class="panel-title">
-                                 <p class="text-center">New Leads</p>
+                                 <p class="text-center">Assign Leads</p>
                                   <h3>
                                   </h3>
+                                  <h3></h3>
                               </h3>
                            </div>
                            <div class="panel-body">
@@ -366,14 +371,15 @@
                                  <p class="text-center">In Process Leads</p>
                                   <h3>
                                   </h3>
+                                  <h3></h3>
                               </h3>
                            </div>
                            <div class="panel-body">
                                                   <asp:Panel ID="Panel3" runat="server" Width="97%" Style="margin-top: 5px;">
                                                     <div id="Div5">
                                                         <div id="Div6">
-                                                            <asp:Repeater ID="rptIPLeads" runat="server" ><%--OnDataBinding="rptLeadInformation_DataBinding"
-                                                                OnItemCommand="rptLeadInformation_ItemCommand" OnItemDataBound="rptLeadInformation_ItemDataBound">--%>
+                                                            <asp:Repeater ID="rptIPLeads" runat="server" OnItemCommand="rptIPLeads_ItemCommand" OnDataBinding="rptIPLeadInformation_DataBinding"
+                                                                 OnItemDataBound="rptIPLeadInformation_ItemDataBound">
                                                                 <HeaderTemplate>
                                                                     <table border="0" width="650" class="display" id="example">
                                                                         <thead>
@@ -434,6 +440,7 @@
                                  <p class="text-center">Close Leads</p>
                                   <h3>
                                   </h3>
+                                  <h3></h3>
                               </h3>
                            </div>
                            <div class="panel-body">

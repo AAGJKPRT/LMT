@@ -47,39 +47,38 @@ namespace LMT.MasterPages
             try
             {
                 string strQuery = "";
-                if ("NL" == Convert.ToString(Session["CurrentMode"]))//NL means New lead
-                {
-                    strQuery = "select Lead_ID,Labour_ID,tbl_LabourRegistration.SupplierID,tbl_LabourRegistration.Image_URL,tbl_LabourRegistration.FullName Fname,tbl_SupplierDetail.FullName,tbl_Lbr_Type.Lbr_Type,tblUserRegistration.UserName, " +
-                                      "''MobileNo,tblUserRegistration.EmailID,''Address,Required_Date,Required_Time from tbl_Leads " +
-                                      "left join tblUserRegistration  on tblUserRegistration.userID =tbl_Leads.Customer_ID " +
-                                      "inner join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
-                                      "left join tbl_SupplierDetail on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
-                                      "inner join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
-                                      "Where Status='NL' and Lead_ID=" + hfLeadID.Value + "";
-                }
-                else if ("IP" == Convert.ToString(Session["CurrentMode"]))//IP means inProgress
-                {
-                    strQuery = "select Lead_ID,Labour_ID,tbl_LabourRegistration.SupplierID,tbl_LabourRegistration.Image_URL,tbl_LabourRegistration.FullName Fname,tbl_SupplierDetail.FullName,tbl_Lbr_Type.Lbr_Type,tblUserRegistration.UserName, " +
-                                      "''MobileNo,tblUserRegistration.EmailID,''Address,Required_Date,Required_Time from tbl_Leads " +
-                                      "left join tblUserRegistration  on tblUserRegistration.userID =tbl_Leads.Customer_ID " +
-                                      "inner join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
-                                      "left join tbl_SupplierDetail on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
-                                      "inner join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
-                                      "Where Status='IP' and Lead_ID=" + hfLeadID.Value + "";
-                    //strQuery = "select Lead_ID,Labour_ID,tbl_LabourRegistration.SupplierID,tbl_LabourRegistration.Image_URL,tbl_LabourRegistration.FullName Fname,tbl_SupplierDetail.FullName,tbl_Lbr_Type.Lbr_Type,Name, " +
-                    //                  "MobileNo,tbl_Customer.EmailID,Address1+','+Address2 as Address,Required_Date,Required_Time from tbl_Leads " +
-                    //                  "inner join tbl_Customer on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID " +
-                    //                  "inner join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
-                    //                  "inner join tbl_SupplierDetail on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
-                    //                  "inner join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
-                    //                  "Where Status='IP' and Lead_ID=" + hfLeadID.Value + "";
-                }
+                //if ("NL" == Convert.ToString(Session["CurrentMode"]))//NL means New lead
+                //{
+                //     strQuery = "select Lead_ID,Labour_ID,tbl_LabourRegistration.SupplierID,tbl_LabourRegistration.Image_URL,tbl_LabourRegistration.FullName Fname,tbl_SupplierDetail.FullName,tbl_Lbr_Type.Lbr_Type,Name, " +
+                //                  "tblUserRegistration.phoneno AS MobileNo,tbl_Customer.EmailID,tbl_Leads.Description as Address,Required_Date,Required_Time,Is_completed,Is_accepted from tbl_Leads " +
+                //                  "inner join tbl_Customer on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID inner join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID" +
+                //                  " inner join tbl_SupplierDetail on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID" +
+                //                  " inner join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id"+
+                //                  " INNER join tblUserRegistration on tbl_Customer.Customer_ID=tblUserRegistration.UserID" +
+                //                    " Where Status='NL' and Lead_ID=" + hfLeadID.Value + "";
+                //}
+                //else if ("IP" == Convert.ToString(Session["CurrentMode"]))//IP means inProgress
+                //{
+                strQuery = "select Lead_ID,Labour_ID,LR.SupplierID,LR.Image_URL,LR.FullName 'LabourName',SD.FullName 'SupplierName',tbl_Lbr_Type.Lbr_Type,Name as 'CustomerName', " +
+                                  "UR.phoneno AS MobileNo,tbl_Customer.EmailID,LD.Description as Address,Required_Date,Required_Time,Is_completed,Is_accepted from tbl_Leads LD " +
+                                  "inner join tbl_Customer on LD.Customer_ID=tbl_Customer.Customer_ID inner join tbl_LabourRegistration LR on LD.Labour_ID=LR.Reg_ID  inner join tbl_SupplierDetail SD on " +
+                                  "LR.SupplierID=SD.SupplierID inner join tbl_Lbr_Type on LR.LabourType=tbl_Lbr_Type.Lbr_type_id INNER join tblUserRegistration UR on tbl_Customer.Customer_ID=UR.UserID " +
+                                  "Where Status='" + Convert.ToString(Session["CurrentMode"]) + "' and Lead_ID=" + hfLeadID.Value + "";
+                //strQuery = "select Lead_ID,Labour_ID,tbl_LabourRegistration.SupplierID,tbl_LabourRegistration.Image_URL,tbl_LabourRegistration.FullName Fname,tbl_SupplierDetail.FullName,tbl_Lbr_Type.Lbr_Type,Name, " +
+                //                  "MobileNo,tbl_Customer.EmailID,Address1+','+Address2 as Address,Required_Date,Required_Time from tbl_Leads " +
+                //                  "inner join tbl_Customer on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID " +
+                //                  "inner join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
+                //                  "inner join tbl_SupplierDetail on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
+                //                  "inner join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
+                //                  "Where Status='IP' and Lead_ID=" + hfLeadID.Value + "";
+                // }
                 DataTable Labour = csLabourRegistration.FillDataTable(strQuery);
+
                 if (Labour.Rows.Count > 0)
                 {
                     DataRow Dr = Labour.Rows[0];
                     LabourImageControl.ImageUrl = Convert.ToString(Dr["Image_URL"]);
-                    txtCustName.Text = Convert.ToString(Dr["UserName"]);
+                    txtCustName.Text = Convert.ToString(Dr["CustomerName"]);
                     txtCustMobNo.Text = Convert.ToString(Dr["MobileNo"]);
                     txtEmail.Text = Convert.ToString(Dr["EmailID"]);
                     txtAddress.Text = Convert.ToString(Dr["Address"]);
@@ -87,8 +86,8 @@ namespace LMT.MasterPages
                     txtLookFor.Text = Convert.ToString(Dr["Lbr_Type"]);
                     txtCustDate.Text = Convert.ToString(Dr["Required_Date"]);
                     txtCustTime.Text = Convert.ToString(Dr["Required_Time"]);
-                    lblName.Text = Convert.ToString(Dr["Fname"]);
-                    lblSuppilerName.Text = Convert.ToString(Dr["FullName"]);
+                    lblName.Text = Convert.ToString(Dr["LabourName"]);
+                    lblSuppilerName.Text = Convert.ToString(Dr["SupplierName"]);
                     hfSupplierID.Value = Convert.ToString(Dr["SupplierID"]);
                 }
             }
