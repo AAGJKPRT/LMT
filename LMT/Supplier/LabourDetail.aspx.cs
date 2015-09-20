@@ -159,6 +159,7 @@ namespace LMT.Supplier
         //    else
         //    {
         //        ddlSection.Enabled = false;
+
         //        objdropdown.FillDropDown(ref ddlSection, "Select  SectionID,Section from tblSection", "Section", "SectionID", "Order By Section", "Where IsVerify='Y'");
         //    }
         //}

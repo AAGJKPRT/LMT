@@ -46,6 +46,7 @@
                                   </h3>
                               </h3>
                            </div>
+
                            <div class="panel-body">
                                <div class="form-horizontal">
                                     <div class="form-group">

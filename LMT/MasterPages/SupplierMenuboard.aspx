@@ -11,6 +11,7 @@
     <link rel="Stylesheet" href="../colorbox.css" />
     <script type="text/javascript" language="javascript" src="../js/PopUpJScript.js"></script>
     <script type="text/javascript" language="javascript" src="../js/jquery.colorbox.js"></script>
+    
     <style>
         .widget-content table tr
         {

@@ -122,6 +122,7 @@ namespace LMT.MasterPages
             BindClosedLeads();
         }
 
+
         private void BindNewLeads()
         {
             string strQuery = "select Lead_ID,Labour_ID,tbl_Lbr_Type.Lbr_Type,Name,Required_Date from tbl_Leads with(nolock)" +

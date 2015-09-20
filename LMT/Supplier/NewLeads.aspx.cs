@@ -132,6 +132,7 @@ namespace LMT.Supplier
         {
             try
             {
+
                 hfOpmode.Value = "UPDCOMP";
                 objLeads.Lead_id = Convert.ToInt32(hfLeadID.Value);
                 objLeads.Asign = Convert.ToInt32(hfSupplierID.Value);

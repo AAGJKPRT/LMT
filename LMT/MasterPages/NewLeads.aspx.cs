@@ -72,6 +72,7 @@ namespace LMT.MasterPages
                 //                  "inner join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
                 //                  "Where Status='IP' and Lead_ID=" + hfLeadID.Value + "";
                 // }
+
                 DataTable Labour = csLabourRegistration.FillDataTable(strQuery);
 
                 if (Labour.Rows.Count > 0)

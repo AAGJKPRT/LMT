@@ -206,6 +206,7 @@ namespace LMT.MasterPages
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:alert('" + strFnc + "');", true);
             }
         }
+
         #endregion
 
         #region CL
