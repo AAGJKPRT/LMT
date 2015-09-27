@@ -121,15 +121,6 @@ namespace LMT {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl HS_rep;
         
         /// <summary>
-        /// lnkShowDetails control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lnkShowDetails;
-        
-        /// <summary>
         /// rptLabourInformation control.
         /// </summary>
         /// <remarks>
@@ -211,13 +202,13 @@ namespace LMT {
         protected global::System.Web.UI.WebControls.DropDownList ddlRequiredTime;
         
         /// <summary>
-        /// txtMobileNo control.
+        /// txtUserName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMobileNo;
+        protected global::System.Web.UI.WebControls.TextBox txtUserName;
         
         /// <summary>
         /// RequiredFieldValidator2 control.
@@ -238,13 +229,13 @@ namespace LMT {
         protected global::System.Web.UI.WebControls.CheckBox chkPreUser;
         
         /// <summary>
-        /// txtFullName control.
+        /// txtMobile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFullName;
+        protected global::System.Web.UI.WebControls.TextBox txtMobile;
         
         /// <summary>
         /// RequiredFieldValidator3 control.

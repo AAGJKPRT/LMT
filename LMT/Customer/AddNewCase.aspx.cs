@@ -26,21 +26,19 @@ namespace LMT.Customer
         }
         csDropDownFunction objDropDown = new csDropDownFunction();
         Guid GID;
-        string Ticket = "";
-        string Exist = "";
         public string pageStatus = "";
         csLeads objLeads = new csLeads();
         public delegate void EmailSendDelegate(string param1, string param2, string param3);
         protected void Page_Load(object sender, EventArgs e)
         {
             string UserName = "";
-            CalendarExtender1.StartDate = DateTime.Now;
             if (!IsPostBack)
             {
                 string Str = "Select UserName from tblUserRegistration Where UserID=" + Convert.ToInt32(Session["UserID"]) + " ";
                 UserName = Convert.ToString(CrystalConnection.SqlScalartoObj(Str));
                 GID = Guid.NewGuid();
                 Session["Ticket"] = UserName.Substring(0, 3) + GID.ToString().Substring(0, 9);
+                BindOldLeadsRepeater();
             }
 
         }
@@ -64,7 +62,7 @@ namespace LMT.Customer
             {
                 if (ddlLabourCategory.SelectedValue != "-1" && ddlLabourType.SelectedValue != "-1")
                 {
-                   // BindRepeater();
+                    // BindRepeater();
                 }
             }
             catch (Exception ex)
@@ -83,7 +81,7 @@ namespace LMT.Customer
         }
 
         private void BindRepeater()
-        { 
+        {
             string strQuery = " Select Reg_ID,FullName,Image_URL from tbl_LabourRegistration " +
 
             " where CPincode=" + txtPincode.Text.Trim() + " and LabourType='" + ddlLabourType.SelectedValue + "'";
@@ -213,20 +211,11 @@ namespace LMT.Customer
             BindRepeater();
         }
 
-
         private void SetProperties(int UserID)
         {
             try
             {
-                //DataTable dtTemp = (DataTable)Session["LabourInfo"];
-                //if (hfOpmode.Value == "UPDATE")
-                //{
-                //    objLeads.Reg_id = Convert.ToInt32(hfRegID.Value);
-                //}
-                //else
-                //{
                 objLeads.Lead_id = 0;
-                //}
                 Random RND = new Random();
                 objLeads.Labourid = Convert.ToInt32(ViewState["id"].ToString());
                 objLeads.Customerid = UserID;
@@ -285,12 +274,12 @@ namespace LMT.Customer
         public void fnSendEmail()
         {
             string strMessage = "Dear Customer,<br> Thank You for your association with us. We are in receipt of your concern with Easy-Labour." +
-                       "<br>Our team tried to get in touch with as per Service Request no.–" + Convert.ToString(Session["Ticket"]) + ". " +
+                       "<br>Our team tried to get in touch with as per Service Request no.–" + objLeads.Ticket + ". " +
                        "<br>We will be happy to help you to resolve your issue at a time of your convenience. " +
                        "<br>In case of any further clarification, feel free to call  or write to us at the contacts given in this email.";
             EmailSendDelegate emailSendDelegate = new EmailSendDelegate(csGlobalFunction.SendEmail);
-            emailSendDelegate.BeginInvoke(Session["userEmail"].ToString(), "Registration Confirmation mail", "", null, null);
-        } 
+            emailSendDelegate.BeginInvoke(Session["userEmail"].ToString(), "Lead Confirmation mail", "", null, null);
+        }
 
         protected void rptLabourInformation_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
@@ -370,7 +359,7 @@ namespace LMT.Customer
         {
             try
             {
-                if(validate_code())
+                if (validate_code())
                 {
                     return;
                 }
@@ -384,7 +373,7 @@ namespace LMT.Customer
                 string strFnc = "";
                 strFnc = ex.Message;
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:AlertMsg('" + strFnc + "');", true);
-            }   
+            }
         }
 
 

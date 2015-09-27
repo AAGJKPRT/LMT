@@ -232,7 +232,7 @@
                                       </div>
                                       <div role="form" style="float:left;padding-right: 8px;">
                                         <div class="form-group" style="margin-bottom: 0px;">
-                                            <asp:HiddenField ID="hdfReg_DI" runat="server" Value="0" />
+                                            <asp:HiddenField ID="hdfReg_DI" runat="server"  />
                                             <asp:TextBox ID="txtPincode" runat="server" MaxLength="6" CssClass="form-control" Width="75" placeholder="Pincode" style="display:inline;"></asp:TextBox>                         
                                             <asp:Button ID="Button3" runat="server" Text="Search" Width="30" 
                                                 CssClass="btn btnimg" onclick="Button3_Click" ClientIDMode="AutoID"></asp:Button>
@@ -245,17 +245,18 @@
                                       </div>
                                       <div id="HS_rep" runat="server" visible="false" style="height: 300px; overflow-y: scroll; position: absolute; width: 95%;
                                             margin: 37px 0px 0px -11px;" >
-                                      <asp:LinkButton ID="lnkShowDetails" runat="server" onclick="lnkShowDetails_Click">
+                                      <%--<asp:LinkButton ID="lnkShowDetails" runat="server"  onclick="lnkShowDetails_Click">--%>
                                            <table style="width:85%;">
                                                <tbody>
                                             <asp:Repeater ID="rptLabourInformation" runat="server"   ondatabinding="rptLabourInformation_DataBinding" 
-                                                  onitemdatabound="rptLabourInformation_ItemDataBound">
+                                                  onitemdatabound="rptLabourInformation_ItemDataBound" OnItemCommand="rptLabourInformation_ItemCommand">
                                             <ItemTemplate> 
                                                 <tr>
                                                     <td>
                                                        <asp:HiddenField ID="hfReg_ID" runat="server" Value='<%#Eval("Reg_ID") %>' />
-                                                       <asp:Image ID="LabourImageControl" runat="server" ImageUrl='<%#Eval("Image_URL") %>' 
+                                                       <asp:Image ID="LabourImageControl" runat="server" ImageUrl='<%#Eval("Image_URL") %>'  onerror="this.src='https://raw.githubusercontent.com/AAGJKPRT/LMT/2c35092f42028585b70f35e4f7e9a7acda72a9c9/LMT/images/dummy.jpg'"
                                                                     Height="80px" Width="80px" class="img-thumbnail" style="margin: 3%;margin-left:10%;" />
+                                                         
                                                     </td>
                                                     <td>
                                                         <div style="float:left;">
@@ -264,12 +265,15 @@
                                                         <asp:Label ID="lblRating" runat="server" Text="5 Stars" Style="display:inherit;" ></asp:Label>
                                                         </div>
                                                     </td>
+                                                    <td>
+                                                          <asp:LinkButton ID="linkbtnProceed" Text="Proceed" runat="server" CommandName="select"></asp:LinkButton>
+                                                    </td>
                                                 </tr>
                                             </ItemTemplate>
                                             </asp:Repeater>
                                                    </tbody>
                                             </table>
-                                     </asp:LinkButton>
+                                    <%-- </asp:LinkButton>--%>
                                       </div>
                                       <div id="HS_RecordNF" runat="server" visible="false">
                                         <div>
@@ -324,9 +328,9 @@
                                             <div class="form-inline form-group inline-inputs">
                                                 <label class="lbl-required">Help us with your details</label><div class="clearfix"></div>
                                                 <div class="form-group">
-                                                    <asp:TextBox ID="txtMobileNo" runat="server" MaxLength="10" class="form-control" placeholder="Your Mobile No."></asp:TextBox>
-                                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtMobileNo"
-                                                                                 ValidationGroup="HHG"   Display="None" ErrorMessage="Mobile No. is required." />
+                                                    <asp:TextBox ID="txtUserName" runat="server" MaxLength="50" class="form-control" placeholder="UserName"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="txtUserName"
+                                                                                 ValidationGroup="HHG"   Display="None" ErrorMessage="UserName is required." />
                                                     
                                                 </div>
                                                 <div class="form-group">
@@ -340,9 +344,9 @@
                                             <div id="new-user-details" style="display: block;margin-top: 5px;">
                                                 <div class="form-inline form-group inline-inputs">
                                                     <div class="form-group">
-                                                        <asp:TextBox ID="txtFullName" runat="server" class="form-control" placeholder="Your Full Name"></asp:TextBox>
-                                                        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtFullName"
-                                                                                  ValidationGroup="HHG"  Display="None" ErrorMessage="Name is required." />
+                                                        <asp:TextBox ID="txtMobile" runat="server" class="form-control" placeholder="Mobile"></asp:TextBox>
+                                                        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtMobile"
+                                                                                  ValidationGroup="HHG"  Display="None" ErrorMessage="Mobile is required." />
                                                         <asp:TextBox ID="txtPassword" TextMode="Password" runat="server" Visible="false" class="slimField form-control" placeholder="Password" style="display:block;"></asp:TextBox>
                                                         <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="txtPassword"
                                                                                   ValidationGroup="HHG"  Display="None" ErrorMessage="Password is required." />
@@ -351,7 +355,7 @@
                                                         
                                                     </div>
                                                     <div class="form-group">
-                                                        <asp:TextBox ID="txtEmail" runat="server" class="form-control" placeholder="Your Email"></asp:TextBox>
+                                                        <asp:TextBox ID="txtEmail" runat="server"  class="form-control" placeholder="Your Email"></asp:TextBox>
                                                         <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="txtEmail"
                                                                                   ValidationGroup="HHG"  Display="None" ErrorMessage="Email is required." />
                                                         

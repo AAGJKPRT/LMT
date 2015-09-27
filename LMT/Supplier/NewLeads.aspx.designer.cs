@@ -12,7 +12,6 @@ namespace LMT.Supplier {
     
     public partial class NewLeads {
         
-
         /// <summary>
         /// UpdatePanel1 control.
         /// </summary>
@@ -149,15 +148,6 @@ namespace LMT.Supplier {
         protected global::System.Web.UI.WebControls.Label lblName;
         
         /// <summary>
-        /// chkIsCompleted control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkIsCompleted;
-        
-        /// <summary>
         /// btnAccept control.
         /// </summary>
         /// <remarks>
@@ -165,14 +155,5 @@ namespace LMT.Supplier {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnAccept;
-        
-        /// <summary>
-        /// btnComplete control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnComplete;
     }
 }
