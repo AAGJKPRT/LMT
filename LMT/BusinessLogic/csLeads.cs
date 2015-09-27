@@ -147,6 +147,8 @@ namespace LMT.BusinessLogic
             set { _description = value; }
         }
 
+        public string Lead_Adress { get; set; }
+
         //Added by khushbu for lead CR
         private string _Is_accepted = "";
 
