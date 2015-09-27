@@ -54,7 +54,14 @@ GO
 ALTER TABLE [dbo].[tbl_Leads] ADD  CONSTRAINT [DF_tbl_Leads_Ticket]  DEFAULT ('') FOR [Ticket]
 GO
 
+
 ALTER TABLE [dbo].[tbl_Leads] ADD  CONSTRAINT [DF_tbl_Leads_CurrentDate]  DEFAULT ('') FOR [CurrentDate]
 GO
 
+---------------------------------FOR LEAD STATUS-----------------------------------------------
+-----------------------------------------------------------------------------------------------
+ALTER TABLE [dbo].[tbl_Leads] ADD  [Is_accepted] [char](1) NULL
+GO
 
+ALTER TABLE [dbo].[tbl_Leads] ADD  [Is_completed] [char](1) NULL
+GO

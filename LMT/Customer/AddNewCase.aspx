@@ -61,12 +61,17 @@
             .widget-content table td > span > a {
                 color: #fff;
             }
+        .ajax_calendar .ajax_calendar_invalid .ajax_calendar_day {
+            background-color:gray;
+            color:white;
+            text-decoration:none;cursor:default;
+        }
     </style>
     <script type="text/javascript">
         function SaveSuccess() {
             $('#myModal').modal();
         }
-    </script>
+     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="demo-wrapper">

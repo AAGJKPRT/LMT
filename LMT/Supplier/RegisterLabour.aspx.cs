@@ -36,11 +36,12 @@ namespace LMT.Supplier
                 if (!IsPostBack)
                 {
                     hfUserName.Value = Convert.ToString(Session["UserName"]);
-                    objDropDown.FillDropDown(ref ddlLbrType, "Select Lbr_type_id,Lbr_Type From tbl_Lbr_Type", "Lbr_Type", "Lbr_type_id", "Order By Lbr_Type");
-                    objDropDown.FillDropDown(ref ddlCurrentState, "select StateID,StateName from tblState", "StateName", "StateID", "Order By StateName", "Where IsVerify='Y'", false, false, false, true, false);
-                    objDropDown.FillDropDown(ref ddlCurrentCity, "select CityID,CityName from tblCity", "CityName", "CityID", "Order By CityName", "Where IsVerify='Y'", false, false, true, false, false);
-                    objDropDown.FillDropDown(ref ddlPermanetState, "select StateID,StateName from tblState", "StateName", "StateID", "Order By StateName", "Where IsVerify='Y'", false, false, false, true, false);
-                    objDropDown.FillDropDown(ref ddlPermanentCity, "select CityID,CityName from tblCity", "CityName", "CityID", "Order By CityName", "Where IsVerify='Y'", false, false, true, false, false);
+                    Binddropdown();
+                    //objDropDown.FillDropDown(ref ddlLbrType, "Select Lbr_type_id,Lbr_Type From tbl_Lbr_Type", "Lbr_Type", "Lbr_type_id", "Order By Lbr_Type");
+                    //objDropDown.FillDropDown(ref ddlCurrentState, "select StateID,StateName from tblState", "StateName", "StateID", "Order By StateName", "Where IsVerify='Y'", false, false, false, true, false);
+                    //objDropDown.FillDropDown(ref ddlCurrentCity, "select CityID,CityName from tblCity", "CityName", "CityID", "Order By CityName", "Where IsVerify='Y'", false, false, true, false, false);
+                    //objDropDown.FillDropDown(ref ddlPermanetState, "select StateID,StateName from tblState", "StateName", "StateID", "Order By StateName", "Where IsVerify='Y'", false, false, false, true, false);
+                    //objDropDown.FillDropDown(ref ddlPermanentCity, "select CityID,CityName from tblCity", "CityName", "CityID", "Order By CityName", "Where IsVerify='Y'", false, false, true, false, false);
                     if (Request.QueryString["ID"] != null)
                     {
                         hfRegID.Value = Request.QueryString["ID"].ToString();
@@ -56,11 +57,11 @@ namespace LMT.Supplier
                     }
                 }
 
-                if (ddlLbrType.SelectedValue != "-1")
-                {
-                    plBarCode.Controls.Clear();
-                    GenerateBarcode();
-                }
+                //if (ddlLbrType.SelectedValue != "-1")
+                //{
+                //    plBarCode.Controls.Clear();
+                //    GenerateBarcode();
+                //}
             }
             catch (Exception ex)
             {
@@ -68,6 +69,34 @@ namespace LMT.Supplier
                 strFnc = ex.Message;
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "alert('" + strFnc + "');", true);
             }
+        }
+
+        public void Binddropdown()
+        {
+            ddlCurrentState.DataSource = objDropDown.GetLookupTable("STATE");
+            ddlCurrentState.DataTextField = "LDESC";
+            ddlCurrentState.DataValueField = "LID";
+            ddlCurrentState.DataBind();
+            ddlCurrentCity.DataSource = objDropDown.GetLookupTable("CITY");
+            ddlCurrentCity.DataTextField = "LDESC";
+            ddlCurrentCity.DataValueField = "LID";
+            ddlCurrentCity.DataBind();
+            ddlPermanetState.DataSource = objDropDown.GetLookupTable("STATE");
+            ddlPermanetState.DataTextField = "LDESC";
+            ddlPermanetState.DataValueField = "LID";
+            ddlPermanetState.DataBind();
+            ddlPermanentCity.DataSource = objDropDown.GetLookupTable("CITY");
+            ddlPermanentCity.DataTextField = "LDESC";
+            ddlPermanentCity.DataValueField = "LID";
+            ddlPermanentCity.DataBind();
+            ddlLbrType.DataSource = objDropDown.GetLookupTable("LType");
+            ddlLbrType.DataTextField = "LDESC";
+            ddlLbrType.DataValueField = "LID";
+            ddlLbrType.DataBind();
+            rbtnExpType.DataSource = objDropDown.GetLookupTable("LBRTYPE");
+            rbtnExpType.DataTextField = "LDESC";
+            rbtnExpType.DataValueField = "LID" ;
+            rbtnExpType.DataBind();
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -109,7 +138,7 @@ namespace LMT.Supplier
                 }
                 else
                 {
-                    objLbrReg.Reg_id = 0;
+                    objLbrReg.Reg_id = csLabourRegistration.GetLabourMaxId();
                 }
                 objLbrReg.Labourcode = txtPreLabourCode.Text + txtLabourCode.Text;
                 objLbrReg.Fullname = txtFullName.Text.Trim();
@@ -131,7 +160,7 @@ namespace LMT.Supplier
                 objLbrReg.Ph_belonging2 = Convert.ToDecimal(txtb2.Text.Trim());
                 objLbrReg.Ph_belonging3 = Convert.ToDecimal(txtb3.Text.Trim());
                 objLbrReg.Ph_belonging4 = Convert.ToDecimal(txtb4.Text.Trim());
-                objLbrReg.Exp_type = Convert.ToInt32(rbtnExpType.SelectedValue);
+                objLbrReg.Lbr_Skill = Convert.ToInt32(rbtnExpType.SelectedValue);
                 objLbrReg.Verification = Convert.ToChar(rbtnVerify.SelectedValue);
                 if (LabourImageControl.ImageUrl != "" && LabourImageControl.ImageUrl != null)
                     objLbrReg.Imageurl = LabourImageControl.ImageUrl.ToString();
@@ -218,7 +247,7 @@ namespace LMT.Supplier
                     lblWorkSpecialization.Text = Dr["Work_Specialization"].ToString();
                     lblExperience.Text = Dr["Experience"].ToString();
                     lblLabourType.Text = Dr["Lbr_Type"].ToString();
-
+                    lblSkillType.Text = Dr["Skill_Type"].ToString();
                     //lblex = Dr["Experience_Type"].ToString();
                     if (Convert.ToString(Dr["Varification"]) == "1")
                         lblVerification.Text = "Done";
@@ -556,6 +585,7 @@ namespace LMT.Supplier
 
         protected void btnEdit_Click(object sender, EventArgs e)
         {
+            hfOpmode.Value = "UPDATE";
             dvLabPfView.Visible = false;
             dvLabPfEdit.Visible = true;
         }

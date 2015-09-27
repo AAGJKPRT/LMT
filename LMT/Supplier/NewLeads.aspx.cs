@@ -25,19 +25,31 @@ namespace LMT.Supplier
         {
             hfLeadID.Value = Request.QueryString["ID"].ToString();
             hfLeadMode.Value = Request.QueryString["MODE"].ToString();
-            if (hfLeadMode.Value == "CL")
+            if (!IsPostBack)
             {
-                btnAccept.Visible = false;
-                ShowLead(hfLeadMode.Value);
+                if (Request.QueryString["TYPE"].ToString() == "3" && hfLeadMode.Value == "CL")
+                {
+                    btnAccept.Visible = false;
+                    btnComplete.Visible = false;
+                    chkIsCompleted.Visible = true;
+                    ShowLead(hfLeadMode.Value);
+                }
+                else if (Request.QueryString["TYPE"].ToString() == "2" && hfLeadMode.Value == "IP")
+                {
+                    btnAccept.Visible = false;
+                    btnComplete.Visible = true;
+                    chkIsCompleted.Visible = true;
+                    ShowLead(hfLeadMode.Value);
+                }
+                else
+                {
+                    btnAccept.Visible = true;
+                    btnComplete.Visible = false;
+                    chkIsCompleted.Visible = false;
+                    ShowLead(hfLeadMode.Value);
+                }
+
             }
-            else
-            {
-                btnAccept.Visible = true;
-                ShowLead(hfLeadMode.Value);
-            }
-            
-            hfOpmode.Value = "UPDATE";
-            
         }
 
         private void ShowLead(string LeadMode)
@@ -45,11 +57,11 @@ namespace LMT.Supplier
             try
             {
                 string strQuery = "select Lead_ID,Labour_ID,tbl_LabourRegistration.SupplierID,tbl_LabourRegistration.Image_URL,tbl_LabourRegistration.FullName Fname,tbl_SupplierDetail.FullName,tbl_Lbr_Type.Lbr_Type,Name, " +
-                                  "MobileNo,tbl_Customer.EmailID,Address1+','+Address2 as Address,Required_Date,Required_Time from tbl_Leads " +
-                                  "inner join tbl_Customer on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID " +
-                                  "inner join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
-                                  "inner join tbl_SupplierDetail on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
+                                  "tblUserRegistration.phoneno AS MobileNo,tbl_Customer.EmailID,tbl_Leads.Description as Address,Required_Date,Required_Time,Is_completed,Is_accepted from tbl_Leads " +
+                                  "inner join tbl_Customer on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID inner join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID" +
+                                  " inner join tbl_SupplierDetail on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
                                   "inner join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
+                                  "INNER join tblUserRegistration on tbl_Customer.Customer_ID=tblUserRegistration.UserID " +
                                   "Where Status='" + LeadMode + "' and Lead_ID=" + hfLeadID.Value + "";
                 DataTable Labour = csLabourRegistration.FillDataTable(strQuery);
                 if (Labour.Rows.Count > 0)
@@ -66,6 +78,24 @@ namespace LMT.Supplier
                     txtCustTime.Text = Convert.ToString(Dr["Required_Time"]);
                     lblName.Text = Convert.ToString(Dr["Fname"]);
                     hfSupplierID.Value = Convert.ToString(Dr["SupplierID"]);
+                    if (Convert.ToString(Dr["Is_completed"]) == "Y")
+                    {
+                        chkIsCompleted.Checked = true;
+                        btnComplete.Enabled = false;
+                    }
+                    else
+                    {
+                        chkIsCompleted.Checked = false;
+                        btnComplete.Enabled = true;
+                    }
+                    if (Convert.ToString(Dr["Is_accepted"]) == "Y")
+                    {
+                        btnAccept.Enabled = false;
+                    }
+                    else
+                    {
+                        btnAccept.Enabled = true;
+                    }
                 }
             }
             catch (Exception ex)
@@ -84,8 +114,43 @@ namespace LMT.Supplier
                 objLeads.Lead_id = Convert.ToInt32(hfLeadID.Value);
                 objLeads.Asign = Convert.ToInt32(hfSupplierID.Value);
                 objLeads.Status = "IP";
+                objLeads.Is_completed = "N";
+                objLeads.Is_accepted = "Y";
                 objLeads.SaveData(hfOpmode.Value);
                 btnAccept.Enabled = false;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "javascript:AlertMsg('Lead Accepted.');", true);
+            }
+            catch (Exception ex)
+            {
+                string strFnc = "";
+                strFnc = ex.Message;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:AlertMsg('" + strFnc + "');", true);
+            }
+        }
+
+        protected void btnComplete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                hfOpmode.Value = "UPDCOMP";
+                objLeads.Lead_id = Convert.ToInt32(hfLeadID.Value);
+                objLeads.Asign = Convert.ToInt32(hfSupplierID.Value);
+                //CheckBox chk = (CheckBox)FindControl("chkIsCompleted");
+                if (chkIsCompleted.Checked == true)
+                {
+                    objLeads.Is_completed = "Y";
+                    objLeads.Is_accepted = "Y";
+                    objLeads.Status = "CL";
+                    btnComplete.Enabled = false;
+                }
+                else
+                {
+                    objLeads.Is_completed = "N";
+                    objLeads.Is_accepted = "Y";
+                }
+                objLeads.SaveData(hfOpmode.Value);
+
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "javascript:AlertMsg('Lead Accepted.');", true);
             }
             catch (Exception ex)

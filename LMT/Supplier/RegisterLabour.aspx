@@ -328,9 +328,9 @@
                                                                     <td rowspan="3" style="border-top:none">
                                                                         <label for="name">Skill type</label>
                                                                         <asp:RadioButtonList ID="rbtnExpType" ClientIDMode="AutoID" runat="server">
-                                                                            <asp:ListItem Value="1">Skilled</asp:ListItem>
+                                                                          <%--  <asp:ListItem Value="1">Skilled</asp:ListItem>
                                                                             <asp:ListItem Value="2">Semi Skilled</asp:ListItem>
-                                                                            <asp:ListItem Value="3">Fresher</asp:ListItem>
+                                                                            <asp:ListItem Value="3">Fresher</asp:ListItem>--%>
                                                                         </asp:RadioButtonList>
                                                                         <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator18" ControlToValidate="rbtnExpType"
                                                                                     Display="None" ErrorMessage="Skyll type is required." />

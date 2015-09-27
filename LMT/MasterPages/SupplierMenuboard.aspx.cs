@@ -28,7 +28,7 @@ namespace LMT.MasterPages
         {
             try
             {
-                if (Convert.ToString(Session["UserName"]) != null && Convert.ToString(Session["UserType"])!=null)
+                if (Convert.ToString(Session["UserName"]) != null && Convert.ToString(Session["UserType"]) != null)
                 {
                     string strQuery = "Select total=COUNT(Experience_Type),Experience_Type from tbl_LabourRegistration where SupplierID=" + Convert.ToString(Session["UserID"]) + " group by Experience_Type";
                     DataTable dt = new DataTable();
@@ -122,13 +122,14 @@ namespace LMT.MasterPages
             BindClosedLeads();
         }
 
+
         private void BindNewLeads()
         {
-            string strQuery = "select Lead_ID,Labour_ID,tbl_Lbr_Type.Lbr_Type,Name,Required_Date from tbl_Leads " +
-                              "inner join tbl_Customer on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID " +
-                              "inner join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
-                              "inner join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
-                              "Where Status='NL' and Asign=" + Convert.ToString(Session["UserID"]) + " and Required_Date>GETDATE()";
+            string strQuery = "select Lead_ID,Labour_ID,tbl_Lbr_Type.Lbr_Type,Name,Required_Date from tbl_Leads with(nolock)" +
+                              "inner join tbl_Customer with(nolock) on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID " +
+                              "inner join tbl_LabourRegistration with(nolock) on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
+                              "inner join tbl_Lbr_Type with(nolock) on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
+                              "Where Status='IP' and Asign=" + Convert.ToString(Session["UserID"]) + " and Required_Date>GETDATE() and Is_accepted='N'";
             csGlobalFunction.BindRepeater(ref rptLeadInformation, strQuery);
         }
 
@@ -169,7 +170,7 @@ namespace LMT.MasterPages
                 Button btnEdit = (Button)e.Item.FindControl("btnEdit");
 
                 btnEdit.CommandName = "Edit";
-                btnEdit.Attributes["onclick"] = string.Format("window.location = '{0}';", ResolveClientUrl(string.Format("~/Supplier/NewLeads.aspx?ID={0}&MODE={1}", DataBinder.Eval(e.Item.DataItem, "Lead_ID"),"NL")));
+                btnEdit.Attributes["onclick"] = string.Format("window.location = '{0}';", ResolveClientUrl(string.Format("~/Supplier/NewLeads.aspx?ID={0}&MODE={1}&TYPE={2}", DataBinder.Eval(e.Item.DataItem, "Lead_ID"), "IP", "1")));
                 Keys.Add(e.Item.ItemIndex, DataBinder.Eval(e.Item.DataItem, "Lead_ID"));
                 //Button btnEdit = (Button)e.Item.FindControl("btnEdit");
                 //if (csGlobalFunction.CheckUserUpdate())
@@ -182,26 +183,48 @@ namespace LMT.MasterPages
 
         private void BindIPLeads()
         {
-            string strQuery = "select Lead_ID,Labour_ID,tbl_Lbr_Type.Lbr_Type,tbl_SupplierDetail.FullName,Name,Required_Date from tbl_Leads " +
-                              "inner join tbl_Customer on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID " +
-                              "inner join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
-                              "inner join tbl_SupplierDetail on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
-                              "inner join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
-                              "Where Status='IP' and Required_Date>GETDATE()";
+            string strQuery = "select Lead_ID,Labour_ID,tbl_Lbr_Type.Lbr_Type,tbl_SupplierDetail.FullName,Name,Required_Date from tbl_Leads with(nolock) " +
+                              "inner join tbl_Customer with(nolock) on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID " +
+                              "inner join tbl_LabourRegistration with(nolock) on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
+                              "inner join tbl_SupplierDetail with(nolock) on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
+                              "inner join tbl_Lbr_Type with(nolock) on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
+                              "Where Status='IP' and Required_Date>GETDATE() and Is_accepted='Y'";
             csGlobalFunction.BindRepeater(ref rptIPLeads, strQuery);
         }
 
         private void BindClosedLeads()
         {
-            string strQuery = "select Lead_ID,Labour_ID,tbl_Lbr_Type.Lbr_Type,tbl_SupplierDetail.FullName,Name,Required_Date from tbl_Leads " +
-                              "inner join tbl_Customer on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID " +
-                              "inner join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
-                              "inner join tbl_SupplierDetail on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
-                              "inner join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
-                              "Where Status='CL' and Required_Date<GETDATE()";
+            string strQuery = "select Lead_ID,Labour_ID,tbl_Lbr_Type.Lbr_Type,tbl_SupplierDetail.FullName,Name,Required_Date from tbl_Leads with(nolock) " +
+                              "inner join tbl_Customer with(nolock) on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID " +
+                              "inner join tbl_LabourRegistration with(nolock) on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
+                              "inner join tbl_SupplierDetail with(nolock) on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
+                              "inner join tbl_Lbr_Type with(nolock) on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
+                              "Where Status='CL' and Required_Date<=GETDATE() and Is_completed='Y' and Is_accepted='Y'";
             csGlobalFunction.BindRepeater(ref rptClosedLeads, strQuery);
         }
 
+        protected void rptIPLeadInformation_DataBinding(object sender, EventArgs e)
+        {
+            Keys.Clear();
+        }
+
+        protected void rptIPLeadInformation_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                Button btnEdit = (Button)e.Item.FindControl("btnEdit");
+
+                btnEdit.CommandName = "Edit";
+                btnEdit.Attributes["onclick"] = string.Format("window.location = '{0}';", ResolveClientUrl(string.Format("~/Supplier/NewLeads.aspx?ID={0}&MODE={1}&TYPE={2}", DataBinder.Eval(e.Item.DataItem, "Lead_ID"), "IP", "2")));
+                Keys.Add(e.Item.ItemIndex, DataBinder.Eval(e.Item.DataItem, "Lead_ID"));
+                //Button btnEdit = (Button)e.Item.FindControl("btnEdit");
+                //if (csGlobalFunction.CheckUserUpdate())
+                //    btnEdit.Attributes["OnClick"] = string.Format("Javascript:EditRecord('../Supplier/RegisterLabour','Mode=" + globalobject._updateMode + "','ID={0}',780,900); return false", DataBinder.Eval(e.Item.DataItem, "Reg_ID"));
+                //else
+                //    btnEdit.Attributes["OnClick"] = string.Format("Javascript:EditRecord('../TransAdmission/Adm_StdAdd','Mode=" + globalobject._viewMode + "','ID={0}',780,900); return false", DataBinder.Eval(e.Item.DataItem, "StudentID"));
+            }
+        }
         protected void rptClosedLeads_DataBinding(object sender, EventArgs e)
         {
             Keys.Clear();
@@ -238,7 +261,7 @@ namespace LMT.MasterPages
                 Button btnEdit = (Button)e.Item.FindControl("btnEdit");
 
                 btnEdit.CommandName = "Edit";
-                btnEdit.Attributes["onclick"] = string.Format("window.location = '{0}';", ResolveClientUrl(string.Format("~/Supplier/NewLeads.aspx?ID={0}&MODE={1}", DataBinder.Eval(e.Item.DataItem, "Lead_ID"),"CL")));
+                btnEdit.Attributes["onclick"] = string.Format("window.location = '{0}';", ResolveClientUrl(string.Format("~/Supplier/NewLeads.aspx?ID={0}&MODE={1}&TYPE={2}", DataBinder.Eval(e.Item.DataItem, "Lead_ID"), "CL", "3")));
                 Keys.Add(e.Item.ItemIndex, DataBinder.Eval(e.Item.DataItem, "Lead_ID"));
                 //Button btnEdit = (Button)e.Item.FindControl("btnEdit");
                 //if (csGlobalFunction.CheckUserUpdate())
@@ -246,6 +269,11 @@ namespace LMT.MasterPages
                 //else
                 //    btnEdit.Attributes["OnClick"] = string.Format("Javascript:EditRecord('../TransAdmission/Adm_StdAdd','Mode=" + globalobject._viewMode + "','ID={0}',780,900); return false", DataBinder.Eval(e.Item.DataItem, "StudentID"));
             }
+        }
+
+        protected void rptIPLeads_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+
         }
     }
 }

@@ -236,6 +236,13 @@ namespace LMT.BusinessLogic
             set { _wages = value; }
         }
 
+        private int _Lbr_Skill ;
+        public int Lbr_Skill
+        {
+            get { return _Lbr_Skill; }
+            set { _Lbr_Skill = value; }
+        }
+
         private void AddProcParam()
         {
             objParamCollection = new DbSqlParameterCollection();
@@ -337,6 +344,9 @@ namespace LMT.BusinessLogic
             DbSqlParameter WagesPara = new DbSqlParameter("@Wages", SqlDbType.VarChar);
             WagesPara.Value = _wages;
             objParamCollection.Add(WagesPara);
+            DbSqlParameter Lbr_SkillPara = new DbSqlParameter("@Lbr_Skill", SqlDbType.Int);
+            Lbr_SkillPara.Value = _Lbr_Skill;
+            objParamCollection.Add(Lbr_SkillPara);
 
         }
 
@@ -370,6 +380,22 @@ namespace LMT.BusinessLogic
             DataSet ds = DataWrapper.ExecuteDataset(DBConnectionString, CommandType.StoredProcedure, "usp_GetLabourData", sqlParams);
 
             return ds.Tables[0];
+
+        }
+
+        public static int GetLabourMaxId()
+        {
+            int max_regid=0;
+            string DBConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["CrystalConnection"].ConnectionString;
+            //SqlParameter[] sqlParams = new SqlParameter[1];//1
+            //sqlParams[0] = new SqlParameter("@Reg_ID", Reg_ID);
+            DataSet ds = DataWrapper.ExecuteDataset(DBConnectionString, CommandType.StoredProcedure, "usp_GetLabourId");
+            if (ds.Tables[0].Rows.Count != 0)
+            {
+                max_regid = int.Parse(ds.Tables[0].Rows[0]["REG_ID"].ToString());
+            }
+
+            return max_regid;
 
         }
 

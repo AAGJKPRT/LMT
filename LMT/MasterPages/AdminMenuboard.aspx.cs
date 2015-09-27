@@ -54,13 +54,12 @@ namespace LMT.MasterPages
         {
 
             string strQuery = "select Lead.Lead_ID,Lead.Customer_ID as UserID,Lead.Labour_ID,isnull(Convert(Varchar(10),Lead.Asign),'') as SuppilerID, " +
-                "isnull(SD.SupplierCode,'')as SupplierCode, " +
-                    " Convert(Varchar(10),Lead.Required_Date) as RequestDate,Lead.Ticket as RequestNumber, " +
+                "isnull(SD.SupplierCode,'')as SupplierCode, Convert(Varchar(10),Lead.Required_Date) as RequestDate,Lead.Ticket as RequestNumber, " +
                     " LR.FullName as LabourName,LR.Image_URL as LabourImageURL,LR.Labour_Code,LR.Wages as RatesPerDay, " +
-                    " UR.LoginName as UserName,LR.Ph_No as LabourPhone from tbl_Leads as Lead " +
-                    " inner join tblUserRegistration UR on Lead.Customer_ID=UR.UserID " +
-                    " inner join tbl_LabourRegistration LR on Lead.Labour_ID=LR.Reg_ID " +
-                    " Left join tbl_SupplierDetail SD on Lead.Asign=SD.SupplierID " +
+                    " UR.UserName as UserName,LR.Ph_No as LabourPhone from tbl_Leads as Lead with(nolock)" +
+                    " inner join tblUserRegistration UR with(nolock) on Lead.Customer_ID=UR.UserID " +
+                    " inner join tbl_LabourRegistration LR with(nolock) on Lead.Labour_ID=LR.Reg_ID " +
+                    " Left join tbl_SupplierDetail SD with(nolock) on Lead.Asign=SD.SupplierID " +
                     " where Lead.Status='NL' order by Lead.Required_Date desc ";
             csGlobalFunction.BindRepeater(ref rptLeadInformation, strQuery);
         }
@@ -207,6 +206,7 @@ namespace LMT.MasterPages
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:alert('" + strFnc + "');", true);
             }
         }
+
         #endregion
 
         #region CL

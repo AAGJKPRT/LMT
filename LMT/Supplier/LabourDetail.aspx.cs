@@ -40,10 +40,10 @@ namespace LMT.Supplier
 
                 //if (Session["rptclassid"] != null && Session["rptsectionid"] != null)
                 //{
-                    //ddlclass.SelectedValue = Session["rptclassid"].ToString();
-                    //ddlSection.SelectedValue = Session["rptsectionid"].ToString();
-                    //ddlSection.Enabled = true;
-                    BindRepeater();
+                //ddlclass.SelectedValue = Session["rptclassid"].ToString();
+                //ddlSection.SelectedValue = Session["rptsectionid"].ToString();
+                //ddlSection.Enabled = true;
+                BindRepeater();
                 //}
             }
 
@@ -57,8 +57,8 @@ namespace LMT.Supplier
         private void BindRepeater()
         {
             string strQuery = " Select Reg_ID,Labour_Code,FullName,Ph_No,C_Address,CityName,StateName From tbl_LabourRegistration" +
-                              " Inner Join tblCity on tbl_LabourRegistration.CCity=tblCity.CityID"+
-                              " Inner Join tblState on tbl_LabourRegistration.CState=tblState.StateID"+
+                              " Inner Join tblCity on tbl_LabourRegistration.CCity=tblCity.CityID" +
+                              " Inner Join tblState on tbl_LabourRegistration.CState=tblState.StateID" +
                               " Where SupplierID=" + Convert.ToString(Session["UserID"]) + " ";
             csGlobalFunction.BindRepeater(ref rptLabourInformation, strQuery);
         }
@@ -78,10 +78,10 @@ namespace LMT.Supplier
 
             switch (e.CommandName)
             {
-                   
+
                 case "Delete":
                     //if (csGlobalFunction.CheckUserDelete())
-                        DeleteData(e);
+                    DeleteData(e);
                     //else
                     //{
                     //    string strFnc = "Javascript:disableSubmit('Y','" + globalobject._deleteUserRcd + "');";
@@ -93,13 +93,13 @@ namespace LMT.Supplier
         }
         protected void rptLabourInformation_ItemDataBound(object sender, RepeaterItemEventArgs e)
         {
-           
+
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 Button btnEdit = (Button)e.Item.FindControl("btnEdit");
 
                 btnEdit.CommandName = "Edit";
-                btnEdit.Attributes["onclick"] = string.Format("window.location = '{0}';", ResolveClientUrl(string.Format("~/Supplier/RegisterLabour.aspx?ID={0}", DataBinder.Eval(e.Item.DataItem,"Reg_ID"))));
+                btnEdit.Attributes["onclick"] = string.Format("window.location = '{0}';", ResolveClientUrl(string.Format("~/Supplier/RegisterLabour.aspx?ID={0}", DataBinder.Eval(e.Item.DataItem, "Reg_ID"))));
                 Keys.Add(e.Item.ItemIndex, DataBinder.Eval(e.Item.DataItem, "Reg_ID"));
                 //Button btnEdit = (Button)e.Item.FindControl("btnEdit");
                 //if (csGlobalFunction.CheckUserUpdate())
@@ -107,7 +107,7 @@ namespace LMT.Supplier
                 //else
                 //    btnEdit.Attributes["OnClick"] = string.Format("Javascript:EditRecord('../TransAdmission/Adm_StdAdd','Mode=" + globalobject._viewMode + "','ID={0}',780,900); return false", DataBinder.Eval(e.Item.DataItem, "StudentID"));
                 HtmlInputButton btnprint = (HtmlInputButton)e.Item.FindControl("btnprint");
-                btnprint.Attributes["OnClick"] = string.Format("javascript:window.open('../Reports/rptLabourProfile.aspx?id=" + Convert.ToDecimal(DataBinder.Eval(e.Item.DataItem, "Reg_ID").ToString()) + "', 'PrintReport','width=1050,height=1310,scrollbars=1,menubar=no,top=100,left=200')", DataBinder.Eval(e.Item.DataItem, "Reg_ID"));
+                btnprint.Attributes["OnClick"] = string.Format("javascript:window.open('../Reports/rptLabourProfile.aspx?id=" + Convert.ToDecimal(DataBinder.Eval(e.Item.DataItem, "Reg_ID").ToString()) + "', 'PrintReport','width=1050,height=1310,scrollbars=1,menubar=no,top=100,left=200,resizable=false')", DataBinder.Eval(e.Item.DataItem, "Reg_ID"));
             }
         }
         private void DeleteData(RepeaterCommandEventArgs e)
@@ -159,6 +159,7 @@ namespace LMT.Supplier
         //    else
         //    {
         //        ddlSection.Enabled = false;
+
         //        objdropdown.FillDropDown(ref ddlSection, "Select  SectionID,Section from tblSection", "Section", "SectionID", "Order By Section", "Where IsVerify='Y'");
         //    }
         //}
@@ -171,6 +172,6 @@ namespace LMT.Supplier
 
         //}
 
-       
+
     }
 }
