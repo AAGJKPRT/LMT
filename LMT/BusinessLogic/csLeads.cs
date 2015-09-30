@@ -147,7 +147,7 @@ namespace LMT.BusinessLogic
             set { _description = value; }
         }
 
-        public string Lead_Adress { get; set; }
+        public string Lead_Address { get; set; }
 
         //Added by khushbu for lead CR
         private string _Is_accepted = "";
@@ -206,9 +206,10 @@ namespace LMT.BusinessLogic
             TicketPara.Value = _ticket;
             objParamCollection.Add(TicketPara);
 
-            DbSqlParameter DescPara = new DbSqlParameter("@Description", SqlDbType.VarChar);
-            DescPara.Value = _description;
-            objParamCollection.Add(DescPara);
+            //As of now this is not in use changes done on 30th Sept 2015 by GK
+            //DbSqlParameter DescPara = new DbSqlParameter("@Description", SqlDbType.VarChar);
+            //DescPara.Value = _description;
+            //objParamCollection.Add(DescPara);
 
             DbSqlParameter is_accepted = new DbSqlParameter("@is_accepted", SqlDbType.VarChar);
             is_accepted.Value = _Is_accepted;
@@ -217,6 +218,11 @@ namespace LMT.BusinessLogic
             DbSqlParameter is_completed = new DbSqlParameter("@is_completed", SqlDbType.VarChar);
             is_completed.Value = _Is_completed;
             objParamCollection.Add(is_completed);
+
+            DbSqlParameter Lead_AdressPara = new DbSqlParameter("@Lead_Address", SqlDbType.VarChar);
+            Lead_AdressPara.Value = Lead_Address;
+            objParamCollection.Add(Lead_AdressPara);
+
         }
 
         private void AddCustomerProcParam()
@@ -291,7 +297,7 @@ namespace LMT.BusinessLogic
             _lead_id = LeadID;
             AddProcParam();
             CrystalConnection.DoStoredScalar("usp_Leads", objParamCollection, true);
-        
+
         }
 
         public static DataTable FillDataTable(string query)

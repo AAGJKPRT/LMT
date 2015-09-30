@@ -64,7 +64,7 @@ namespace LMT.Customer
             {
                 if (ddlLabourCategory.SelectedValue != "-1" && ddlLabourType.SelectedValue != "-1")
                 {
-                   // BindRepeater();
+                    // BindRepeater();
                 }
             }
             catch (Exception ex)
@@ -83,7 +83,7 @@ namespace LMT.Customer
         }
 
         private void BindRepeater()
-        { 
+        {
             string strQuery = " Select Reg_ID,FullName,Image_URL from tbl_LabourRegistration " +
 
             " where CPincode=" + txtPincode.Text.Trim() + " and LabourType='" + ddlLabourType.SelectedValue + "'";
@@ -235,8 +235,8 @@ namespace LMT.Customer
                 objLeads.Required_time = ddlRequiredTime.SelectedItem.Text;
                 objLeads.Status = "NL";
                 objLeads.Ticket = "REQ" + RND.Next(1, 99999).ToString().PadLeft(5, '0');
-                objLeads.Description = txtDesc.Text;
-                //objLeads.Supplierid = Convert.ToInt32(Session["UserID"]);
+                objLeads.Lead_Address = txtDesc.Text;
+                //objLeads.Supplierid = Convert.ToInt32(Session["UserID"]); //this ID is we are getting from labour ID in Proc only.
             }
             catch (Exception ex)
             {
@@ -290,7 +290,7 @@ namespace LMT.Customer
                        "<br>In case of any further clarification, feel free to call  or write to us at the contacts given in this email.";
             EmailSendDelegate emailSendDelegate = new EmailSendDelegate(csGlobalFunction.SendEmail);
             emailSendDelegate.BeginInvoke(Session["userEmail"].ToString(), "Registration Confirmation mail", "", null, null);
-        } 
+        }
 
         protected void rptLabourInformation_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
@@ -370,7 +370,7 @@ namespace LMT.Customer
         {
             try
             {
-                if(validate_code())
+                if (validate_code())
                 {
                     return;
                 }
@@ -384,7 +384,7 @@ namespace LMT.Customer
                 string strFnc = "";
                 strFnc = ex.Message;
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:AlertMsg('" + strFnc + "');", true);
-            }   
+            }
         }
 
 

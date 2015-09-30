@@ -17,7 +17,7 @@
             padding: 0 10px;
             height: 26px;
             color: #404040;
-            background: white;
+            background: white; 
             border: 1px solid;
             border-color: #c4c4c4 #d1d1d1 #d4d4d4;
             border-radius: 2px;
@@ -69,17 +69,7 @@
                                                     Display="None" ErrorMessage="User name is required." />
                                             </td>
                                         </tr>
-                                        <tr style="height: 25px;">
-                                            <td>Login Name :
-                                            </td>
-                                            <td>
-                                                <asp:TextBox ID="txtLoginName" runat="server" CssClass="cssTextBox cssTextBox-enabled"
-                                                    AutoCompleteType="None" AutoComplete="OFF" AutoPostBack="true" ClientIDMode="AutoID" MaxLength="20" Width="174px"
-                                                    Style="margin-left: 2px;" OnTextChanged="txtLoginName_TextChanged"></asp:TextBox>
-                                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtLoginName"
-                                                    Display="None" ErrorMessage="Login name is required." />
-                                            </td>
-                                        </tr>
+                                        
                                         <tr style="height: 25px;">
                                             <td>Password :
                                             </td>
@@ -112,21 +102,20 @@
                                                     Display="None" ErrorMessage="Please select User Type." />
                                             </td>
                                         </tr>
-                                        <tr style="height: 25px;">
+                                        <tr  style="height: 25px;display:none;">
                                             <td>User Category :
                                             </td>
                                             <td>
                                                 <asp:DropDownList ID="ddlUserCategory" runat="server" CssClass="cssDropDownList cssDropDownList-enabled ddl">
                                                 </asp:DropDownList>
-                                                <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="ddlUserCategory"
-                                                    Display="None" ErrorMessage="Please select User Category." />
+                                                
                                             </td>
                                         </tr>
                                         <tr style="height: 25px;">
                                             <td>Phone no. :
                                             </td>
                                             <td>
-                                                <asp:TextBox ID="txtphoneno" runat="server" CssClass="cssTextBox cssTextBox-enabled"
+                                                <asp:TextBox ID="txtphoneno" runat="server" MaxLength="13" CssClass="cssTextBox cssTextBox-enabled"
                                                     AutoCompleteType="None" Width="174px" Style="margin-left: 2px;"></asp:TextBox>
                                                 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ControlToValidate="txtphoneno"
                                                     Display="None" ErrorMessage="Phone no. is required." />

@@ -312,7 +312,7 @@ namespace LMT
             {
                 Random RND = new Random();
                 csuserRegistration.USERNAME = txtUserName.Text;
-                csuserRegistration.LOGINNAME = "";//this is not in user 
+                csuserRegistration.LOGINNAME = "";//this is not in use 
                 csuserRegistration.PWD = csuserRegistration.EncodePasswordToBase64("Welcome" + RND.Next(1, 99999).ToString().PadLeft(5, '0'));
                 csuserRegistration.USERTYPEID = 4;//4[Customer] is fixed for the Guest user type and normal user, we are registering an user as a guest user from this function.
                 csuserRegistration.USERCATEGORYID = 1;//this is the fixed Id not in used, 1 means all access but not is used as of now.
@@ -341,7 +341,7 @@ namespace LMT
                 objLeads.Required_time = ddlRequiredTime.SelectedItem.Text;
                 objLeads.Status = "NL";
                 objLeads.Ticket = "REQ" + RND.Next(1, 99999).ToString().PadLeft(5, '0');
-                objLeads.Lead_Adress = txtHouseNo.Text.Trim() + ", " + txtLocation.Text.Trim();
+                objLeads.Lead_Address = txtHouseNo.Text.Trim() + ", " + txtLocation.Text.Trim();
                 //objLeads.Asign= this will be get from the SP via using labour Id
                 //Description
                 //
@@ -421,7 +421,6 @@ namespace LMT
             //        return false;
             //    }
             //}
-            return true;
         }
 
         public bool ValidateUserName()
