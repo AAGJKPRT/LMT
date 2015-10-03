@@ -43,9 +43,10 @@ namespace LMT.Admin
         {
             string strQuery = "Select SupplierID,SupplierCode,FullName,Address,case when(Sup_City=0) then 'Not Selected' else CityName END as 'CityName'," +
                               " case when(Sup_State=0) then 'Not Selected' else StateName END as 'StateName',Sup_Mobile from tbl_SupplierDetail" +
-                              " LEFT Join tblCity on tbl_SupplierDetail.Sup_City=tblCity.CityID"+
+                              " LEFT Join tblCity on tbl_SupplierDetail.Sup_City=tblCity.CityID" +
                               " LEFT Join tblState on tbl_SupplierDetail.Sup_State=tblState.StateID ";
             csGlobalFunction.BindRepeater(ref rptSupplierInformation, strQuery);
+            lblTotalLabour.Text = rptSupplierInformation.Items.Count.ToString();//new line added by GK at 03/10/2015 11:56 PM
         }
 
         protected void rptSupplierInformation_DataBinding(object sender, EventArgs e)

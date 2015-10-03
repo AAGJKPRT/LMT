@@ -107,8 +107,9 @@
                 }
 
             .fixed_headers thead {
-                background-color: #333333;
-                color: #fdfdfd;
+                background-color: #FFFFFF;
+                color: #333333;
+                border-bottom: 1px solid;
             }
 
                 .fixed_headers thead tr {
@@ -124,7 +125,7 @@
             }
 
                 .fixed_headers tbody tr:nth-child(even) {
-                    background-color: #dddddd;
+                    background-color: #FFF;
                 }
 
         .old_ie_wrapper {
@@ -174,17 +175,15 @@
                                     </td>
                                 </tr>
                             </table> --%>
-                            <table style="border: 0px;">                                
-                                <tr>
-                                    <td>Total No of Supplier : <asp:Label ID="txtTotalLabour" runat="server"></asp:Label></td>
-                                </tr>
-                            </table>
                             <table style="border: 0px;" width="97%" class="none">
                                                     <tr>
+                                                         <td style="text-align: left;">
+                                                             Total No of Suppliers : <b> <asp:Label ID="lblTotalLabour" runat="server"></asp:Label> </b>
+                                                         </td>
                                                         <td style="width: auto;" align="right">
                                                             
                                                             <div class="formheadingstyleRight">
-                                                                <asp:LinkButton ID="lbtnAdd" CssClass="add" Text="Add New" runat="server" 
+                                                                <asp:LinkButton ID="lbtnAdd" CssClass="btn btn-primary btn-xs" Text="Add New" runat="server" 
                                                                     onclick="lbtnAdd_Click" />
                                                             </div>
                                                         </td>
@@ -198,49 +197,49 @@
                                                    <HeaderTemplate>
                                                        <table class="fixed_headers">
                                                            <thead>
-                                                               <th align="left">
+                                                               <th >
                                                                    Name
                                                                </th>
-                                                               <th align="left" >
+                                                               <th  >
                                                                    Mobile No.
                                                                </th>
-                                                               <th align="left" >
+                                                               <th  >
                                                                    City
                                                                </th>
                                                                <th >
                                                                    State
                                                                </th>
-                                                               <th>
-                                                                   View Labour
+                                                               <th style="text-align:center;" >
+                                                                    Labour
                                                                </th>
-                                                               <th>
-                                                                   View Profile
+                                                               <th align="center">
+                                                                    Profile
                                                                </th>
-                                                               <th >
+                                                               <th align="center" >
                                                                    Delete
                                                                </th>
                                                            </thead>
                                                            <tbody>
                                                    </HeaderTemplate>
                                                    <ItemTemplate>
-                                                       <tr align="left" >
-                                                           <td align="left">
+                                                       <tr>
+                                                           <td >
                                                                <asp:Label ID="lblfullName" runat="server" Text='<%#Eval("FullName") %>'></asp:Label>
                                                            </td>
-                                                           <td align="left">
+                                                           <td >
                                                                <asp:Label ID="lblfathernme" runat="server" Text='<%#Eval("Sup_Mobile") %>'></asp:Label>
                                                            </td>
-                                                           <td align="left">
+                                                           <td >
                                                                <asp:Label ID="lblClass" runat="server" Text='<%#Eval("CityName") %>'></asp:Label>
                                                            </td>
-                                                           <td align="left">
+                                                           <td >
                                                                <asp:Label ID="lblrollno" runat="server" Text='<%#Eval("StateName") %>'></asp:Label>
                                                            </td>
-                                                           <td>
-                                                                <asp:LinkButton ID="lnkViewLabour" runat="server" Text="View" CommandName="View" ClientIDMode="AutoID"></asp:LinkButton>
+                                                           <td align="center">
+                                                                <asp:LinkButton ID="lnkViewLabour" runat="server" CssClass="btn btn-info btn-xs"  Text="View" CommandName="View" ClientIDMode="AutoID"></asp:LinkButton>
                                                            </td>
                                                            <td align="center">
-                                                               <asp:Button ID="btnEdit" runat="server" CssClass="edit" CommandName="Edit" />
+                                                               <asp:Button ID="btnEdit" runat="server" CssClass="btn btn-info btn-xs" Text="Edit" CommandName="Edit" />
                                                            </td>
                                                            <td align="center">
                                                                <asp:Button ID="btnDelete" runat="server" CssClass="delete" CommandName="Delete"
@@ -297,10 +296,10 @@
                                                                                 City
                                                                             </th>
                                                                             <th style="width: 100px;">
-                                                                                State
+                                                                               State
                                                                             </th>
                                                                             <th style="width: 30px;">
-                                                                                View Profile
+                                                                                Profile
                                                                             </th>
                                                                         </thead>
                                                                         <tbody>
@@ -320,7 +319,7 @@
                                                                             <asp:Label ID="lblrollno" runat="server" Text='<%#Eval("StateName") %>'></asp:Label>
                                                                         </td>
                                                                         <td align="center">
-                                                                            <asp:Button ID="btnEdit" runat="server" CssClass="edit" CommandName="Edit" />
+                                                                            <asp:Button ID="btnEdit" runat="server" CssClass="btn btn-info btn-xs" Text="Show" CommandName="Edit" />
                                                                         </td>
                                                                     </tr>
                                                                 </ItemTemplate>
