@@ -3,7 +3,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-<!--[if IE]>
+    <!--[if IE]>
 	<link rel="stylesheet" type="text/css" href="../css/all-ie-only.css" />
     <![endif]-->
     <%--<link href="../css/dashcss.css" rel="stylesheet" type="text/css" />--%>
@@ -20,44 +20,127 @@
             $("[name$='$Select]").attr("name", this.attr("name"));
         });
     </script>
-    
-            
+
+
     <style>
-        .widget-content table tr
-        {
+        .widget-content table tr {
             line-height: 20px;
         }
-        .widget-content table td
-        {
+
+        .widget-content table td {
             border: none;
             padding: 1px;
         }
-        .widget-content table td > span
-        {
-            width: 96%;
-            text-align: center;
-            border: 0;
-            display: inline-block;
-            padding: 5px;
-            position: relative;
-            background-color: rgb(41,127,184);
-            color: rgb(255,255,255);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0px 1px 0px rgba(0,0,0,0.5);
-            -webkit-box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
-            box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
-            cursor: pointer;
+
+            .widget-content table td > span {
+                width: 96%;
+                text-align: center;
+                border: 0;
+                display: inline-block;
+                padding: 5px;
+                position: relative;
+                background-color: rgb(41,127,184);
+                color: rgb(255,255,255);
+                text-decoration: none;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                text-shadow: 0px 1px 0px rgba(0,0,0,0.5);
+                -webkit-box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+                box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+                cursor: pointer;
+            }
+
+                .widget-content table td > span > a {
+                    color: #fff;
+                }
+
+
+        .fixed_headers {
+            width: 522px;
+            table-layout: fixed;
+            border-collapse: collapse;
         }
-        .widget-content table td > span > a
-        {
-            color: #fff;
+
+            .fixed_headers th {
+                text-decoration: underline;
+            }
+
+            .fixed_headers th,
+            .fixed_headers td {
+                padding: 5px;
+                text-align: left;
+            }
+
+                .fixed_headers td:nth-child(1),
+                .fixed_headers th:nth-child(1) {
+                    min-width: 100px;
+                }
+
+                .fixed_headers td:nth-child(2),
+                .fixed_headers th:nth-child(2) {
+                    min-width: 100px;
+                }
+
+                .fixed_headers td:nth-child(3),
+                .fixed_headers th:nth-child(3) {
+                    width: 100px;
+                }
+
+                .fixed_headers td:nth-child(4),
+                .fixed_headers th:nth-child(4) {
+                    width: 100px;
+                }
+
+                .fixed_headers td:nth-child(5),
+                .fixed_headers th:nth-child(5) {
+                    width: 100px;
+                }
+
+                .fixed_headers td:nth-child(6),
+                .fixed_headers th:nth-child(6) {
+                    width: 100px;
+                }
+
+                .fixed_headers td:nth-child(7),
+                .fixed_headers th:nth-child(7) {
+                    width: 100px;
+                }
+
+            .fixed_headers thead {
+                background-color: #333333;
+                color: #fdfdfd;
+            }
+
+                .fixed_headers thead tr {
+                    display: block;
+                    position: relative;
+                }
+
+            .fixed_headers tbody {
+                display: block;
+                overflow: auto;
+                width: 100%;
+                height: 300px;
+            }
+
+                .fixed_headers tbody tr:nth-child(even) {
+                    background-color: #dddddd;
+                }
+
+        .old_ie_wrapper {
+            height: 200px;
+            width: 400px;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
+
+            .old_ie_wrapper tbody {
+                height: auto;
+            }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<div class="demo-wrapper">
+    <div class="demo-wrapper">
         <header id="ccr-header">
 		<div class="ccr-hbg">			 
 			<div class="ccr-slug" >
@@ -69,14 +152,14 @@
                      <ContentTemplate>
                      
                       <div class="col-sm-3 col-md-6 col-lg-6">
-                         <div class="panel panel-default" style="height:65vh;">
+                         <div class="panel panel-default" style="height:auto;">
                            <div class="panel-heading">
                               <h3 class="panel-title">
                                  <p class="text-center">Supplier/Contractor Details</p>
                                 
                               </h3>
                            </div>
-                           <div class="panel-body" style="overflow-y:scroll;">
+                           <div class="panel-body" >
                               <%--<table style="border: 0px;float: left;" >
                                 
                                 <tr>
@@ -107,24 +190,24 @@
                                                         </td>
                                                     </tr>
                                                 </table>
-                                  <asp:Panel ID="dt_example" runat="server" Width="97%" Style="margin-top: 5px;">
+                                  <asp:Panel ID="dt_example" runat="server">
                                        <div id="container">
                                            <div id="demo">
                                                <asp:Repeater ID="rptSupplierInformation" runat="server" OnDataBinding="rptSupplierInformation_DataBinding"
                                                    OnItemCommand="rptSupplierInformation_ItemCommand" OnItemDataBound="rptSupplierInformation_ItemDataBound">
                                                    <HeaderTemplate>
-                                                       <table border="0" width="650" class="display" id="example">
+                                                       <table class="fixed_headers">
                                                            <thead>
-                                                               <th align="left" style="width: 175px;">
+                                                               <th align="left">
                                                                    Name
                                                                </th>
-                                                               <th align="left" style="width: 130px;">
+                                                               <th align="left" >
                                                                    Mobile No.
                                                                </th>
-                                                               <th align="left" style="width: 100px;">
+                                                               <th align="left" >
                                                                    City
                                                                </th>
-                                                               <th style="width: 100px;">
+                                                               <th >
                                                                    State
                                                                </th>
                                                                <th>
@@ -133,14 +216,14 @@
                                                                <th>
                                                                    View Profile
                                                                </th>
-                                                               <th style="width: 30px;">
+                                                               <th >
                                                                    Delete
                                                                </th>
                                                            </thead>
                                                            <tbody>
                                                    </HeaderTemplate>
                                                    <ItemTemplate>
-                                                       <tr align="left" class="gradeC">
+                                                       <tr align="left" >
                                                            <td align="left">
                                                                <asp:Label ID="lblfullName" runat="server" Text='<%#Eval("FullName") %>'></asp:Label>
                                                            </td>

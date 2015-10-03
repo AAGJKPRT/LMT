@@ -60,7 +60,7 @@ namespace LMT.MasterPages
                     " inner join tblUserRegistration UR with(nolock) on Lead.Customer_ID=UR.UserID " +
                     " inner join tbl_LabourRegistration LR with(nolock) on Lead.Labour_ID=LR.Reg_ID " +
                     " Left join tbl_SupplierDetail SD with(nolock) on Lead.Asign=SD.SupplierID " +
-                    " where Lead.Status='NL' order by Lead.Required_Date desc ";
+                    " where Lead.Status='NL' order by Lead.createddate desc ";
             csGlobalFunction.BindRepeater(ref rptLeadInformation, strQuery);
         }
 

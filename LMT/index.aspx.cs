@@ -209,8 +209,12 @@ namespace LMT
                 txtPassword.Visible = true;
                 txtMobile.Visible = false;//new added
                 txtEmail.Visible = false;
-                txtHouseNo.Visible = false;
-                txtLocation.Visible = false;
+                //txtHouseNo.Visible = false;
+                //txtLocation.Visible = false;
+
+                txtHouseNo.Visible = true;
+                txtLocation.Visible = true;
+
                 chkAgree.Visible = false;
                 lnkForgotPassword.Visible = true;
                 btnBookNow.Enabled = true;
@@ -221,8 +225,13 @@ namespace LMT
                 txtUserName.Visible = true;
                 txtPassword.Visible = false;
                 txtEmail.Visible = true;
+
                 txtHouseNo.Visible = true;
                 txtLocation.Visible = true;
+
+                //txtHouseNo.Visible = false;
+                //txtLocation.Visible = false;
+
                 chkAgree.Visible = true;
                 txtMobile.Visible = true;//new added
                 lnkForgotPassword.Visible = false;
@@ -272,23 +281,21 @@ namespace LMT
 
                         //lblMessage.Text = "Your Request have been submitted successfully. Our Executive will contact you shortly. Thank you ";
                         //ScriptManager.RegisterStartupScript(this, this.GetType(), "LaunchServerSide", "$(function() { SaveSuccess(); });", true);
-
                         if (Session["UserType"].ToString() == "Admin")
                         {
-                            Response.Redirect("~/MasterPages/AdminMenuboard.aspx");
+                            Response.Redirect("~/MasterPages/AdminMenuboard.aspx", false);
                         }
                         else if (Session["UserType"].ToString() == "Supplier")
                         {
-                            Response.Redirect("~/MasterPages/SupplierMenuboard.aspx");
+                            Response.Redirect("~/MasterPages/SupplierMenuboard.aspx", false);
                         }
                         else if (Session["UserType"].ToString() == "Customer")
                         {
-                            Response.Redirect("~/Customer/AddNewCase.aspx");
+                            Response.Redirect("~/Customer/AddNewCase.aspx", false);
                         }
                         else
                         {
-                            Response.Redirect("~/login.aspx");
-
+                            Response.Redirect("~/login.aspx", false);
                         }
                     }
                 }
@@ -377,6 +384,18 @@ namespace LMT
             if ((txtUserName.Text.Trim() == ""))
             {
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please enter valid Username');", true);
+                txtMobile.Focus();
+                return false;
+            }
+            if ((txtPassword.Text.Trim() == ""))
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please enter valid password');", true);
+                txtPassword.Focus();
+                return false;
+            }
+            if ((txtHouseNo.Text.Trim() == "" || txtLocation.Text.Trim() == ""))
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alertMessage", "alert('Please enter valid Address');", true);
                 txtMobile.Focus();
                 return false;
             }

@@ -512,7 +512,7 @@ namespace LMT.Supplier
             {
                 string strFnc = "";
                 strFnc = ex.Message;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "alert('" + strFnc + "');", true);
+               // ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "alert('" + strFnc + "');", true);
             }
         }
 
