@@ -56,19 +56,19 @@ namespace LMT.Supplier
         {
             try
             {
-                string strQuery = "select Lead_ID,Labour_ID,tbl_LabourRegistration.SupplierID,tbl_LabourRegistration.Image_URL,tbl_LabourRegistration.FullName Fname,tbl_SupplierDetail.FullName,tbl_Lbr_Type.Lbr_Type,Name, " +
-                                  "tblUserRegistration.phoneno AS MobileNo,tbl_Customer.EmailID,tbl_Leads.Description as Address,Required_Date,Required_Time,Is_completed,Is_accepted from tbl_Leads " +
-                                  "inner join tbl_Customer on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID inner join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID" +
-                                  " inner join tbl_SupplierDetail on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
-                                  "inner join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
-                                  "INNER join tblUserRegistration on tbl_Customer.Customer_ID=tblUserRegistration.UserID " +
-                                  "Where Status='" + LeadMode + "' and Lead_ID=" + hfLeadID.Value + "";
-                DataTable Labour = csLabourRegistration.FillDataTable(strQuery);
+                //string strQuery = "select Lead_ID,Labour_ID,tbl_LabourRegistration.SupplierID,tbl_LabourRegistration.Image_URL,tbl_LabourRegistration.FullName Fname,tbl_SupplierDetail.FullName,tbl_Lbr_Type.Lbr_Type,Name, " +
+                //                  "tblUserRegistration.phoneno AS MobileNo,tbl_Customer.EmailID,tbl_Leads.Description as Address,Required_Date,Required_Time,Is_completed,Is_accepted from tbl_Leads " +
+                //                  "inner join tbl_Customer on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID inner join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID" +
+                //                  " inner join tbl_SupplierDetail on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
+                //                  "inner join tbl_Lbr_Type on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
+                //                  "INNER join tblUserRegistration on tbl_Customer.Customer_ID=tblUserRegistration.UserID " +
+                //                  "Where Status='" + LeadMode + "' and Lead_ID=" + hfLeadID.Value + "";
+                DataTable Labour = csLabourRegistration.GetCustomerLeadData(Convert.ToInt32(hfLeadID.Value), Convert.ToString(Session["CurrentMode"]), "S");
                 if (Labour.Rows.Count > 0)
                 {
                     DataRow Dr = Labour.Rows[0];
                     LabourImageControl.ImageUrl = Convert.ToString(Dr["Image_URL"]);
-                    txtCustName.Text = Convert.ToString(Dr["Name"]);
+                    txtCustName.Text = Convert.ToString(Dr["CustomerName"]);
                     txtCustMobNo.Text = Convert.ToString(Dr["MobileNo"]);
                     txtEmail.Text = Convert.ToString(Dr["EmailID"]);
                     txtAddress.Text = Convert.ToString(Dr["Address"]);
@@ -76,7 +76,7 @@ namespace LMT.Supplier
                     txtLookFor.Text = Convert.ToString(Dr["Lbr_Type"]);
                     txtCustDate.Text = Convert.ToString(Dr["Required_Date"]);
                     txtCustTime.Text = Convert.ToString(Dr["Required_Time"]);
-                    lblName.Text = Convert.ToString(Dr["Fname"]);
+                    lblName.Text = Convert.ToString(Dr["LabourName"]);
                     hfSupplierID.Value = Convert.ToString(Dr["SupplierID"]);
                     if (Convert.ToString(Dr["Is_completed"]) == "Y")
                     {

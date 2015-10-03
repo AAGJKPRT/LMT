@@ -27,7 +27,7 @@ namespace LMT.BusinessLogic
         private string _isVerify = "N";
         private string _phoneno = "";
         //private string _imageURL = "";
-
+        private string _supcode = "";
         #endregion
 
         #region Declaration of Procedure Valiables
@@ -82,6 +82,7 @@ namespace LMT.BusinessLogic
             set { _phoneno = value; }
         }
         public string permanentAdress { get; set; }
+        public string SupCode { get; set; }
         //public string ImageURL
         //{
         //    get { return _imageURL; }
@@ -138,6 +139,11 @@ namespace LMT.BusinessLogic
             DbSqlParameter permanentAdressPara = new DbSqlParameter("@permanentAdress", SqlDbType.VarChar);
             permanentAdressPara.Value = permanentAdress;
             objParamColleciton.Add(permanentAdressPara);
+            
+            //Added by khushbu kansal
+            DbSqlParameter Supcodepara = new DbSqlParameter("@SupCode", SqlDbType.VarChar);
+            Supcodepara.Value = SupCode;
+            objParamColleciton.Add(Supcodepara);
 
             //DbSqlParameter ImageURLParam = new DbSqlParameter("@ImageURL", SqlDbType.VarChar);
             //ImageURLParam.Value = _imageURL;
@@ -163,12 +169,19 @@ namespace LMT.BusinessLogic
             return dsFillData;
         }
 
-        public int ExecuteProcedure(string opMode, int userID = 0)
+        public int ExecuteProcedure(string opMode, int userID = 0, string called_from="")
         {
             _opMode = opMode;
             _userID = userID;
             AddProcedureParameters();
-            _userID = Convert.ToInt32(CrystalConnection.DoStoredScalar("usp_UserRegProc", objParamColleciton, true));
+            if (called_from == "Admin")
+            {
+                _userID = Convert.ToInt32(CrystalConnection.DoStoredScalar("usp_UserRegProc", objParamColleciton, true));
+            }
+            else
+            {
+                _userID = Convert.ToInt32(CrystalConnection.DoStoredScalar("usp_UserSignProc", objParamColleciton, true));
+            }
 
             return _userID;
         }

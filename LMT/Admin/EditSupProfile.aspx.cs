@@ -267,19 +267,27 @@ namespace LMT.Admin
                 if (Validation())
                 {
                     Set_UserRegProperties();
-                    decimal userID = objUserRegistration.ExecuteProcedure("INSERT", 0);
-                    SetProperties(userID);
-                    hfSupID.Value = Convert.ToString(objSuplier.Supplierid);
-                    if (txtEmail.Text.Trim() != "")
+                    hfSupID.Value = (Request.QueryString["ID"].ToString() != null) ? Request.QueryString["ID"].ToString() : "0";
+                    if (hfSupID.Value == "" || hfSupID.Value == null)
                     {
+                        decimal userID = objUserRegistration.ExecuteProcedure("INSERT", 0,"Admin");
+                        SetProperties(userID);
+                        objSuplier.SaveData(hfOpMode.Value);
+                        if (txtEmail.Text.Trim() != "")
                         {
-                            string recipientemailto = txtEmail.Text.Trim();
-                            string strMessage = "Dear Subscriber,<br> Your registration is comfirmed.<br> Your Login ID :" + txtFullName.Text.Trim().Substring(0, 4) + txtPreSupCode.Text + txtSupCode.Text + ". <br> Password :" + txtPreSupCode.Text + txtSupCode.Text + "";
-                            string strSubject = "Registration Confirmation mail";
-                            if (txtEmail.Text.Trim() != "") csGlobalFunction.SendEmail(recipientemailto, strSubject, strMessage);
+                            {
+                                string recipientemailto = txtEmail.Text.Trim();
+                                string strMessage = "Dear Subscriber,<br> Your registration is comfirmed.<br> Your Login ID :" + txtFullName.Text.Trim().Substring(0, 4) + txtPreSupCode.Text + txtSupCode.Text + ". <br> Password :" + txtPreSupCode.Text + txtSupCode.Text + "";
+                                string strSubject = "Registration Confirmation mail";
+                                if (txtEmail.Text.Trim() != "") csGlobalFunction.SendEmail(recipientemailto, strSubject, strMessage);
+                            }
                         }
                     }
-                    objSuplier.SaveData(hfOpMode.Value);
+                    else
+                    {
+                        SetProperties(Convert.ToDecimal(hfSupID.Value));
+                        objSuplier.SaveData(hfOpMode.Value);
+                    }  
                     ClearControls();
                     //ClearControls();
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "Record save successfully.", true);
@@ -341,6 +349,7 @@ namespace LMT.Admin
                 objUserRegistration.USERCATEGORYID = Convert.ToDecimal("2");
                 objUserRegistration.Emailid = txtEmail.Text.Trim();
                 objUserRegistration.ISVERIFY = "Y";
+                objUserRegistration.permanentAdress = "";
                 //if (ddlUserType.SelectedValue != "8" && ddlUserType.SelectedValue != "3") objUserRegistration.ImageURL = "";//UserPicControl.ImageUrl.ToString();
             }
             catch (Exception ex)

@@ -36,6 +36,7 @@ namespace LMT.MasterPages
                 //ShowSupplierCode();
                 if (!IsPostBack)
                 {
+                    Binddropdown();
                     hfSupID.Value = "0";
                     //hfOpMode.Value = "INSERT";
                     if (Request.QueryString["ID"] != null)
@@ -269,23 +270,33 @@ namespace LMT.MasterPages
                 if (Validation())
                 {
                     Set_UserRegProperties();
-                    decimal userID = objUserRegistration.ExecuteProcedure("INSERT", 0);
-                    SetProperties(userID);
-                    hfSupID.Value = Convert.ToString(objSuplier.Supplierid);
-                    if (txtEmail.Text.Trim() != "")
+                    //Added by khushbu kansal
+                    hfSupID.Value = (Request.QueryString["ID"]!=null)? Request.QueryString["ID"].ToString():"0";
+                    if (hfSupID.Value == "0")
                     {
+                        decimal userID = objUserRegistration.ExecuteProcedure("INSERT", 0,"Admin");
+                        SetProperties(userID);
+                        objSuplier.SaveData(hfOpMode.Value);
+                        ShowSupProfile(Convert.ToInt32(userID));
+                        if (txtEmail.Text.Trim() != "")
                         {
-                            string recipientemailto = txtEmail.Text.Trim();
-                            string strMessage = "Dear Subscriber,<br> Your registration is comfirmed.<br> Your Login ID :" + txtFullName.Text.Trim().Substring(0, 4) + txtPreSupCode.Text + txtSupCode.Text + ". <br> Password :" + txtPreSupCode.Text + txtSupCode.Text + "";
-                            string strSubject = "Registration Confirmation mail";
-                            if (txtEmail.Text.Trim() != "") csGlobalFunction.SendEmail(recipientemailto, strSubject, strMessage);
+                            {
+                                string recipientemailto = txtEmail.Text.Trim();
+                                string strMessage = "Dear Subscriber,<br> Your registration is comfirmed.<br> Your Login ID :" + txtFullName.Text.Trim().Substring(0, 4) + txtPreSupCode.Text + txtSupCode.Text + ". <br> Password :" + txtPreSupCode.Text + txtSupCode.Text + "";
+                                string strSubject = "Registration Confirmation mail";
+                                if (txtEmail.Text.Trim() != "") csGlobalFunction.SendEmail(recipientemailto, strSubject, strMessage);
+                            }
                         }
                     }
-                    objSuplier.SaveData(hfOpMode.Value);
+                    else {
+                        SetProperties(Convert.ToDecimal(hfSupID.Value));
+                        objSuplier.SaveData(hfOpMode.Value);
+                        ShowSupProfile(Convert.ToInt32(hfSupID.Value));
+                    }                     
                     ClearControls();                    
                     //ClearControls();
                     ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "Record save successfully.", true);
-                    ShowSupProfile(Convert.ToInt32(hfSupID.Value));
+                   // ShowSupProfile(Convert.ToInt32(hfSupID.Value));
                     dvSupPfView.Visible = true;
                     dvSupPfEdit.Visible = false;
                 }
@@ -336,13 +347,14 @@ namespace LMT.MasterPages
         {
             try
             {
-                objUserRegistration.USERNAME = txtFullName.Text.Trim();
+                objUserRegistration.USERNAME = txtFullName.Text.Trim().Replace(" ","_");
                 objUserRegistration.LOGINNAME = txtFullName.Text.Trim().Substring(0, 4) + txtPreSupCode.Text + txtSupCode.Text;
                 objUserRegistration.PWD = objUserRegistration.EncodePasswordToBase64(txtPreSupCode.Text + txtSupCode.Text);
-                objUserRegistration.USERTYPEID = Convert.ToDecimal("2");
-                objUserRegistration.USERCATEGORYID = Convert.ToDecimal("2");
+                objUserRegistration.USERTYPEID = Convert.ToDecimal("1");
+                objUserRegistration.USERCATEGORYID = Convert.ToDecimal("3");
                 objUserRegistration.Emailid = txtEmail.Text.Trim();
                 objUserRegistration.ISVERIFY = "Y";
+                objUserRegistration.permanentAdress = "";
                 //if (ddlUserType.SelectedValue != "8" && ddlUserType.SelectedValue != "3") objUserRegistration.ImageURL = "";//UserPicControl.ImageUrl.ToString();
             }
             catch (Exception ex)
@@ -423,6 +435,7 @@ namespace LMT.MasterPages
         {
             dvSupPfView.Visible = false;
             dvSupPfEdit.Visible = true;
+            ShowSupProfile(Convert.ToInt32(hfSupID.Value));
         }
 
         protected void btnBack_Click(object sender, EventArgs e)

@@ -43,9 +43,10 @@ namespace LMT.MasterPages
 
         private void BindSupplierRepeater()
         {
-            string strQuery = " Select SupplierID,SupplierCode,FullName,Address,CityName,StateName,Sup_Mobile from tbl_SupplierDetail" +
-                              " Inner Join tblCity on tbl_SupplierDetail.Sup_City=tblCity.CityID" +
-                              " Inner Join tblState on tbl_SupplierDetail.Sup_State=tblState.StateID";
+            string strQuery = "Select SupplierID,SupplierCode,FullName,Address,case when(Sup_City=0) then 'Not Selected' else CityName END as 'CityName'," +
+                              " case when(Sup_State=0) then 'Not Selected' else StateName END as 'StateName',Sup_Mobile from tbl_SupplierDetail" +
+                              " LEFT Join tblCity on tbl_SupplierDetail.Sup_City=tblCity.CityID" +
+                              " LEFT Join tblState on tbl_SupplierDetail.Sup_State=tblState.StateID ";
             csGlobalFunction.BindRepeater(ref rptSupplierInformation, strQuery);
         }
 

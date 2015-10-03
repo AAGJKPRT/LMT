@@ -75,6 +75,7 @@
     <Content Include="Admin\Labour.aspx" />
     <Content Include="Admin\LabourType.aspx" />
     <Content Include="Admin\Supplier.aspx" />
+    <Content Include="app database\Scripts\LMTScripts.sql" />
     <Content Include="app database\StoredProcedure\usp_CityProc.sql" />
     <Content Include="app database\StoredProcedure\usp_Customer.sql" />
     <Content Include="app database\StoredProcedure\usp_Expenses.sql" />
@@ -574,7 +575,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>19609</DevelopmentServerPort>
+          <DevelopmentServerPort>1384</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

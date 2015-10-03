@@ -186,6 +186,7 @@
                                                                                     <asp:DropDownList ID="ddlCurrentState" ClientIDMode="AutoID" runat="server" 
                                                                                         CssClass="form-control" AutoPostBack="true" 
                                                                                         onselectedindexchanged="ddlCurrentState_SelectedIndexChanged">
+                                                                                         <asp:ListItem Text="--Select--" Value="-1" />
                                                                                     </asp:DropDownList>
                                                                                 
                                                                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator13" ControlToValidate="ddlCurrentState"
@@ -196,7 +197,7 @@
                                                                     <tr>                                                                 
                                                                         <td style="border-top:none">
                                                                                     <asp:DropDownList ID="ddlCurrentCity" Enabled="false" ClientIDMode="AutoID" runat="server" 
-                                                                                        CssClass="form-control">
+                                                                                        CssClass="form-control"> <asp:ListItem Text="--Select--" Value="-1" />
                                                                                     </asp:DropDownList>
                                                                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator12" ControlToValidate="ddlCurrentCity"
                                                                                     Display="None" ErrorMessage="Current City is required." />
@@ -216,6 +217,7 @@
                                                                                     <asp:DropDownList ID="ddlPermanetState" ClientIDMode="AutoID" runat="server" 
                                                                                         CssClass="form-control" AutoPostBack="true" 
                                                                                         onselectedindexchanged="ddlPermanetState_SelectedIndexChanged">
+                                                                                         <asp:ListItem Text="--Select--" Value="-1" />
                                                                                     </asp:DropDownList>
                                                                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator16" ControlToValidate="ddlPermanetState"
                                                                                     Display="None" ErrorMessage="Permanent State is required." />
@@ -225,6 +227,7 @@
                                                                         <td style="border-top:none">
                                                                                     <asp:DropDownList ID="ddlPermanentCity" Enabled="false" ClientIDMode="AutoID" runat="server" 
                                                                                         CssClass="form-control">
+                                                                                         <asp:ListItem Text="--Select--" Value="-1" />
                                                                                     </asp:DropDownList>
                                                                                     <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator15" ControlToValidate="ddlPermanentCity"
                                                                                     Display="None" ErrorMessage="Permanent City is required." />

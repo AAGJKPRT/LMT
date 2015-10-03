@@ -125,10 +125,10 @@ namespace LMT.MasterPages
 
         private void BindNewLeads()
         {
-            string strQuery = "select Lead_ID,Labour_ID,tbl_Lbr_Type.Lbr_Type,Name,Required_Date from tbl_Leads with(nolock)" +
-                              "inner join tbl_Customer with(nolock) on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID " +
-                              "inner join tbl_LabourRegistration with(nolock) on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
-                              "inner join tbl_Lbr_Type with(nolock) on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
+            string strQuery = "select Lead_ID,Labour_ID,LT.Lbr_Type,ur.UserName as Name,Required_Date from tbl_Leads TL with(nolock) " +
+                              "inner join dbo.tblUserRegistration UR with(nolock) on TL.customer_id=UR.UserID " +
+                              "inner join tbl_LabourRegistration LR with(nolock) on TL.Labour_ID=LR.Reg_ID " +
+                              "inner join tbl_Lbr_Type LT with(nolock) on LR.LabourType=LT.Lbr_type_id " +
                               "Where Status='IP' and Asign=" + Convert.ToString(Session["UserID"]) + " and Required_Date>GETDATE() and Is_accepted='N'";
             csGlobalFunction.BindRepeater(ref rptLeadInformation, strQuery);
         }
@@ -183,23 +183,23 @@ namespace LMT.MasterPages
 
         private void BindIPLeads()
         {
-            string strQuery = "select Lead_ID,Labour_ID,tbl_Lbr_Type.Lbr_Type,tbl_SupplierDetail.FullName,Name,Required_Date from tbl_Leads with(nolock) " +
-                              "inner join tbl_Customer with(nolock) on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID " +
-                              "inner join tbl_LabourRegistration with(nolock) on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
-                              "inner join tbl_SupplierDetail with(nolock) on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
-                              "inner join tbl_Lbr_Type with(nolock) on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
+            string strQuery = "select Lead_ID,Labour_ID,LT.Lbr_Type,ur.UserName as 'Name',URS.UserName as 'FullName' ,Required_Date from tbl_Leads TL with(nolock) " +
+                              "inner join dbo.tblUserRegistration UR with(nolock) on TL.customer_id=UR.UserID " +
+                              "inner join tbl_LabourRegistration LR with(nolock) on TL.Labour_ID=LR.Reg_ID " +
+                              "inner join tbl_Lbr_Type LT with(nolock) on LR.LabourType=LT.Lbr_type_id " +
+                              "inner join dbo.tblUserRegistration URS on LR.supplierid=URS.UserID "+
                               "Where Status='IP' and Required_Date>GETDATE() and Is_accepted='Y'";
             csGlobalFunction.BindRepeater(ref rptIPLeads, strQuery);
         }
 
         private void BindClosedLeads()
         {
-            string strQuery = "select Lead_ID,Labour_ID,tbl_Lbr_Type.Lbr_Type,tbl_SupplierDetail.FullName,Name,Required_Date from tbl_Leads with(nolock) " +
-                              "inner join tbl_Customer with(nolock) on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID " +
-                              "inner join tbl_LabourRegistration with(nolock) on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
-                              "inner join tbl_SupplierDetail with(nolock) on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
-                              "inner join tbl_Lbr_Type with(nolock) on tbl_LabourRegistration.LabourType=tbl_Lbr_Type.Lbr_type_id " +
-                              "Where Status='CL' and Required_Date<=GETDATE() and Is_completed='Y' and Is_accepted='Y'";
+            string strQuery = "select Lead_ID,Labour_ID,LT.Lbr_Type,ur.UserName as 'Name',URS.UserName as 'FullName' ,Required_Date from tbl_Leads TL with(nolock) " +
+                              "inner join dbo.tblUserRegistration UR with(nolock) on TL.customer_id=UR.UserID " +
+                              "inner join tbl_LabourRegistration LR with(nolock) on TL.Labour_ID=LR.Reg_ID " +
+                              "inner join tbl_Lbr_Type LT with(nolock) on LR.LabourType=LT.Lbr_type_id " +
+                              "inner join dbo.tblUserRegistration URS on LR.supplierid=URS.UserID " +
+                              "Where Status='CL' and Required_Date>=GETDATE() and Is_completed='Y' and Is_accepted='Y'";
             csGlobalFunction.BindRepeater(ref rptClosedLeads, strQuery);
         }
 

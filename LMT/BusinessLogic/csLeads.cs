@@ -5,6 +5,7 @@ using System.Web;
 using CrystalDatabase;
 using System.Data;
 using System.Data.SqlClient;
+using DataLayer;
 
 namespace LMT.BusinessLogic
 {
@@ -147,8 +148,13 @@ namespace LMT.BusinessLogic
             set { _description = value; }
         }
 
-        public string Lead_Address { get; set; }
+        private string _Lead_Address = "";
 
+        public string Lead_Address
+        {
+            get { return _Lead_Address; }
+            set { _Lead_Address = value; }
+        }
         //Added by khushbu for lead CR
         private string _Is_accepted = "";
 

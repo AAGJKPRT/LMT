@@ -46,6 +46,7 @@ namespace LMT.Supplier
                     {
                         hfRegID.Value = Request.QueryString["ID"].ToString();
                         hfOpmode.Value = "UPDATE";
+                        GenerateBarcode();
                         ShowLabourData(Convert.ToInt32(hfRegID.Value));
                     }
                     else
@@ -57,11 +58,11 @@ namespace LMT.Supplier
                     }
                 }
 
-                //if (ddlLbrType.SelectedValue != "-1")
-                //{
-                //    plBarCode.Controls.Clear();
-                //    GenerateBarcode();
-                //}
+                if (ddlLbrType.SelectedValue != "-1")
+                {
+                    plBarCode.Controls.Clear();
+                    GenerateBarcode();
+                }
             }
             catch (Exception ex)
             {

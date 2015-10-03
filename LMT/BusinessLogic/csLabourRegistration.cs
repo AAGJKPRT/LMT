@@ -398,7 +398,18 @@ namespace LMT.BusinessLogic
             return max_regid;
 
         }
+        
+        public static DataTable GetCustomerLeadData(int LeadId, string status,string mode)
+        {
+            string DBConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["CrystalConnection"].ConnectionString;
+            SqlParameter[] sqlParams = new SqlParameter[3];//1
+            sqlParams[0] = new SqlParameter("@lead_id", LeadId);
+            sqlParams[1] = new SqlParameter("@lead_status", status);
+            sqlParams[2] = new SqlParameter("@called_from", mode);
 
+            DataSet ds = DataWrapper.ExecuteDataset(DBConnectionString, CommandType.StoredProcedure, "usp_getCustomerLead", sqlParams);
+            return ds.Tables[0];
+        }
 
     }
 }

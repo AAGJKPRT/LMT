@@ -100,7 +100,7 @@ namespace LMT.User
                 if (ValidateData())
                 {
                     SetProperties();
-                    int userID = objUserRegistration.ExecuteProcedure("INSERT", 0);
+                    int userID = objUserRegistration.ExecuteProcedure("INSERT", 0,"Signup");
                     if (ddlUserType.SelectedValue == "4")// && ddlUserCategory.SelectedValue == "4")
                     {
                         SetPropertiesCustomer_IL(userID);
@@ -141,6 +141,14 @@ namespace LMT.User
                 objUserRegistration.LOGINNAME = txtUserName.Text;
                 objUserRegistration.PWD = objUserRegistration.EncodePasswordToBase64(txtPwd.Text);
                 objUserRegistration.USERTYPEID = Convert.ToDecimal(ddlUserType.SelectedValue);
+                //Added by khushbu kansal 03/10/2015
+                if (objUserRegistration.USERTYPEID == Convert.ToDecimal("3"))
+                {
+                    objUserRegistration.SupCode = csGlobalFunction.GenerateCodeWithLeftPad("tbl_SupplierDetail", "SupplierID", 4, "", false);
+                }
+                else {
+                    objUserRegistration.SupCode = "";
+                }
                 objUserRegistration.USERCATEGORYID = 1;// Convert.ToDecimal(ddlUserCategory.SelectedValue);
                 objUserRegistration.Emailid = txtEmail.Text.Trim();
                 objUserRegistration.ISVERIFY = chkIsVerify.Checked ? "Y" : "N";
@@ -155,6 +163,8 @@ namespace LMT.User
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:AlertMsg('" + strFnc + "');", true);
             }
         }
+
+      
         private void SetPropertiesCustomer_IL(int CustomerID)
         {
             try

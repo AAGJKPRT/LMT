@@ -76,7 +76,7 @@
                                 
                               </h3>
                            </div>
-                           <div class="panel-body">
+                           <div class="panel-body" style="overflow-y:scroll;">
                               <%--<table style="border: 0px;float: left;" >
                                 
                                 <tr>

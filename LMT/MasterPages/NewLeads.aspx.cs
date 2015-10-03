@@ -59,12 +59,12 @@ namespace LMT.MasterPages
                 //}
                 //else if ("IP" == Convert.ToString(Session["CurrentMode"]))//IP means inProgress
                 //{
-                strQuery = "select Lead_ID,Labour_ID,LR.SupplierID,LR.Image_URL,LR.FullName 'LabourName',SD.FullName 'SupplierName',tbl_Lbr_Type.Lbr_Type,Name as 'CustomerName', " +
-                                  "UR.phoneno AS MobileNo,tbl_Customer.EmailID,LD.Description as Address,Required_Date,Required_Time,Is_completed,Is_accepted from tbl_Leads LD " +
-                                  "inner join tbl_Customer on LD.Customer_ID=tbl_Customer.Customer_ID inner join tbl_LabourRegistration LR on LD.Labour_ID=LR.Reg_ID  inner join tbl_SupplierDetail SD on " +
-                                  "LR.SupplierID=SD.SupplierID inner join tbl_Lbr_Type on LR.LabourType=tbl_Lbr_Type.Lbr_type_id INNER join tblUserRegistration UR on tbl_Customer.Customer_ID=UR.UserID " +
-                                  "Where Status='" + Convert.ToString(Session["CurrentMode"]) + "' and Lead_ID=" + hfLeadID.Value + "";
-                //strQuery = "select Lead_ID,Labour_ID,tbl_LabourRegistration.SupplierID,tbl_LabourRegistration.Image_URL,tbl_LabourRegistration.FullName Fname,tbl_SupplierDetail.FullName,tbl_Lbr_Type.Lbr_Type,Name, " +
+                //strQuery = "select Lead_ID,Labour_ID,LR.SupplierID,LR.Image_URL,LR.FullName 'LabourName',SD.FullName 'SupplierName',tbl_Lbr_Type.Lbr_Type,Name as 'CustomerName', " +
+                //                  "UR.phoneno AS MobileNo,tbl_Customer.EmailID,LD.Description as Address,Required_Date,Required_Time,Is_completed,Is_accepted from tbl_Leads LD " +
+                //                  "inner join tbl_Customer on LD.Customer_ID=tbl_Customer.Customer_ID inner join tbl_LabourRegistration LR on LD.Labour_ID=LR.Reg_ID  inner join tbl_SupplierDetail SD on " +
+                //                  "LR.SupplierID=SD.SupplierID inner join tbl_Lbr_Type on LR.LabourType=tbl_Lbr_Type.Lbr_type_id INNER join tblUserRegistration UR on tbl_Customer.Customer_ID=UR.UserID " +
+                //                  "Where Status='" + Convert.ToString(Session["CurrentMode"]) + "' and Lead_ID=" + hfLeadID.Value + "";
+                ////strQuery = "select Lead_ID,Labour_ID,tbl_LabourRegistration.SupplierID,tbl_LabourRegistration.Image_URL,tbl_LabourRegistration.FullName Fname,tbl_SupplierDetail.FullName,tbl_Lbr_Type.Lbr_Type,Name, " +
                 //                  "MobileNo,tbl_Customer.EmailID,Address1+','+Address2 as Address,Required_Date,Required_Time from tbl_Leads " +
                 //                  "inner join tbl_Customer on tbl_Leads.Customer_ID=tbl_Customer.Customer_ID " +
                 //                  "inner join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
@@ -73,7 +73,7 @@ namespace LMT.MasterPages
                 //                  "Where Status='IP' and Lead_ID=" + hfLeadID.Value + "";
                 // }
 
-                DataTable Labour = csLabourRegistration.FillDataTable(strQuery);
+                DataTable Labour = csLabourRegistration.GetCustomerLeadData(Convert.ToInt32(hfLeadID.Value), Convert.ToString(Session["CurrentMode"]), "A");
 
                 if (Labour.Rows.Count > 0)
                 {
@@ -154,6 +154,8 @@ namespace LMT.MasterPages
                 objLeads.Lead_id = Convert.ToInt32(hfLeadID.Value);
                 objLeads.Asign = Convert.ToInt32(hfSupplierID.Value);//ddlsupplier.SelectedValue);
                 objLeads.Status = "IP";
+                objLeads.Is_completed = "N";
+                objLeads.Is_accepted = "N";
                 objLeads.SaveData(hfOpmode.Value);
                 btnAssign.Enabled = false;
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "AssignLead_alert", "javascript:alert('Lead assign to supplier.');", true);
