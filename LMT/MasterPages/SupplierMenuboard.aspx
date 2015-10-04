@@ -349,8 +349,8 @@
                                                                         <td align="left">
                                                                             <asp:Label ID="lblfathernme" runat="server" Text='<%#Eval("Required_Date", "{0:dd/MM/yy}") %>'></asp:Label>
                                                                         </td>
-                                                                        <td align="center">
-                                                                            <asp:Button ID="btnEdit" runat="server" CssClass="edit" CommandName="Edit" />
+                                                                        <td align="left">
+                                                                            <asp:Button ID="btnEdit" runat="server" CssClass="btn btn-default btn-xs" Text="View" CommandName="Edit" />
                                                                         </td>
                                                                     </tr>
                                                                 </ItemTemplate>
@@ -388,7 +388,7 @@
                                                                                 Labour type
                                                                             </th>
                                                                             <th align="left" style="width: 175px;">
-                                                                                Supplier
+                                                                                Supplier / Labour
                                                                             </th>
                                                                             <th align="left" style="width: 175px;">
                                                                                 Customer
@@ -418,8 +418,8 @@
                                                                         <td align="left">
                                                                             <asp:Label ID="lblfathernme" runat="server" Text='<%#Eval("Required_Date") %>'></asp:Label>
                                                                         </td>
-                                                                        <td align="center">
-                                                                            <asp:Button ID="btnEdit" runat="server" CssClass="edit" CommandName="Edit" />
+                                                                        <td align="left">
+                                                                            <asp:Button ID="btnEdit" runat="server" CssClass="btn btn-default btn-xs" Text="View" CommandName="Edit" />
                                                                         </td>
                                                                     </tr>
                                                                 </ItemTemplate>
@@ -457,7 +457,7 @@
                                                                                 Labour type
                                                                             </th>
                                                                             <th align="left" style="width: 175px;">
-                                                                                Supplier
+                                                                                Supplier / Labour
                                                                             </th>
                                                                             <th align="left" style="width: 175px;">
                                                                                 Customer
@@ -487,8 +487,8 @@
                                                                         <td align="left">
                                                                             <asp:Label ID="lblfathernme" runat="server" Text='<%#Eval("Required_Date") %>'></asp:Label>
                                                                         </td>
-                                                                        <td align="center">
-                                                                            <asp:Button ID="btnEdit" runat="server" CssClass="edit" CommandName="Edit" />
+                                                                        <td align="left">
+                                                                            <asp:Button ID="btnEdit" runat="server" CssClass="btn btn-default btn-xs" Text="View" CommandName="Edit" />
                                                                         </td>
                                                                     </tr>
                                                                 </ItemTemplate>

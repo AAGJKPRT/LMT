@@ -138,7 +138,7 @@ namespace LMT.MasterPages
 
         private void BindIPLeads()
         {
-            string strQuery = "select Lead_ID,Ticket,Labour_ID,tbl_Lbr_Type.Lbr_Type,tbl_SupplierDetail.FullName,tblUserRegistration.Username as Name,Convert(varchar(11),Required_Date,106) Required_Date from tbl_Leads " +
+            string strQuery = "select Lead_ID,Ticket,Labour_ID,tbl_Lbr_Type.Lbr_Type,tbl_SupplierDetail.FullName,tblUserRegistration.Username as Name,Convert(varchar(11),Required_Date,106) Required_Date,is_accepted,is_completed from tbl_Leads " +
                               "inner join tblUserRegistration on tbl_Leads.Customer_ID=tblUserRegistration.UserID " +
                               "inner join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
                               "inner join tbl_SupplierDetail on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +
@@ -222,7 +222,7 @@ namespace LMT.MasterPages
 
         private void BindClosedLeads()
         {
-            string strQuery = "select Lead_ID,Ticket,Labour_ID,tbl_Lbr_Type.Lbr_Type,tbl_SupplierDetail.FullName,tblUserRegistration.UserName as name,Convert(varchar(11),Required_Date,106) Required_Date from tbl_Leads " +
+            string strQuery = "select Lead_ID,Ticket,Labour_ID,tbl_Lbr_Type.Lbr_Type,tbl_SupplierDetail.FullName+' / '+tbl_LabourRegistration.FullName as FullName,tblUserRegistration.UserName as name,Convert(varchar(11),Required_Date,106) Required_Date,is_completed from tbl_Leads " +
                               "inner join tblUserRegistration on tbl_Leads.Customer_ID=tblUserRegistration.UserID  " +
                               "inner join tbl_LabourRegistration on tbl_Leads.Labour_ID=tbl_LabourRegistration.Reg_ID " +
                               "inner join tbl_SupplierDetail on tbl_LabourRegistration.SupplierID=tbl_SupplierDetail.SupplierID " +

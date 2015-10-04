@@ -310,6 +310,12 @@
                                                                             <th align="left" style="width: 160px;">
                                                                                 Required Date
                                                                             </th>
+                                                                             <th align="left" style="width: 160px;">
+                                                                                Accepted
+                                                                            </th>
+                                                                            <th align="left" style="width: 160px;">
+                                                                                Completed
+                                                                            </th>
                                                                             <th style="width: 30px;">
                                                                                 View
                                                                             </th>
@@ -337,6 +343,12 @@
                                                                         </td>
                                                                         <td align="left">
                                                                             <asp:Label ID="lblfathernme" runat="server" Text='<%#Eval("Required_Date") %>'></asp:Label>
+                                                                        </td>
+                                                                         <td align="left">
+                                                                            <asp:Label ID="lblaccepted" runat="server" Text='<%#Eval("is_accepted").ToString()=="Y"?"Yes": "No" %>'></asp:Label>
+                                                                        </td>
+                                                                         <td align="left">
+                                                                            <asp:Label ID="lblcompleted" runat="server" Text='<%#Eval("is_completed").ToString()=="Y"?"Yes": "No" %>'></asp:Label>
                                                                         </td>
                                                                         <td align="center">
                                                                             <asp:Button ID="btnEdit" runat="server" CssClass="edit" CommandName="Edit" />
@@ -385,13 +397,16 @@
                                                                                 Labour type
                                                                             </th>
                                                                             <th align="left" style="width: 175px;">
-                                                                                Supplier
+                                                                                Supplier / Labour
                                                                             </th>
                                                                             <th align="left" style="width: 175px;">
                                                                                 Request owner
                                                                             </th>
                                                                             <th align="left" style="width: 160px;">
                                                                                 Required Date
+                                                                            </th>
+                                                                            <th align="left" style="width: 160px;">
+                                                                                Completed
                                                                             </th>
                                                                           <%--  <th style="width: 30px;">
                                                                                 View
@@ -420,6 +435,9 @@
                                                                         </td>
                                                                         <td align="left" style="width: 175px;">
                                                                             <asp:Label ID="lblfathernme" runat="server" Text='<%#Eval("Required_Date") %>'></asp:Label>
+                                                                        </td>
+                                                                        <td align="left" style="width: 175px;">
+                                                                            <asp:Label ID="lbliscompleted" runat="server" Text='<%#Eval("is_completed").ToString()=="Y"?"Yes": "No" %>'></asp:Label>
                                                                         </td>
                                                                        <%-- <td align="center">
                                                                             <asp:Button ID="btnEdit" runat="server" CssClass="edit" CommandName="Edit" />

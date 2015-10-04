@@ -118,7 +118,7 @@ namespace LMT.Supplier
                 objLeads.Is_accepted = "Y";
                 objLeads.SaveData(hfOpmode.Value);
                 btnAccept.Enabled = false;
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "javascript:AlertMsg('Lead Accepted.');", true);
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "AssignLead_alert", "javascript:alert('Lead is Accepted.');", true);
             }
             catch (Exception ex)
             {
@@ -132,26 +132,28 @@ namespace LMT.Supplier
         {
             try
             {
-
-                hfOpmode.Value = "UPDCOMP";
-                objLeads.Lead_id = Convert.ToInt32(hfLeadID.Value);
-                objLeads.Asign = Convert.ToInt32(hfSupplierID.Value);
-                //CheckBox chk = (CheckBox)FindControl("chkIsCompleted");
-                if (chkIsCompleted.Checked == true)
+                if (Validation())
                 {
-                    objLeads.Is_completed = "Y";
-                    objLeads.Is_accepted = "Y";
-                    objLeads.Status = "CL";
-                    btnComplete.Enabled = false;
-                }
-                else
-                {
-                    objLeads.Is_completed = "N";
-                    objLeads.Is_accepted = "Y";
-                }
-                objLeads.SaveData(hfOpmode.Value);
-
-                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "javascript:AlertMsg('Lead Accepted.');", true);
+                    hfOpmode.Value = "UPDCOMP";
+                    objLeads.Lead_id = Convert.ToInt32(hfLeadID.Value);
+                    objLeads.Asign = Convert.ToInt32(hfSupplierID.Value);
+                    //CheckBox chk = (CheckBox)FindControl("chkIsCompleted");
+                    if (chkIsCompleted.Checked == true)
+                    {
+                        objLeads.Is_completed = "Y";
+                        objLeads.Is_accepted = "Y";
+                        objLeads.Status = "CL";
+                        btnComplete.Enabled = false;
+                    }
+                    else
+                    {
+                        objLeads.Status = "IP";
+                        objLeads.Is_completed = "N";
+                        objLeads.Is_accepted = "Y";
+                    }
+                    objLeads.SaveData(hfOpmode.Value);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(), "AssignLead_alert", "javascript:alert('Lead is Completed.');", true);
+                }              
             }
             catch (Exception ex)
             {
@@ -159,6 +161,23 @@ namespace LMT.Supplier
                 strFnc = ex.Message;
                 ScriptManager.RegisterStartupScript(this, this.GetType(), "CatchMsg", "javascript:AlertMsg('" + strFnc + "');", true);
             }
+        }
+
+
+        public bool Validation()
+        {
+            if (chkIsCompleted.Checked==false)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "AssignLead_alert", "javascript:alert('If your work is complete. Please check Lead completed.');", true);
+                chkIsCompleted.Focus();
+                return false;
+            }         
+            return true;
+        }
+
+        protected void chkIsCompleted_CheckedChanged(object sender, EventArgs e)
+        {
+           
         }
     }
 }

@@ -44,6 +44,7 @@
                                   </h3>
                                   <h3>
                                   </h3>
+                                  <h3></h3>
                               </h3>
                            </div>
 
@@ -108,6 +109,7 @@
                                   </h3>
                                   <h3>
                                   </h3>
+                                  <h3></h3>
                               </h3>
                            </div>
                            <div class="panel-body">
@@ -116,7 +118,7 @@
                                   <div class="caption">                                    
                                     <p><strong>Name : </strong><asp:Label ID="lblName" runat="server"></asp:Label>
                                     <br />
-                                   <p><asp:CheckBox ID="chkIsCompleted" runat="server" Text="Lead Completed" /></p>
+                                   <p><asp:CheckBox ID="chkIsCompleted" runat="server" Text="Lead Completed" OnCheckedChanged="chkIsCompleted_CheckedChanged" /></p>
                                     <p><asp:Button ID="btnAccept" runat="server" CssClass="btn btn-primary" 
                                             Text="Accept" onclick="btnAccept_Click"></asp:Button></p>
                                   <p><asp:Button ID="btnComplete" runat="server" CssClass="btn btn-primary" 

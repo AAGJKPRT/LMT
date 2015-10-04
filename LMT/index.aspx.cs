@@ -327,7 +327,7 @@ namespace LMT
                 csuserRegistration.ISVERIFY = "Y";//by default we are saving it Y as of now later on we need to change it accordingly.
                 csuserRegistration.Phoneno = txtMobile.Text.Trim();
                 csuserRegistration.permanentAdress = txtHouseNo.Text.Trim() + ", " + txtLocation.Text.Trim();
-
+                csuserRegistration.SupCode = "";
             }
             catch (Exception ex)
             {

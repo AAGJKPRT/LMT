@@ -344,7 +344,7 @@
                                             <div id="new-user-details" style="display: block;margin-top: 5px;">
                                                 <div class="form-inline form-group inline-inputs">
                                                     <div class="form-group">
-                                                        <asp:TextBox ID="txtMobile" runat="server" class="form-control" placeholder="Mobile"></asp:TextBox>
+                                                        <asp:TextBox ID="txtMobile" runat="server" class="form-control" placeholder="Mobile" MaxLength="10"></asp:TextBox>
                                                         <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="txtMobile"
                                                                                   ValidationGroup="HHG"  Display="None" ErrorMessage="Mobile is required." />
                                                         <asp:TextBox ID="txtPassword" TextMode="Password" runat="server" Visible="false" class="slimField form-control" placeholder="Password" style="display:block;"></asp:TextBox>

@@ -183,23 +183,23 @@ namespace LMT.MasterPages
 
         private void BindIPLeads()
         {
-            string strQuery = "select Lead_ID,Labour_ID,LT.Lbr_Type,ur.UserName as 'Name',URS.UserName as 'FullName' ,Required_Date from tbl_Leads TL with(nolock) " +
+            string strQuery = "select Lead_ID,Labour_ID,LT.Lbr_Type,ur.UserName as 'Name',URS.UserName+' / '+LR.FullName as 'FullName' ,Required_Date from tbl_Leads TL with(nolock) " +
                               "inner join dbo.tblUserRegistration UR with(nolock) on TL.customer_id=UR.UserID " +
                               "inner join tbl_LabourRegistration LR with(nolock) on TL.Labour_ID=LR.Reg_ID " +
                               "inner join tbl_Lbr_Type LT with(nolock) on LR.LabourType=LT.Lbr_type_id " +
                               "inner join dbo.tblUserRegistration URS on LR.supplierid=URS.UserID "+
-                              "Where Status='IP' and Required_Date>GETDATE() and Is_accepted='Y'";
+                              "Where Status='IP' and Required_Date>GETDATE() and Is_accepted='Y' and TL.Asign=" + Convert.ToString(Session["UserID"]);
             csGlobalFunction.BindRepeater(ref rptIPLeads, strQuery);
         }
 
         private void BindClosedLeads()
         {
-            string strQuery = "select Lead_ID,Labour_ID,LT.Lbr_Type,ur.UserName as 'Name',URS.UserName as 'FullName' ,Required_Date from tbl_Leads TL with(nolock) " +
+            string strQuery = "select Lead_ID,Labour_ID,LT.Lbr_Type,ur.UserName as 'Name',URS.UserName+' / '+LR.FullName as 'FullName' ,Required_Date from tbl_Leads TL with(nolock) " +
                               "inner join dbo.tblUserRegistration UR with(nolock) on TL.customer_id=UR.UserID " +
                               "inner join tbl_LabourRegistration LR with(nolock) on TL.Labour_ID=LR.Reg_ID " +
                               "inner join tbl_Lbr_Type LT with(nolock) on LR.LabourType=LT.Lbr_type_id " +
                               "inner join dbo.tblUserRegistration URS on LR.supplierid=URS.UserID " +
-                              "Where Status='CL' and Required_Date>=GETDATE() and Is_completed='Y' and Is_accepted='Y'";
+                              "Where Status='CL' and Required_Date>=GETDATE() and Is_completed='Y' and Is_accepted='Y'and Asign=" + Convert.ToString(Session["UserID"]);
             csGlobalFunction.BindRepeater(ref rptClosedLeads, strQuery);
         }
 
