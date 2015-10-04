@@ -64,7 +64,7 @@
             background: transparent;
         }
     </style>
-    <style>
+    <style type="text/css">
         .widget-content table tr {
             line-height: 20px;
         }

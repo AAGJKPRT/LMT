@@ -5,45 +5,43 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../css/button.css" rel="stylesheet" type="text/css" />
     <style>
-        .widget-content table tr
-        {
+        .widget-content table tr {
             line-height: 20px;
         }
-        .widget-content table td
-        {
+
+        .widget-content table td {
             border: none;
             padding: 1px;
         }
-        .widget-content table td > span
-        {
-            width: 96%;
-            text-align: center;
-            border: 0;
-            display: inline-block;
-            padding: 5px;
-            position: relative;
-            background-color: rgb(41,127,184);
-            color: rgb(255,255,255);
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0px 1px 0px rgba(0,0,0,0.5);
-            -webkit-box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
-            box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
-            cursor: pointer;
-        }
-        .widget-content table td > span > a
-        {
-            color: #fff;
-        }
+
+            .widget-content table td > span {
+                width: 96%;
+                text-align: center;
+                border: 0;
+                display: inline-block;
+                padding: 5px;
+                position: relative;
+                background-color: rgb(41,127,184);
+                color: rgb(255,255,255);
+                text-decoration: none;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                text-shadow: 0px 1px 0px rgba(0,0,0,0.5);
+                -webkit-box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+                box-shadow: 0px 2px 2px rgba(0,0,0,0.2);
+                cursor: pointer;
+            }
+
+                .widget-content table td > span > a {
+                    color: #fff;
+                }
     </style>
     <style type="text/css">
-        .ddl
-        {
-            BackColor="#F6F1DB";
-            ForeColor="#7d6754";
+        .ddl {
+            BackColor ="#F6F1DB";
+            ForeColor ="#7d6754";
             border: 2px solid #7d6754;
-            Font-Names="Andalus";
+            Font-Names ="Andalus";
             border-radius: 5px;
             padding: 3px;
             -webkit-appearance: none;
@@ -74,31 +72,17 @@
                                        <div class="panel-body">
                                         <div>
                                             <asp:Panel ID="panel1" runat="server" CssClass="panelclass">
-                                                <table style="border: 0px;" width="97%" class="none">
-                                                    <tr>
-                                                        <td  align="center">
-                                                            <asp:ImageButton ID="btnprint" runat="server" 
-                                                             ImageUrl="~/images/printer_icon.png" onclick="btnprint_Click" 
-                                                             ToolTip="Go to Print All Detail"/>
-                                                        </td>
-                                                        <td style="width: 70px;" align="right">
-                                                            
-                                                            <div class="formheadingstyleRight">
-                                                                <asp:LinkButton ID="lbtnAdd" CssClass="add" Text="Add New" runat="server" 
-                                                                    onclick="lbtnAdd_Click" />
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-                        
+                                                  <div style="float:right">
+                                                    <a href="../Reports/AllLabours.aspx" class="btn btn-info btn-xs"  title="Go to labour list">Show all</a>
+                                                    <a href="~/Supplier/RegisterLabour.aspx" class="btn btn-info btn-xs"  title="Add new labour">Add Labour</a>
+                                                  </div>
                                                 <asp:Panel ID="dt_example" runat="server" Width="97%" Style="margin-top: 5px;">
                                                     <div id="container">
-                                                        <div id="demo">
+                                                        <div id="demo" class="table-responsive">
                                                             <asp:Repeater ID="rptLabourInformation" runat="server" OnDataBinding="rptLabourInformation_DataBinding"
                                                                 OnItemCommand="rptLabourInformation_ItemCommand" OnItemDataBound="rptLabourInformation_ItemDataBound">
                                                                 <HeaderTemplate>
-                                                                    <table border="0" width="650" class="display" id="example">
+                                                                    <table class="table" style="width:100%;" id="example">
                                                                         <thead>
                                                                             <th align="left" style="width: 175px;">
                                                                                 Labour Code
@@ -118,14 +102,14 @@
                                                                             <th align="left">
                                                                                 Address
                                                                             </th>
-                                                                            <th>
+                                                                            <th style="width: 50px;">
                                                                                 Report
                                                                             </th>
-                                                                            <th style="width: 30px;">
-                                                                                Edit
+                                                                            <th style="width: 50px;">
+                                                                                Update
                                                                             </th>
-                                                                            <th style="width: 30px;">
-                                                                                Delete
+                                                                            <th style="width: 50px;">
+                                                                                Remove
                                                                             </th>
                                                                         </thead>
                                                                         <tbody>
@@ -149,18 +133,15 @@
                                                                         </td>
                                                                         <td align="left">
                                                                             <asp:Label ID="lblAddress" runat="server" Text='<%#Eval("C_Address") %>'></asp:Label>
-                                                                            <%--<asp:Label ID="lblStdImgUrl" runat="server" Visible="false" Text='<%#Eval("StdURL") %>'></asp:Label>
-                                                                            <asp:Label ID="lblFatherImgUrl" runat="server" Visible="false" Text='<%#Eval("FatherURL") %>'></asp:Label>
-                                                                            <asp:Label ID="lblMotherImgUrl" runat="server" Visible="false" Text='<%#Eval("MotherURL") %>'></asp:Label>--%>
+                                                                        </td>
+                                                                        <td>
+                                                                          <input id="btnprint" type="button" runat="server" class="btn btn-default btn-xs" title='<%# "Details of "+Eval("FullName") %>' value="Show" CommandName="Print" /> <%--class="print"--%>
+                                                                        </td>
+                                                                        <td >
+                                                                            <asp:Button ID="btnEdit" runat="server" class="btn btn-default btn-xs" Text="Update" CommandName="Edit" /> <%--CssClass="edit"--%>
                                                                         </td>
                                                                         <td align="center">
-                                                                          <input id="btnprint" type="button" runat="server"  class="print" CommandName="Print" />
-                                                                        </td>
-                                                                        <td align="center">
-                                                                            <asp:Button ID="btnEdit" runat="server" CssClass="edit" CommandName="Edit" />
-                                                                        </td>
-                                                                        <td align="center">
-                                                                            <asp:Button ID="btnDelete" runat="server" CssClass="delete" CommandName="Delete"
+                                                                            <asp:Button ID="btnDelete" runat="server" class="btn btn-default btn-xs" Text="Remove" CommandName="Delete"
                                                                                 OnClientClick="return confirm('Do you want to delete this record ?');" />
                                                                         </td>
                                                                     </tr>

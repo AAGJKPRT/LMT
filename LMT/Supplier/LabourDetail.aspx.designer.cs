@@ -31,24 +31,6 @@ namespace LMT.Supplier {
         protected global::System.Web.UI.WebControls.Panel panel1;
         
         /// <summary>
-        /// btnprint control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ImageButton btnprint;
-        
-        /// <summary>
-        /// lbtnAdd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbtnAdd;
-        
-        /// <summary>
         /// dt_example control.
         /// </summary>
         /// <remarks>
