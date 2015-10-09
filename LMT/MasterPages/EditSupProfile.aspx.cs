@@ -440,7 +440,7 @@ namespace LMT.MasterPages
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/MasterPages/Supplier.aspx");
+            Response.Redirect("~/Admin/Supplier.aspx");
         }
 
 
