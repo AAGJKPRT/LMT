@@ -62,7 +62,7 @@
 			            <div class="ccr-slug" style="padding-top:5px;height:600px;">
 				            <div class="container">
                                 <div class="row">
-                                  <div class="col-sm-3 col-md-6 col-lg-12">
+                                  <div class="col-lg-12">
                                      <div class="panel panel-default">
                                        <div class="panel-heading">
                                           <h3 class="panel-title">
@@ -72,12 +72,12 @@
                                        <div class="panel-body">
                                         <div>
                                             <asp:Panel ID="panel1" runat="server" CssClass="panelclass">
-                                                  <div style="float:right">
-                                                    <a href="../Reports/AllLabours.aspx" class="btn btn-info btn-xs"  title="Go to labour list">Show all</a>
-                                                    <a href="RegisterLabour.aspx" class="btn btn-info btn-xs"  title="Add new labour">Add Labour</a>
-                                                  </div>
                                                 <asp:Panel ID="dt_example" runat="server" Width="97%" Style="margin-top: 5px;">
                                                     <div id="container">
+                                                          <div class="pull-right">
+                                                             <a href="../Reports/AllLabours.aspx" class="btn btn-info btn-xs"  title="Go to labour list">Show all</a>
+                                                             <a href="RegisterLabour.aspx" class="btn btn-info btn-xs"  title="Add new labour">Add Labour</a>
+                                                          </div>
                                                         <div id="demo" class="table-responsive">
                                                             <asp:Repeater ID="rptLabourInformation" runat="server" OnDataBinding="rptLabourInformation_DataBinding"
                                                                 OnItemCommand="rptLabourInformation_ItemCommand" OnItemDataBound="rptLabourInformation_ItemDataBound">
