@@ -234,6 +234,7 @@
     <Content Include="Supplier\EditProfile.aspx" />
     <Content Include="Supplier\NewLeads.aspx" />
     <Content Include="Supplier\RegisterLabour.aspx" />
+    <Content Include="test.aspx" />
     <Content Include="User\UserRegistration.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -485,6 +486,13 @@
     </Compile>
     <Compile Include="Supplier\RegisterLabour.aspx.designer.cs">
       <DependentUpon>RegisterLabour.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
     </Compile>
     <Compile Include="TransPages\AdminMaster.Master.cs">
       <DependentUpon>AdminMaster.Master</DependentUpon>

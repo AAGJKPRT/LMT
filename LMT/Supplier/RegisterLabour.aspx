@@ -3,15 +3,14 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-<style>
-.thumbs
-{
-    float:left;
-    height: 50px;
-    width: 50px;
-    padding-right: 4px;
-}
-</style>
+    <style>
+        .thumbs {
+            float: left;
+            height: 50px;
+            width: 50px;
+            padding-right: 4px;
+        }
+    </style>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -325,7 +324,7 @@
                                                                         <label for="name">Verification</label>
                                                                         <asp:RadioButtonList ID="rbtnVerify" ClientIDMode="AutoID" runat="server">
                                                                             <asp:ListItem Value="1">Done</asp:ListItem>
-                                                                            <asp:ListItem Value="2">Not Done</asp:ListItem>                                                                        
+                                                                            <asp:ListItem Value="0">Not Done</asp:ListItem>                                                                        
                                                                         </asp:RadioButtonList>
                                                                     </td>
                                                                     <td rowspan="3" style="border-top:none">
