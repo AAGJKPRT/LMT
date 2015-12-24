@@ -214,7 +214,7 @@
                             <img id="step-1-img" src="images/step-1.png" alt="Step-1" style="display: inline;">
                           </div>--%>
                           <div class="col-sm-3 col-md-6 col-lg-4">
-                             <div class="panel panel-default" style="height:420px;">
+                             <div class="panel panel-default" style="height:420px; box-shadow: 0 4px 23px 5px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0,0,0,0.15);">
                                <div class="panel-heading">
                                   <h3 class="panel-title">
                                      <p class="text-center">Household</p>                                     
@@ -240,7 +240,7 @@
                                       </div>
                                       <div id="divDefault" runat="server" visible="true">
                                         <div style="float:left;padding-right: 8px;">
-                                           <img src="images/labour_defaultimg.jpg" alt="Labour Image" style="padding-top: 10px; height: 290px; width: 60%;" />
+                                          <%-- <img src="images/labour_defaultimg.jpg" alt="Labour Image" style="padding-top: 10px; height: 290px; width: 60%;" />--%>
                                         </div>
                                       </div>
                                       <div id="HS_rep" runat="server" visible="false" style="height: 300px; overflow-y: scroll; position: absolute; width: 95%;
@@ -425,7 +425,7 @@
                           
 
                           <div class="col-sm-3 col-md-6 col-lg-4">
-                             <div class="panel panel-default" style="height:420px;">
+                             <div class="panel panel-default" style="height:420px; box-shadow: 0 4px 23px 5px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0,0,0,0.15);">
                                <div class="panel-heading">
                                   <h3 class="panel-title">
                                      <p class="text-center">Labour for General Business</p>
@@ -452,7 +452,7 @@
                                       </div>
                                       <div id="divDefaultLGB" runat="server" visible="true">
                                         <div style="float:left;padding-right: 8px;">
-                                           <img src="images/labour_defaultimg.jpg" alt="Labour Image" style="padding-top: 10px; height: 290px; width: 60%;" />
+                                           <%--<img src="images/labour_defaultimg.jpg" alt="Labour Image" style="padding-top: 10px; height: 290px; width: 60%;" />--%>
                                         </div>
                                       </div>
                                       <div id="LGBRep" runat="server" visible="false" style="">
@@ -621,7 +621,7 @@
                           </div>
 
                           <div class="col-sm-3 col-md-6 col-lg-4">
-                             <div class="panel panel-default" style="height:420px;">
+                             <div class="panel panel-default" style="height:420px; box-shadow: 0 4px 23px 5px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0,0,0,0.15);"> 
                                <div class="panel-heading">
                                   <h3 class="panel-title">
                                      <p class="text-center">Industrial Labour</p>
@@ -648,7 +648,7 @@
                                       </div>
                                       <div id="divDefaultIL" runat="server" visible="true">
                                         <div style="float:left;padding-right: 8px;">
-                                           <img src="images/labour_defaultimg.jpg" alt="Labour Image" style="padding-top: 10px; height: 290px; width: 60%;" />
+                                           <%--<img src="images/labour_defaultimg.jpg" alt="Labour Image" style="padding-top: 10px; height: 290px; width: 60%;" />--%>
                                         </div>
                                       </div>
                                       <div id="ILRep" runat="server" visible="false" style="">

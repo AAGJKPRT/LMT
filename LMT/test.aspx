@@ -13,6 +13,7 @@
         </div>
         <div>
             <asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click" />
+            <asp:Button ID="btnInserLabour" runat="server" Text="Save Labour" OnClick="btnInserLabour_Click" />
         </div>
     </form>
 </body>
