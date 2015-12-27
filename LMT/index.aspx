@@ -6,7 +6,7 @@
 <head runat="server">
     <meta http-equiv="content-type" content="text/html;" charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Labour Management Tool</title>
+    <title>Easy Labour | Index</title>
     <!--Bootstrap CSS-->
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
     <!--MainStyle-->
@@ -133,6 +133,11 @@
                 <div class="carousel-inner" style="position: absolute;">
                     <div class="item active">
                         <!-- Set the first background image using inline CSS below. -->
+                        <div class="fill img-responsive" style="background-image: url('images/Untitled design.jpg');">
+                        </div>
+                    </div>
+                    <%--<div class="item ">
+                        <!-- Set the first background image using inline CSS below. -->
                         <div class="fill" style="background-image: url('images/ind_slid1.jpg');">
                         </div>
                     </div>
@@ -150,10 +155,11 @@
                         <!-- Set the second background image using inline CSS below. -->
                         <div class="fill" style="background-image: url('images/ind_slid4.jpg');">
                         </div>
-                    </div>
+                    </div>--%>
                 </div>
+
                 <section id="ccr-header">
-		    <div class="ccr-hbg" style="background: rgba(0,0,0,.2);-webkit-transition: all .5s ease-in-out;-moz-transition: all .5s ease-in-out;transition: all .5s ease-in-out;-o-transition: all .5s ease-in-out;z-index: 1;position: relative;">
+		    <div class="ccr-hbg">
 			    <div class="container">
 				    <div class="ccr-headarea">
 					    <div class="col-xs-12 col-md-2">
@@ -178,10 +184,10 @@
 									    <ul class="nav navbar-nav" style="font-weight: bold;font-size: 19px;">
 										    <li><a href="#ccr-header">Home</a></li>
 										    <li><a href="#ccr-service">Service</a></li>
-										    <li><a href="#ccr-works">How It Works</a></li>
+										   <%-- <li><a href="#ccr-works">How It Works</a></li>--%>
 										    <li><a href="#ccr-skill">Pricing & Membership</a></li>										
-										    <%--<li><a href="#ccr-about-us">Membership</a></li>--%>
-                                            <li><a href="#">Blog</a></li>
+										    <li><a href="#ccr-touch">Contact Us</a></li>
+                                            <%--<li><a href="#">Blog</a></li>--%>
                                             <li style="cursor:pointer;" ><a onclick="onLoginClick()">Login</a></li>
                                             <%--<li class="dropdown">
                                                 <a href="login.aspx" class="dropdown-toggle" data-toggle="dropdown">
@@ -192,7 +198,7 @@
                                                    <li><a href="login.aspx" target="_new"></a></li>                                               
                                                 </ul>--%>
                                               <%-- </li>--%>
-                                             <li><a href="#" target="_offer">Offer</a></li>
+                                             <li><%--<a href="#" target="_offer">Offer</a>--%></li>
 										    <%--<li><a href="#ccr-touch">Contact</a></li>
                                             <li><a href="#ccr-enquiry">Enquiry</a></li>--%>
 									    </ul>
@@ -260,13 +266,15 @@
                                                     </td>
                                                     <td>
                                                         <div style="float:left;">
-                                                        <asp:Label ID="lblName" Text='<%#Eval("FullName") %>' runat="server" Style="display:inherit;" ></asp:Label><%--<br />--%>
-                                                        <asp:Label ID="lblContact" Text="9999999999" runat="server" Style="display:inherit;" ></asp:Label><%--<br />--%>
-                                                        <asp:Label ID="lblRating" runat="server" Text="5 Stars" Style="display:inherit;" ></asp:Label>
+                                                        <asp:Label ID="lblName" Text='<%#Eval("FullName") %>' runat="server" ></asp:Label><%--<br />--%>
+                                                        <asp:Label ID="lblContact" Text="" runat="server"  ></asp:Label><%--<br />--%>
+                                                        <asp:Label ID="lblRating" runat="server" Text=""  ></asp:Label>
                                                         </div>
                                                     </td>
                                                     <td>
-                                                          <asp:LinkButton ID="linkbtnProceed" Text="Proceed" runat="server" CommandName="select"></asp:LinkButton>
+                                                        <div style="margin: 24px 0px 0px 10px; position: absolute;">
+                                                          <asp:LinkButton ID="linkbtnProceed" CssClass="btn btn-default" Text="Proceed" runat="server" CommandName="select"></asp:LinkButton>
+                                                            </div>
                                                     </td>
                                                 </tr>
                                             </ItemTemplate>
@@ -906,7 +914,7 @@
 			<!-- /.ccr-service-bg -->
 		</section>
             <!-- /#ccr-service -->
-            <section id="ccr-works">
+            <%-- <section id="ccr-works">
             <div class="ccr-works-bg" style="position: relative;">
                 <div class="container">
                     <div class="ccr-works-title element_fade_in">
@@ -918,10 +926,10 @@
 							<p>We are a small team of designers and developers, who help brands with big ideas.
 							</p>
 						</div>--%><!-- /.ccr-works-slug -->
-                    </div>
+            <%-- </div>
                 </div>
             </div>
-        </section>
+        </section>--%>
             <!-- /#ccr-works -->
             <%--<section id="ccr-team">
 			<div class="ccr-team-bg" style="position: relative;">
@@ -1008,16 +1016,19 @@
 						</div> <!-- /.ccr-skill-slug -->
 					</div> <!-- /.ccr-skill-title -->--%>
                     <section id="ccr-skill">
+                        <div class="col-12 ccr-second-skill"  >
+                             <h2 style="color:#002060";>Pricing and membership</h2>
+                        </div>
 					<div class="ccr-skill-item ">
-						<div class="col-xs-12 col-sm-6 ccr-first-skill element_from_right">
+                         <div class="col-xs-12 col-sm-6 ccr-first-skill element_from_right">
                             <img class="img-responsive"  src="images/Pricing.PNG" />
 						<%--	<div class="tw-circle-chart" data-color="#30bae7" data-padding="5px" data-percent="90">90%</div>
 							<h3>Lorem ipsum dolor.</h3>--%>
 						</div>	<!-- /.ccr-first-skill -->
 						<div class="col-xs-12 col-sm-6 ccr-second-skill element_from_right">
-                            <h3>Pricing and membership</h3>
+                           <%-- <h3>Pricing and membership</h3>--%>
                             <p>Pricing is the most important thing meant to everyone, they may be workers, services provider, customers or companies. Everyone needs good service with satisfaction, but in respect of workers they need a proper value to their work in which can run their livelihood and Service providers need an income so that they can give best services for life long with new innovations to their services.</p>
-							<div style="text-align: left;">
+							<div style="text-align: center;">
                             <h3>FOR HOUSE HOLD</h3>
                             <p>RS 100 PER HOUR<br />
                                 RS.800 FOR WORKING HOUR</p>
@@ -1113,7 +1124,7 @@
 						<!-- /.ccr-line -->
 					</div>
 					<!-- /.ccr-touch-title -->
-					<span class="ccr-touch-slug">1600 Pennsylvania Ave NW, Washington, DC 20500, United States of America. Tel: (202) 456-1111</span>
+					<span class="ccr-touch-slug"></span>
 					<div class="ccr-touch-form col-xs-12 col-sm-12">
 						<div class="input-group col-xs-12 col-sm-6 element_from_left">
 							<input type="text" class="form-control" placeholder="* Your Name">
